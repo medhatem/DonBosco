@@ -7,15 +7,15 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import equipeSoccer.GestionAuberge;
+import equipeSoccer.GestionEquipeSoccer;
 import equipeSoccer.IFT287Exception;
-import equipeSoccer.TupleReservation;
+import equipeSoccer.TupleRencontre;
 
 /**
  * Classe traitant la requ�te provenant de la page reservation.jsp
  */
 
-public class Reservation extends HttpServlet
+public class Rencontre extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
@@ -126,7 +126,7 @@ public class Reservation extends HttpServlet
 			Exception
 	{
 		HttpSession session = request.getSession();
-		GestionAuberge aubergeUpdate = (GestionAuberge) session.getAttribute("aubergeUpdate");
+		GestionEquipeSoccer aubergeUpdate = (GestionEquipeSoccer) session.getAttribute("aubergeUpdate");
 
 		if(idReservation == -1)
 			throw new IFT287Exception("SVP sélectionner une réservation.");
@@ -178,11 +178,11 @@ public class Reservation extends HttpServlet
 		System.out.println(idChambre + " " + idClient + " " + dateDebut + " "
 				+ dateFin);
 
-		GestionAuberge aubergeUpdate = (GestionAuberge) session.getAttribute("aubergeUpdate");
+		GestionEquipeSoccer aubergeUpdate = (GestionEquipeSoccer) session.getAttribute("aubergeUpdate");
 
 		synchronized (aubergeUpdate)
 		{
-			aubergeUpdate.getGestionReservation().ajouter(new TupleReservation(idClient, idChambre, dateDebut, dateFin));
+			aubergeUpdate.getGestionReservation().ajouter(new TupleRencontre(idClient, idChambre, dateDebut, dateFin));
 		}
 
 		// On retourne a la page

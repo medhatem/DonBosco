@@ -338,8 +338,8 @@ non-standard information in a separate file, and easily refer from
 these tools-specific files to the information in the standard web-app
 deployment descriptor.
 -->
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="TP5 - Auberge Web">
-  <display-name>Systï¿½me de gestion d'auberge WEB</display-name>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="TP5 - Équipe de soccer">
+  <display-name>Système de gestion d'équipe de soccer</display-name>
   <context-param>
     <param-name>exempleParam1</param-name>
     <param-value>valeurDeExempleParam1</param-value>

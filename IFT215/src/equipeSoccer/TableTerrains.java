@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TableChambres {
+public class TableTerrains {
     private PreparedStatement stmtExiste;
     private PreparedStatement stmtInsert;
     private PreparedStatement stmtDelete;
@@ -14,7 +14,7 @@ public class TableChambres {
      * Creation d'une instance. Des énoncés SQL pour chaque requête sont
      * précompilés.
      */
-    public TableChambres(Connexion cx) throws SQLException
+    public TableTerrains(Connexion cx) throws SQLException
     {
         this.cx = cx;
         
@@ -50,13 +50,13 @@ public class TableChambres {
     /**
      * Lecture d'une chambre
      */
-    public TupleChambre getChambre(int idChambre) throws SQLException
+    public TupleTerrain getTerrain(int idChambre) throws SQLException
     {
         stmtExiste.setInt(1, idChambre);
         ResultSet rset = stmtExiste.executeQuery();
         if (rset.next())
         {
-            TupleChambre tupleChambre = new TupleChambre();
+            TupleTerrain tupleChambre = new TupleTerrain();
             tupleChambre.setIdChambre(idChambre);
             tupleChambre.setNom(rset.getString(2));
             tupleChambre.setTypeLit(rset.getString(3));
@@ -72,7 +72,7 @@ public class TableChambres {
     /**
      * Ajout d'une nouvelle chambre dans la base de donnees
      */
-    public void creer(TupleChambre chambre) throws SQLException
+    public void creer(TupleTerrain chambre) throws SQLException
     {
         stmtInsert.setInt(1, chambre.getIdChambre());
         stmtInsert.setString(2, chambre.getNom());
@@ -92,7 +92,7 @@ public class TableChambres {
 
 	public String afficher(int idChambre) throws SQLException
 	{
-		return getChambre(idChambre).toHtml();
+		return getTerrain(idChambre).toHtml();
 	}
 
 }

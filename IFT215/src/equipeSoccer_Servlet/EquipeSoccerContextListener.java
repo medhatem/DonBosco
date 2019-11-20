@@ -9,7 +9,7 @@ import java.util.*;
  * Syst�me de gestion d'auberge
  */
 
-public class AubergeContextListener implements ServletContextListener
+public class EquipeSoccerContextListener implements ServletContextListener
 {
     public void contextInitialized(ServletContextEvent sce)
     {

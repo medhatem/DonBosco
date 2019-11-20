@@ -5,31 +5,29 @@ import java.util.ArrayList;
 
 import equipeSoccer_Servlet.ListeHtml;
 
-public class GestionCommodite
+public class GestionFacture
 {
-	private TableCommodites commodite;
-	private TableChambreCommodites chambreCommodite;
+	private TableFactures facture;
 	private Connexion cx;
 
-	public GestionCommodite(TableCommodites commodite, TableChambreCommodites chambreCommodite) throws IFT287Exception
+	public GestionFacture(TableFactures facture) throws IFT287Exception
 	{
-		this.cx = commodite.getConnexion();
-		this.commodite = commodite;
-		this.chambreCommodite = chambreCommodite; 
+		this.cx = facture.getConnexion();
+		this.facture = facture;
 	}
 
-	public void ajouter(TupleCommodite c)
+	public void ajouter(TupleFacture c)
 			throws SQLException, IFT287Exception, Exception
 	{
 		try
 		{
 			// V�rifie si la commodite existe
-			if (commodite.existe(c.getIdCommodite()))
+			if (facture.existe(c.getIdCommodite()))
 				throw new IFT287Exception("La Commodité existe deja : "
 						+ c.getIdCommodite());
 
 			// Ajout de la commodite
-			commodite.creer(c);
+			facture.creer(c);
 
 			// Commit
 			cx.commit();
@@ -47,16 +45,12 @@ public class GestionCommodite
 		try
 		{
 			// V�rifie si la commodite existe
-			if (!commodite.existe(idCommodite))
+			if (!facture.existe(idCommodite))
 				throw new IFT287Exception("La commodité n'existe pas : "
 						+ idCommodite);
 			
-			// Vérifie si la commodite est utilisée
-			if(chambreCommodite.getCommoditeChambre(idCommodite).size() > 0)
-				throw new IFT287Exception("La commodité est inclue dans au moins une chambre : SVP supprimer les associations d'abord.");
-
 			// suppression de la commodite
-			commodite.supprimer(idCommodite);
+			facture.supprimer(idCommodite);
 
 			// Commit
 			cx.commit();
@@ -70,30 +64,19 @@ public class GestionCommodite
 
 	public boolean existe(int idCommodite) throws SQLException
 	{
-		return commodite.existe(idCommodite);
+		return facture.existe(idCommodite);
 	}
 	
-	public String afficherCommodite(String idCommoditeParam)
+	public String afficherFacture(int idFacture) throws SQLException
 	{
-		try {
-			return afficherCommodite(Integer.parseInt(idCommoditeParam));
-		}
-		catch (Exception e)
-		{
-			return "<i>(Commodite invalide!)</i>";
-		}
+		return facture.getFacture(idFacture).toHtml();
 	}
 
-	public String afficherCommodite(int idCommodite) throws SQLException
-	{
-		return commodite.getCommodite(idCommodite).toHtml();
-	}
-
-	public String listerCommodites(String selection)
+	public String listerFactures(String selection)
 			throws SQLException, IFT287Exception, Exception
 	{
 
-		ArrayList<TupleCommodite> commodites = commodite.getCommodites();
+		ArrayList<TupleFacture> commodites = facture.getFactures();
 
 		// Les titres
 
@@ -104,7 +87,7 @@ public class GestionCommodite
 		if (selection != null)
 			listeHtml.selectionner(selection);
 
-		for (TupleCommodite c : commodites)
+		for (TupleFacture c : commodites)
 		{
 			listeHtml.addItem(((Integer) c.getIdCommodite()).toString())	// le id
 					.addItem(c.getDescription())							// La description

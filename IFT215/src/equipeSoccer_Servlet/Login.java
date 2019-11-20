@@ -6,7 +6,7 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import equipeSoccer.GestionAuberge;
+import equipeSoccer.GestionEquipeSoccer;
 import equipeSoccer.IFT287Exception;
 
 /**
@@ -49,10 +49,10 @@ public class Login extends HttpServlet
                  * en mode serialisable, pour les transactions
                  */
                 System.out.println("Login: session id=" + session.getId());
-                GestionAuberge aubergeInterrogation = new GestionAuberge(serveur, bd, userId, motDePasse);
+                GestionEquipeSoccer aubergeInterrogation = new GestionEquipeSoccer(serveur, bd, userId, motDePasse);
                 aubergeInterrogation.getConnexion().setIsolationReadCommited();
                 session.setAttribute("aubergeInterrogation", aubergeInterrogation);
-                GestionAuberge aubergeUpdate = new GestionAuberge(serveur, bd, userId, motDePasse);
+                GestionEquipeSoccer aubergeUpdate = new GestionEquipeSoccer(serveur, bd, userId, motDePasse);
                 session.setAttribute("aubergeUpdate", aubergeUpdate);
 
                 // afficher le menu membre en appelant la page
@@ -63,7 +63,7 @@ public class Login extends HttpServlet
 
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/chambre.jsp");
                 dispatcher.forward(request, response);
-                session.setAttribute("etat", new Integer(AubergeConstantes.CONNECTE));
+                session.setAttribute("etat", new Integer(EquipeSoccerConstantes.CONNECTE));
             }
             else
             {

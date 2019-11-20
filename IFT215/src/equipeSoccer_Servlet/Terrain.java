@@ -6,15 +6,15 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import equipeSoccer.GestionAuberge;
+import equipeSoccer.GestionEquipeSoccer;
 import equipeSoccer.IFT287Exception;
-import equipeSoccer.TupleChambre;
+import equipeSoccer.TupleTerrain;
 
 /**
  * Classe traitant la requete provenant de la page chambre.jsp
  */
 
-public class Chambre extends HttpServlet
+public class Terrain extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
@@ -120,14 +120,14 @@ public class Chambre extends HttpServlet
 			Exception
 	{
 		HttpSession session = request.getSession();
-		GestionAuberge aubergeUpdate = (GestionAuberge) session.getAttribute("aubergeUpdate");
+		GestionEquipeSoccer aubergeUpdate = (GestionEquipeSoccer) session.getAttribute("aubergeUpdate");
 		
 		if(idChambre == -1)
 			throw new IFT287Exception("SVP sélectionner une chambre.");
 		
 		synchronized (aubergeUpdate)
 		{
-			aubergeUpdate.getGestionChambre().supprimer(idChambre);
+			aubergeUpdate.getGestionTerrain().supprimer(idChambre);
 		}
 
 		// transfert de la requ�te � la page JSP pour affichage
@@ -178,10 +178,10 @@ public class Chambre extends HttpServlet
 					+ idParam + " / " + prixParam);
 		}
 
-		GestionAuberge aubergeUpdate = (GestionAuberge) session.getAttribute("aubergeUpdate");
+		GestionEquipeSoccer aubergeUpdate = (GestionEquipeSoccer) session.getAttribute("aubergeUpdate");
 		synchronized (aubergeUpdate)
 		{
-			aubergeUpdate.getGestionChambre().ajouter(new TupleChambre(id, nomParam, typeLitParam, prix));;
+			aubergeUpdate.getGestionTerrain().ajouter(new TupleTerrain(id, nomParam, typeLitParam, prix));;
 		}
 
 		// On retourne a la page
@@ -198,8 +198,8 @@ public class Chambre extends HttpServlet
 		if (idChambre != -1)
 		{
 			// v�rifier existence du membre
-			GestionAuberge aubergeInterrogation = (GestionAuberge) session.getAttribute("aubergeInterrogation");
-			if (!aubergeInterrogation.getGestionChambre().existe(idChambre))
+			GestionEquipeSoccer aubergeInterrogation = (GestionEquipeSoccer) session.getAttribute("aubergeInterrogation");
+			if (!aubergeInterrogation.getGestionTerrain().existe(idChambre))
 				throw new IFT287Exception("La chambre n'existe pas : "
 						+ idChambre);
 

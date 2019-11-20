@@ -2,14 +2,14 @@ package equipeSoccer;
 
 import java.sql.Date; 
 
-public class TupleReservation {
+public class TupleRencontre {
 	int idReservation;
 	int idChambre;
 	int idClient;
 	Date dateDebut;
 	Date dateFin;
 
-	public TupleReservation(int idReservation, int idClient, int idChambre, Date dateDebut, Date dateFin) {
+	public TupleRencontre(int idReservation, int idClient, int idChambre, Date dateDebut, Date dateFin) {
 		this.idReservation = idReservation;
 		this.idChambre = idChambre;
 		this.idClient = idClient;
@@ -18,7 +18,7 @@ public class TupleReservation {
 	}
 	
 	// Dans le cas ou le tuple sert a creer un élément dans la BD (on ne connait pas encore le id)
-	public TupleReservation(int idClient, int idChambre, Date dateDebut, Date dateFin) {
+	public TupleRencontre(int idClient, int idChambre, Date dateDebut, Date dateFin) {
 		this.idChambre = idChambre;
 		this.idClient = idClient;
 		this.dateDebut = dateDebut;
@@ -35,7 +35,7 @@ public class TupleReservation {
 		this.idReservation = idReservation;
 	}
 
-	public TupleReservation() {
+	public TupleRencontre() {
 	}
 
 	public int getIdChambre() {

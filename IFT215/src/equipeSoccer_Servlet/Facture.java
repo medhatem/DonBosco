@@ -6,15 +6,15 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import equipeSoccer.GestionAuberge;
+import equipeSoccer.GestionEquipeSoccer;
 import equipeSoccer.IFT287Exception;
-import equipeSoccer.TupleClient;
+import equipeSoccer.TupleFacture;
 
 /**
- * Classe traitant la requ�te provenant de la page client.jsp
+ * Classe traitant la requ�te provenant de la page commodite.jsp
  */
 
-public class Client extends HttpServlet
+public class Facture extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
@@ -33,43 +33,43 @@ public class Client extends HttpServlet
 		{
 			try
 			{
-
 				// Lecture de la commande reçue
 				// Commandes possibles :
-				// "Afficher" : Affiche le client sélectionnée
-				// "Supprimer" : Supprime le client sélectionnée
-				// "Reserver..." : Ouvre la page reservation.jsp
+				// "Afficher" : Affiche la commodite sélectionnée
+				// "Supprimer" : Supprime la commodite sélectionnée
+				// "Reserver..." : Ouvre la page chambrecommodite.jsp
 				String commande = request.getParameter("bouton");
-				String idClientParam = request.getParameter("Liste des clients");
+
+				String idCommoditeParam = request.getParameter("Liste des commodites");
 
 				System.out.println("Commande recue : " + commande + "("
-						+ idClientParam + ")");
+						+ idCommoditeParam + ")");
 
-				int idClient = -1;
-				if (idClientParam != null)
+				int idCommodite = -1;
+				if (idCommoditeParam != null)
 				{
 					try
 					{
-						idClient = Integer.parseInt(idClientParam);
+						idCommodite = Integer.parseInt(idCommoditeParam);
 					}
 					catch (NumberFormatException e)
 					{
 						throw new IFT287Exception("Format de no Client "
-								+ idClientParam + " incorrect.");
+								+ idCommoditeParam + " incorrect.");
 					}
 				}
 
 				if (commande == null || commande.equals("Afficher"))
 				{
-					Afficher(request, response, idClient);
+					Afficher(request, response, idCommodite);
 				}
 				else if (commande.equals("Supprimer"))
 				{
-					Supprimer(request, response, idClient);
+					Supprimer(request, response, idCommodite);
 				}
-				else if (commande.equals("Reserver..."))
+				else if (commande.equals("Inclure..."))
 				{
-					Reserver(request, response, idClient);
+					Inclure(request, response, idCommodite);
 				}
 				else if (commande.equals("Creer"))
 				{
@@ -80,6 +80,7 @@ public class Client extends HttpServlet
 					throw new IFT287Exception("Commande inconnue : "
 							+ commande);
 				}
+
 			}
 			catch (SQLException e)
 			{
@@ -91,8 +92,7 @@ public class Client extends HttpServlet
 				List<String> listeMessageErreur = new LinkedList<String>();
 				listeMessageErreur.add(e.toString());
 				request.setAttribute("listeMessageErreur", listeMessageErreur);
-				request.setAttribute("clientEnCours", null);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/client.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/commodite.jsp");
 				dispatcher.forward(request, response);
 			}
 			catch (Exception e)
@@ -102,34 +102,33 @@ public class Client extends HttpServlet
 		}
 	}
 
-	private void Supprimer(HttpServletRequest request, HttpServletResponse response, int idClient)
+	private void Supprimer(HttpServletRequest request, HttpServletResponse response, int idCommodite)
 			throws ServletException, IOException, SQLException, IFT287Exception,
 			Exception
 	{
 		HttpSession session = request.getSession();
-		GestionAuberge aubergeUpdate = (GestionAuberge) session.getAttribute("aubergeUpdate");
+		GestionEquipeSoccer aubergeUpdate = (GestionEquipeSoccer) session.getAttribute("aubergeUpdate");
 		
-		if(idClient == -1)
-			throw new IFT287Exception("SVP sélectionner un client.");
+		if(idCommodite == -1)
+			throw new IFT287Exception("SVP sélectionner une commodite.");
 		
 		synchronized (aubergeUpdate)
 		{
-			aubergeUpdate.getGestionClient().supprimer(idClient);
+			aubergeUpdate.getGestionFacture().supprimer(idCommodite);
 		}
 
 		// transfert de la requ�te � la page JSP pour affichage
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/client.jsp");
-		session.setAttribute("clientEnCours", null);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/commodite.jsp");
+		session.setAttribute("commoditeEnCours", null);
 		dispatcher.forward(request, response);
-
 	}
 
-	private void Reserver(HttpServletRequest request, HttpServletResponse response, int idClient)
+	private void Inclure(HttpServletRequest request, HttpServletResponse response, int idCommodite)
 			throws ServletException, IOException, SQLException, IFT287Exception
 	{
 		HttpSession session = request.getSession();
-		session.setAttribute("clientEnCours", String.valueOf(idClient));
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/reservation.jsp");
+		session.setAttribute("commoditeEnCours", String.valueOf(idCommodite));
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/chambrecommodite.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -139,64 +138,55 @@ public class Client extends HttpServlet
 	{
 		HttpSession session = request.getSession();
 
-		session.setAttribute("clientEnCours", null);
-
-		// lecture des param�tres du formulaire Client.jsp
+		// lecture des param�tres du formulaire Commodite.jsp
 		String idParam = request.getParameter("id");
-		String nomParam = request.getParameter("nom");
-		String prenomParam = request.getParameter("prenom");
-		String prixParam = request.getParameter("age");
+		String nomParam = request.getParameter("description");
+		String prixParam = request.getParameter("prix");
 
 		if (nomParam == null || nomParam.equals(""))
-			throw new IFT287Exception("Le nom ne peut être vide.");
-
-		if (prenomParam == null || prenomParam.equals(""))
-			throw new IFT287Exception("Le prenom ne peut être vide.");
+			throw new IFT287Exception("La description de la commodité ne peut être vide.");
 
 		int id;
-		int age;
+		int prix;
 
 		try
 		{
 			id = Integer.parseInt(idParam);
-			age = Integer.parseInt(prixParam);
+			prix = Integer.parseInt(prixParam);
 		}
 		catch (NumberFormatException e)
 		{
-			throw new IFT287Exception("Id / age au format incorrect : "
+			throw new IFT287Exception("Id / prix au format incorrect : "
 					+ idParam + " / " + prixParam);
 		}
 
-		GestionAuberge aubergeUpdate = (GestionAuberge) session.getAttribute("aubergeUpdate");
-
+		GestionEquipeSoccer aubergeUpdate = (GestionEquipeSoccer) session.getAttribute("aubergeUpdate");
 		synchronized (aubergeUpdate)
 		{
-			aubergeUpdate.getGestionClient().ajouter(new TupleClient(id, prenomParam, nomParam, age));
+			aubergeUpdate.getGestionFacture().ajouter(new TupleFacture(id, nomParam, prix));;
 		}
 
 		// On retourne a la page
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/client.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/commodite.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private void Afficher(HttpServletRequest request, HttpServletResponse response, int idClient)
+	private void Afficher(HttpServletRequest request, HttpServletResponse response, int idCommodite)
 			throws ServletException, IOException, SQLException, IFT287Exception
 	{
 		HttpSession session = request.getSession();
 
-		session.setAttribute("clientEnCours", String.valueOf(idClient));
-
-		if (idClient != -1)
+		if (idCommodite != -1)
 		{
-			// transfert de la requ�te � la page JSP pour affichage
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/client.jsp");
-			session.setAttribute("clientEnCours", String.valueOf(idClient));
+			// transfert de la requete a la page JSP pour affichage
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/commodite.jsp");
+			session.setAttribute("commoditeEnCours", String.valueOf(idCommodite));
 			dispatcher.forward(request, response);
 		}
 		else
 		{
-			session.setAttribute("clientEnCours", null);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/client.jsp");
+			session.setAttribute("commoditeEnCours", null);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/commodite.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

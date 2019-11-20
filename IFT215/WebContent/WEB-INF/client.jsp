@@ -17,9 +17,9 @@
 			Liste des clients :<BR>
 			<BR>
 			<%
-				GestionClient client = ((GestionAuberge) session.getAttribute("aubergeInterrogation")).getGestionClient();
+				GestionJoueur client = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionJoueur();
 			%>
-			<%=client.listerClients((String) session.getAttribute("clientEnCours"))%>
+			<%=client.listerJoueurs((String) session.getAttribute("clientEnCours"))%>
 			<BR> <INPUT type="submit" name="bouton" value="Afficher">
 			<INPUT type="submit" name="bouton" value="Supprimer"> <INPUT
 				type="submit" name="bouton" value="Reserver..."><BR>

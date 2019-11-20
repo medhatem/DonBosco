@@ -2,7 +2,7 @@ package equipeSoccer_Servlet;
 
 import javax.servlet.http.*;
 
-import equipeSoccer.GestionAuberge;
+import equipeSoccer.GestionEquipeSoccer;
 
 import java.sql.*;
 
@@ -10,7 +10,7 @@ import java.sql.*;
  * Classe pour gestion des sessions
  */
 
-public class AubergeSessionListener implements HttpSessionListener
+public class EquipeSoccerSessionListener implements HttpSessionListener
 {
     public void sessionCreated(HttpSessionEvent se)
     {
@@ -20,7 +20,7 @@ public class AubergeSessionListener implements HttpSessionListener
     {
         System.out.println("ASessionListener " + se.getSession().getId());
         
-        GestionAuberge aubergeInterrogation = (GestionAuberge)se.getSession().getAttribute("aubergeInterrogation");
+        GestionEquipeSoccer aubergeInterrogation = (GestionEquipeSoccer)se.getSession().getAttribute("aubergeInterrogation");
         if (aubergeInterrogation != null)
         {
             System.out.println("connexion =" + aubergeInterrogation.getConnexion());
@@ -39,7 +39,7 @@ public class AubergeSessionListener implements HttpSessionListener
             System.out.println("Auberge inaccessible.");
         }
         
-        GestionAuberge aubergeUpdate = (GestionAuberge)se.getSession().getAttribute("aubergeUpdate");
+        GestionEquipeSoccer aubergeUpdate = (GestionEquipeSoccer)se.getSession().getAttribute("aubergeUpdate");
         if (aubergeUpdate != null)
         {
             System.out.println("connexion = " + aubergeUpdate.getConnexion());

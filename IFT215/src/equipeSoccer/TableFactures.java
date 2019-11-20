@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class TableCommodites {
+public class TableFactures {
 	private PreparedStatement stmtExiste;
 	private PreparedStatement stmtInsert;
 	private PreparedStatement stmtDelete;
@@ -17,7 +17,7 @@ public class TableCommodites {
 	 * Creation d'une instance. Des énoncés SQL pour chaque requête sont
 	 * précompilés.
 	 */
-	public TableCommodites(Connexion cx) throws SQLException {
+	public TableFactures(Connexion cx) throws SQLException {
 		this.cx = cx;
 
 		stmtExiste = cx.getConnection()
@@ -53,11 +53,11 @@ public class TableCommodites {
 	/**
 	 * Lecture d'une commodite
 	 */
-	public TupleCommodite getCommodite(int idCommodite) throws SQLException {
+	public TupleFacture getFacture(int idCommodite) throws SQLException {
 		stmtExiste.setInt(1, idCommodite);
 		ResultSet rset = stmtExiste.executeQuery();
 		if (rset.next()) {
-			TupleCommodite tupleCommodite = new TupleCommodite();
+			TupleFacture tupleCommodite = new TupleFacture();
 			tupleCommodite.setIdCommodite(idCommodite);
 			tupleCommodite.setDescription(rset.getString(2));
 			tupleCommodite.setPrix(rset.getInt(3));
@@ -71,7 +71,7 @@ public class TableCommodites {
 	/**
 	 * Ajout d'une nouvelle commodite dans la base de donnees
 	 */
-	public void creer(TupleCommodite commodite) throws SQLException {
+	public void creer(TupleFacture commodite) throws SQLException {
 		/* Ajout du client. */
 		stmtInsert.setInt(1, commodite.getIdCommodite());
 		stmtInsert.setString(2, commodite.getDescription());
@@ -87,26 +87,15 @@ public class TableCommodites {
 		return stmtDelete.executeUpdate();
 	}
 
-	public int getPrixCommodites(ArrayList<TupleChambreCommodite> listeCommodites) throws SQLException {
-
-		int total = 0;
-		
-		for (TupleChambreCommodite c : listeCommodites)
-			total += getCommodite(c.getIdCommodite()).getPrix();
-
-		return total;
-
-	}
-
-	public ArrayList<TupleCommodite> getCommodites() throws SQLException
+	public ArrayList<TupleFacture> getFactures() throws SQLException
 	{
-		ArrayList<TupleCommodite> commodites = new ArrayList<TupleCommodite>();
+		ArrayList<TupleFacture> commodites = new ArrayList<TupleFacture>();
 		
 		ResultSet rset = stmtListAll.executeQuery();
 
         while (rset.next())
         {
-			TupleCommodite tupleCommodite = new TupleCommodite();
+			TupleFacture tupleCommodite = new TupleFacture();
 			tupleCommodite.setIdCommodite(rset.getInt(1));
 			tupleCommodite.setDescription(rset.getString(2));
 			tupleCommodite.setPrix(rset.getInt(3));

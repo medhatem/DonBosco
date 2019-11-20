@@ -23,12 +23,16 @@
 						<tbody>
 							<tr>
 								<td>
-									<%  GestionChambre chambre = ((GestionAuberge) session.getAttribute("aubergeInterrogation")).getGestionChambre(); %>
-									<%= chambre.listerChambresCommodites((String)session.getAttribute("chambreEnCours")) %>
+									<%
+										GestionTerrain chambre = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionTerrain();
+									%>
+									<%=chambre.listerChambresCommodites((String)session.getAttribute("chambreEnCours"))%>
 								<td style="text-align: center; vertical-align: middle;"><b>&lt;--&gt;</b> 
 								<td>				
-									<% GestionCommodite commodite = ((GestionAuberge) session.getAttribute("aubergeInterrogation")).getGestionCommodite(); %>
-									<%= commodite.listerCommodites((String)session.getAttribute("commoditeEnCours")) %>
+									<%
+														GestionFacture commodite = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionFacture();
+													%>
+									<%=commodite.listerFactures((String)session.getAttribute("commoditeEnCours"))%>
 						</tbody>
 					</TABLE>
 					<BR>

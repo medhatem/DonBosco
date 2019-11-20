@@ -6,37 +6,34 @@ import java.util.ArrayList;
 
 import equipeSoccer_Servlet.ListeHtml;
 
-public class GestionReservation
+public class GestionRencontre
 {
-	private TableReservations reservation;
-	private TableClients client;
-	private TableChambres chambre;
-	private TableChambreCommodites chambreCommodite;
-	private TableCommodites commodite;
+	private TableRencontres rencontre;
+	private TableJoueurs joueur;
+	private TableTerrains chambre;
+	private TableFactures commodite;
 
 	private Connexion cx;
 
-	public GestionReservation(TableReservations reservation,
-			TableClients client, TableChambres chambre,
-			TableChambreCommodites chambreCommodite, TableCommodites commodite)
+	public GestionRencontre(TableRencontres reservation,
+			TableJoueurs client, TableTerrains chambre, TableFactures commodite)
 			throws IFT287Exception
 	{
 		this.cx = reservation.getConnexion();
-		this.reservation = reservation;
-		this.client = client;
+		this.rencontre = reservation;
+		this.joueur = client;
 		this.chambre = chambre;
-		this.chambreCommodite = chambreCommodite;
 		this.commodite = commodite;
 	}
 
-	public void ajouter(TupleReservation r)
+	public void ajouter(TupleRencontre r)
 			throws SQLException, IFT287Exception, Exception
 	{
 		try
 		{
 
 			// V�rifier l'existence du client
-			if (!client.existe(r.getIdClient()))
+			if (!joueur.existe(r.getIdClient()))
 				throw new IFT287Exception("Le client n'existe pas : "
 						+ r.getIdClient());
 
@@ -46,7 +43,7 @@ public class GestionReservation
 						+ r.getIdChambre());
 
 			// V�rifie si l'association existe d�j�
-			if (reservation.existe(r.getIdChambre(), r.getIdClient(), r.getDateDebut(), r.getDateFin()))
+			if (rencontre.existe(r.getIdChambre(), r.getIdClient(), r.getDateDebut(), r.getDateFin()))
 				throw new IFT287Exception("La reservation existe deja : "
 						+ r.getIdChambre() + " " + r.getIdClient() + " "
 						+ r.getDateDebut() + " " + r.getDateFin());
@@ -56,14 +53,9 @@ public class GestionReservation
 				throw new IFT287Exception("La date de reservation est incoherente : "
 						+ r.getDateDebut() + " " + r.getDateFin());
 
-			// V�rifier si la chambre est disponible � la date demandee
-			if (!reservation.chambreEstDisponible(r))
-				throw new IFT287Exception("La chambre n'est pas disponible a la date demandee : "
-						+ r.getIdChambre() + " " + r.getDateDebut() + " "
-						+ r.getDateFin());
 
 			// Ajout de l'association dans la table
-			reservation.creer(r);
+			rencontre.creer(r);
 
 			// Commit
 			cx.commit();
@@ -81,7 +73,7 @@ public class GestionReservation
 		try
 		{
 			// V�rifier l'existence du client
-			if (!client.existe(idClient))
+			if (!joueur.existe(idClient))
 				throw new IFT287Exception("Le client n'existe pas : "
 						+ idClient);
 
@@ -91,13 +83,13 @@ public class GestionReservation
 						+ idChambre);
 
 			// V�rifie si l'association existe d�j�
-			if (!reservation.existe(idChambre, idClient, dateDebut, dateFin))
+			if (!rencontre.existe(idChambre, idClient, dateDebut, dateFin))
 				throw new IFT287Exception("L'association n'existe pas (chambre / client): "
 						+ idChambre + " / " + idClient);
 
-			TupleReservation r = reservation.getReservation(idChambre, idClient, dateDebut, dateFin);
+			TupleRencontre r = rencontre.getRencontre(idChambre, idClient, dateDebut, dateFin);
 
-			reservation.supprimer(r.getIdReservation());
+			rencontre.supprimer(r.getIdReservation());
 
 			// Commit
 			cx.commit();
@@ -116,12 +108,12 @@ public class GestionReservation
 		try
 		{
 			// V�rifie si l'association existe d�j�
-			if (!reservation.existe(idReservation))
+			if (!rencontre.existe(idReservation))
 				throw new IFT287Exception("La réservation n'existe pas : "
 						+ idReservation);
 
 			// Ajout de l'association dans la table
-			reservation.supprimer(idReservation);
+			rencontre.supprimer(idReservation);
 
 			// Commit
 			cx.commit();
@@ -133,21 +125,21 @@ public class GestionReservation
 		}
 	}
 
-	public void afficherReservationsClient(int idClient)
+	public void afficherRencontreJoueur(int idJoueur)
 			throws SQLException, IFT287Exception, Exception
 	{
-		if (!client.existe(idClient))
-			throw new IFT287Exception("Le client n'existe pas : " + idClient);
+		if (!joueur.existe(idJoueur))
+			throw new IFT287Exception("Le client n'existe pas : " + idJoueur);
 
-		client.afficherClient(idClient);
+		joueur.afficherJoueur(idJoueur);
 
-		ArrayList<TupleReservation> listeReservations = reservation.listeReservationsClient(idClient);
+		ArrayList<TupleRencontre> listeRencontres = rencontre.listeRencontresJoueur(idJoueur);
 		System.out.println("Chambre DateDebut DateFin Prix");
 
-		for (TupleReservation r : listeReservations)
+		for (TupleRencontre r : listeRencontres)
 		{
 
-			System.out.print(chambre.getChambre(r.getIdChambre()).getNom()
+			System.out.print(chambre.getTerrain(r.getIdChambre()).getNom()
 					+ " ");
 			System.out.print(r.getDateDebut() + " " + r.getDateFin() + " ");
 
@@ -155,33 +147,15 @@ public class GestionReservation
 			long jours = (r.getDateFin().getTime() - r.getDateDebut().getTime())
 					/ 86400000;
 
-			System.out.println(jours
-					* (chambre.getChambre(r.getIdChambre()).getPrix()
-							+ commodite.getPrixCommodites(chambreCommodite.getChambreCommodite(r.getIdChambre())))
-					+ " ");
 		}
 
 	}
 
-	public String prixReservation(TupleReservation r) throws SQLException
-	{
-		// Nombre de jours de la reservation
-		long jours = (r.getDateFin().getTime() - r.getDateDebut().getTime())
-				/ 86400000;
-
-		float prixCommodites = commodite.getPrixCommodites(chambreCommodite.getChambreCommodite(r.getIdChambre()));
-		float prixTotal = jours
-				* (chambre.getChambre(r.getIdChambre()).getPrix()
-						+ prixCommodites);
-
-		return prixTotal + " $";
-	}
-
-	public String listerReservations(String selection)
+	public String listerRencontres(String selection)
 			throws SQLException, IFT287Exception, Exception
 	{
 
-		ArrayList<TupleReservation> res = reservation.listeReservations();
+		ArrayList<TupleRencontre> res = rencontre.listeRencontres();
 
 		// Les titres
 		ListeHtml listeHtml = new ListeHtml("Liste des reservations")
@@ -195,14 +169,13 @@ public class GestionReservation
 		if (selection != null)
 			listeHtml.selectionner(selection);
 
-		for (TupleReservation c : res)
+		for (TupleRencontre c : res)
 		{
 			listeHtml.addItem(((Integer) c.getIdReservation()).toString())	// le id
-					.addItem(client.getClient(c.getIdClient()).toString())	// La description
-					.addItem(chambre.getChambre(c.getIdChambre()).toString())	// Le type de lit
+					.addItem(joueur.getJoueur(c.getIdClient()).toString())	// La description
+					.addItem(chambre.getTerrain(c.getIdChambre()).toString())	// Le type de lit
 					.addItem(c.getDateDebut().toString())	 // Date de debut
-					.addItem(c.getDateFin().toString())		 // Date de fin
-					.addItem(prixReservation(c)).newLigne(); // Prix reservation
+					.addItem(c.getDateFin().toString());		 // Date de fin; // Prix reservation
 		}
 		cx.commit();
 

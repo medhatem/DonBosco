@@ -6,22 +6,20 @@ import java.sql.SQLException;
 
 import equipeSoccer_Servlet.ListeHtml;
 
-public class GestionChambre {
-	private TableChambres chambre;
-	private TableReservations reservation;
-	private TableChambreCommodites chambreCommodite;
-	private TableCommodites commodite;
+public class GestionTerrain {
+	private TableTerrains terrain;
+	private TableRencontres rencontre;
+	private TableFactures facture;
 	
 	private Connexion cx;
 	private PreparedStatement stmtListeChambreLibres;
 	private PreparedStatement stmtListeChambres;
 
-	public GestionChambre(TableChambres chambre, TableReservations reservation, TableChambreCommodites chambreCommodite, TableCommodites commodite) throws IFT287Exception, SQLException {
-		this.cx = chambre.getConnexion();
-		this.chambre = chambre;
-		this.reservation = reservation;
-		this.chambreCommodite = chambreCommodite; 
-		this.commodite = commodite;
+	public GestionTerrain(TableTerrains terrain, TableRencontres rencontre, TableFactures facture) throws IFT287Exception, SQLException {
+		this.cx = terrain.getConnexion();
+		this.terrain = terrain;
+		this.rencontre = rencontre;
+		this.facture = facture;
 		
 		// Semble bizarre de mettre une transaction ici, mais c'est inspire de l'exemple stmtLivresRetard de BibliothequeJDBC
 		stmtListeChambreLibres = cx.getConnection().prepareStatement("SELECT c.idchambre, c.nom, c.typelit, c.prixbase, COALESCE(SUM(co.prix), 0)\r\n" + 
@@ -39,14 +37,14 @@ public class GestionChambre {
 				"GROUP BY c.idchambre order by c.nom ASC");
 	}
 
-	public void ajouter(TupleChambre c) throws SQLException, IFT287Exception, Exception {
+	public void ajouter(TupleTerrain c) throws SQLException, IFT287Exception, Exception {
 		try {
 			// V�rifie si la chambre existe d�j�
-			if (chambre.existe(c.getIdChambre()))
+			if (terrain.existe(c.getIdChambre()))
 				throw new IFT287Exception("Chambre existe deja�: " + c.getIdChambre());
 
 			// Ajout du chambre dans la table
-			chambre.creer(c);
+			terrain.creer(c);
 
 			// Commit
 			cx.commit();
@@ -59,24 +57,13 @@ public class GestionChambre {
 	public void supprimer(int idChambre) throws SQLException, IFT287Exception, Exception {
 		try {
 			// V�rifie si la chambre existe
-			if (!chambre.existe(idChambre))
+			if (!terrain.existe(idChambre))
 				throw new IFT287Exception("La chambre n'existe pas : " + idChambre);
 			
-			// Vérifie si le client a des reservations
-			for(TupleReservation r : reservation.listeReservationsChambre(idChambre)){
-				if (!reservation.reservationEstPerimee(r))
-					throw new IFT287Exception("La chambre a au moins une réservation : (" + idChambre + ") " + chambre.getChambre(idChambre).getNom() + "\nSVP supprimer les réservations d'abord.");
-				else {
-					throw new IFT287Exception("Le client a au moins une réservation (périmée) : (" + idChambre + ") " + chambre.getChambre(idChambre).getNom() + "\nSVP supprimer les réservations d'abord.");
-				}
-			}
-			
-			// Vérifie si la chambre a des commodités
-			if(chambreCommodite.getChambreCommodite(idChambre).size() > 0)
-				throw new IFT287Exception("La chambre a au moins une commodité : SVP supprimer les associations d'abord.");
+
 			
 			// supression de la chambre
-			chambre.supprimer(idChambre);
+			terrain.supprimer(idChambre);
 
 			// Commit
 			cx.commit();
@@ -86,7 +73,7 @@ public class GestionChambre {
 		}
 	}
 
-	public String listerChambres(String selection) throws SQLException, IFT287Exception, Exception {
+	public String listerTerrains(String selection) throws SQLException, IFT287Exception, Exception {
 
         ResultSet rset = stmtListeChambres.executeQuery();
         
@@ -121,50 +108,15 @@ public class GestionChambre {
         return listeHtml.toHtml();
 	}
 	
-	public String listerChambresCommodites(String selection) throws SQLException, IFT287Exception, Exception {
-
-        ResultSet rset = stmtListeChambres.executeQuery();
-        
-        // Les titres
-        System.out.println("Selection : " + selection);
-        
-        System.out.println("idChambre Nom TypeLit prixBase prixCommodites");
-        
-        ListeHtml listeHtml = new ListeHtml("Liste des chambres")
-        .addTitre("Nom")
-        .addTitre("Commodités");
-        
-        if(selection != null)
-        	listeHtml.selectionner(selection);
-        
-        while (rset.next())
-        {
-        	listeHtml.addItem(rset.getString(1))	// le id
-        	.addItem(rset.getString(2));			// Le nom
-
-        	String listeComm = "(";
-        	for(TupleChambreCommodite cc : chambreCommodite.getChambreCommodite(rset.getInt(1))){
-        		listeComm += commodite.getCommodite(cc.getIdCommodite()).getDescription() + ", ";
-        	}
-        	listeComm += ")";
-        	
-        	listeHtml.addItem(listeComm)	// La liste des commodites
-        	.newLigne();
-        }
-        cx.commit();
-        
-        return listeHtml.toHtml();
-	}
-
 	public boolean existe(int idChambre) throws SQLException {
-		return chambre.existe(idChambre);
+		return terrain.existe(idChambre);
 	}
 	
 	public String afficher(String idChambreParam) {
 		try
 		{
 			int idChambre = Integer.parseInt(idChambreParam);
-			return chambre.afficher(idChambre);
+			return terrain.afficher(idChambre);
 		}
 		catch (SQLException e)
 		{

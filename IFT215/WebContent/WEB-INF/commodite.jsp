@@ -13,8 +13,10 @@
 				<FORM ACTION="Commodite" METHOD="POST">
 					<H1>Commodite</H1>
 					Liste des commodites :<BR><BR>
-					<% GestionCommodite commodite = ((GestionAuberge) session.getAttribute("aubergeInterrogation")).getGestionCommodite(); %>
-					<%= commodite.listerCommodites((String)session.getAttribute("commoditeEnCours")) %>
+					<%
+						GestionFacture commodite = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionFacture();
+					%>
+					<%=commodite.listerFactures((String)session.getAttribute("commoditeEnCours"))%>
 					<BR>
 					<INPUT type="submit" name="bouton" value="Afficher">
 					<INPUT type="submit" name="bouton" value="Supprimer">

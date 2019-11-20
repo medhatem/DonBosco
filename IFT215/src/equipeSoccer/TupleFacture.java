@@ -1,18 +1,18 @@
 package equipeSoccer;
 
 
-public class TupleCommodite {
+public class TupleFacture {
 	int idCommodite;
 	String description;
 	int prix;
 	
-	public TupleCommodite(int idCommodite, String description, int prix) {
+	public TupleFacture(int idCommodite, String description, int prix) {
 		this.idCommodite = idCommodite;
 		this.description = description;
 		this.prix = prix;
 	}
 	
-	public TupleCommodite() 
+	public TupleFacture() 
 	{}
 
 	public int getIdCommodite() {

@@ -1,19 +1,19 @@
 package equipeSoccer;
 
-public class TupleChambre {
+public class TupleTerrain {
 	int idChambre;
 	String nom;
 	String typeLit;
 	int prix;
 	
-	public TupleChambre(int idChambre, String nom, String typeLit, int prix) {
+	public TupleTerrain(int idChambre, String nom, String typeLit, int prix) {
 		this.idChambre = idChambre;
 		this.nom = nom;
 		this.typeLit = typeLit;
 		this.prix = prix;
 	}
 
-	public TupleChambre() {
+	public TupleTerrain() {
 	}
 
 	public int getIdChambre() {

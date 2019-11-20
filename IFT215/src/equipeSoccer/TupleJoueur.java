@@ -1,19 +1,19 @@
 package equipeSoccer;
 
-public class TupleClient {
+public class TupleJoueur {
 	int idClient;
 	String prenom;
 	String nom;
 	int age;
 	
-	public TupleClient(int idClient, String prenom, String nom, int age) {
+	public TupleJoueur(int idClient, String prenom, String nom, int age) {
 		this.idClient = idClient;
 		this.prenom = prenom;
 		this.nom = nom;
 		this.age = age;
 	}
 
-	public TupleClient() {
+	public TupleJoueur() {
 	}
 
 	public int getIdClient() {

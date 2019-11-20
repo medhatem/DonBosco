@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class TableClients {
+public class TableJoueurs {
     private PreparedStatement stmtExiste;
     private PreparedStatement stmtInsert;
     private PreparedStatement stmtDelete;
@@ -17,7 +17,7 @@ public class TableClients {
      * Creation d'une instance. Des énoncés SQL pour chaque requête sont
      * précompilés.
      */
-    public TableClients(Connexion cx) throws SQLException
+    public TableJoueurs(Connexion cx) throws SQLException
     {
         this.cx = cx;
         
@@ -54,13 +54,13 @@ public class TableClients {
     /**
      * Lecture d'un client.
      */
-    public TupleClient getClient(int idClient) throws SQLException
+    public TupleJoueur getJoueur(int idClient) throws SQLException
     {
         stmtExiste.setInt(1, idClient);
         ResultSet rset = stmtExiste.executeQuery();
         if (rset.next())
         {
-            TupleClient tupleClient = new TupleClient();
+            TupleJoueur tupleClient = new TupleJoueur();
             tupleClient.setIdClient(idClient);
             tupleClient.setPrenom(rset.getString(2));
             tupleClient.setNom(rset.getString(3));
@@ -75,7 +75,7 @@ public class TableClients {
     /**
      * Ajout d'un nouveau client dans la base de données.
      */
-    public void creer(TupleClient client) throws SQLException
+    public void creer(TupleJoueur client) throws SQLException
     {
         /* Ajout du client. */
         stmtInsert.setInt(1, client.getIdClient());
@@ -94,23 +94,23 @@ public class TableClients {
         return stmtDelete.executeUpdate();
     }
 
-	public void afficherClient(int idClient)  throws SQLException {
-		TupleClient c = getClient(idClient);
+	public void afficherJoueur(int idClient)  throws SQLException {
+		TupleJoueur c = getJoueur(idClient);
 		
 		System.out.println("idClient prenom nom age");
 		System.out.println(c.getIdClient() + " " + c.getPrenom() + " " + c.getNom() + " " + c.getAge());
 	
 	}
 
-	public ArrayList<TupleClient> getClients() throws SQLException
+	public ArrayList<TupleJoueur> getJoueurs() throws SQLException
 	{
-		ArrayList<TupleClient> clients = new ArrayList<TupleClient>();
+		ArrayList<TupleJoueur> clients = new ArrayList<TupleJoueur>();
 		
 		ResultSet rset = stmtListAll.executeQuery();
 
         while (rset.next())
         {
-        	TupleClient tupleClient = new TupleClient();
+        	TupleJoueur tupleClient = new TupleJoueur();
         	tupleClient.setIdClient(rset.getInt(1));
         	tupleClient.setNom(rset.getString(2));
         	tupleClient.setPrenom(rset.getString(3));

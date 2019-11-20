@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class TableReservations
+public class TableRencontres
 {
 	private PreparedStatement stmtExiste;
 	private PreparedStatement stmtExisteId;
@@ -22,7 +22,7 @@ public class TableReservations
 	 * Creation d'une instance. Des énoncés SQL pour chaque requête sont
 	 * précompilés.
 	 */
-	public TableReservations(Connexion cx) throws SQLException
+	public TableRencontres(Connexion cx) throws SQLException
 	{
 		this.cx = cx;
 
@@ -78,7 +78,7 @@ public class TableReservations
 		return reservationExiste;
 	}
 	
-	public TupleReservation getReservation(int idChambre, int idClient, Date dateDebut, Date dateFin)
+	public TupleRencontre getRencontre(int idChambre, int idClient, Date dateDebut, Date dateFin)
 			throws SQLException
 	{
 		stmtExiste.setInt(1, idChambre);
@@ -88,7 +88,7 @@ public class TableReservations
 
 		ResultSet rset = stmtExiste.executeQuery();
 		
-		TupleReservation t = new TupleReservation();
+		TupleRencontre t = new TupleRencontre();
 
 		t.setIdReservation(rset.getInt(1));
 		t.setIdChambre(rset.getInt(2));
@@ -102,7 +102,7 @@ public class TableReservations
 	/**
 	 * Ajout d'une nouvelle reservation dans la base de donnees
 	 */
-	public void creer(TupleReservation reservation) throws SQLException
+	public void creer(TupleRencontre reservation) throws SQLException
 	{
 		/* Ajout du client. */
 		stmtInsert.setInt(1, reservation.getIdChambre());
@@ -122,17 +122,17 @@ public class TableReservations
 		return stmtDelete.executeUpdate();
 	}
 
-	public ArrayList<TupleReservation> listeReservationsClient(int idClient)
+	public ArrayList<TupleRencontre> listeRencontresJoueur(int idClient)
 			throws SQLException
 	{
-		ArrayList<TupleReservation> listeReservations = new ArrayList<TupleReservation>();
+		ArrayList<TupleRencontre> listeReservations = new ArrayList<TupleRencontre>();
 
 		stmtListeClient.setInt(1, idClient);
 		ResultSet rset = stmtListeClient.executeQuery();
 
 		while (rset.next())
 		{
-			TupleReservation t = new TupleReservation();
+			TupleRencontre t = new TupleRencontre();
 
 			t.setIdReservation(rset.getInt(1));
 			t.setIdChambre(rset.getInt(2));
@@ -147,17 +147,17 @@ public class TableReservations
 		return listeReservations;
 	}
 	
-	public ArrayList<TupleReservation> listeReservationsChambre(int idChambre)
+	public ArrayList<TupleRencontre> listeRencontresTerrain(int idChambre)
 			throws SQLException
 	{
-		ArrayList<TupleReservation> listeReservations = new ArrayList<TupleReservation>();
+		ArrayList<TupleRencontre> listeReservations = new ArrayList<TupleRencontre>();
 
 		stmtListeChambre.setInt(1, idChambre);
 		ResultSet rset = stmtListeChambre.executeQuery();
 
 		while (rset.next())
 		{
-			TupleReservation t = new TupleReservation();
+			TupleRencontre t = new TupleRencontre();
 
 			t.setIdReservation(rset.getInt(1));
 			t.setIdChambre(rset.getInt(2));
@@ -172,15 +172,15 @@ public class TableReservations
 		return listeReservations;
 	}
 
-	public ArrayList<TupleReservation> listeReservations() throws SQLException
+	public ArrayList<TupleRencontre> listeRencontres() throws SQLException
 	{
-		ArrayList<TupleReservation> listeReservations = new ArrayList<TupleReservation>();
+		ArrayList<TupleRencontre> listeReservations = new ArrayList<TupleRencontre>();
 
 		ResultSet rset = stmtListeAll.executeQuery();
 
 		while (rset.next())
 		{
-			TupleReservation t = new TupleReservation();
+			TupleRencontre t = new TupleRencontre();
 
 			t.setIdReservation(rset.getInt(1));
 			t.setIdChambre(rset.getInt(2));
@@ -195,32 +195,4 @@ public class TableReservations
 		return listeReservations;
 	}
 
-	public boolean chambreEstDisponible(TupleReservation r) throws SQLException
-	{
-
-		stmtListeChambre.setInt(1, r.getIdChambre());
-
-		ResultSet rset = stmtListeChambre.executeQuery();
-
-		while (rset.next())
-		{
-			Date debut = rset.getDate(4);
-			Date fin = rset.getDate(5);
-
-			// Si les dates s'overlappent
-			if (r.getDateDebut().after(debut) && r.getDateDebut().before(fin)
-					|| r.getDateFin().after(debut)
-							&& r.getDateDebut().before(fin))
-				return false;
-
-		}
-
-		return true;
-
-	}
-	
-	public boolean reservationEstPerimee(TupleReservation r) {
-		// Est-ce que maintenant est avant la date de fin de la reservation?
-		return (new java.util.Date()).after(r.dateFin);
-	}
 }

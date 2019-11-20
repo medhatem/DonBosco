@@ -13,21 +13,24 @@
 				<FORM ACTION="Chambre" METHOD="POST">
 					<H1>Chambre</H1>
 					Liste des chambres :<BR><BR>
-					<% GestionChambre chambre = ((GestionAuberge) session.getAttribute("aubergeInterrogation")).getGestionChambre(); %>
-					<%= chambre.listerChambres((String)session.getAttribute("chambreEnCours")) %>
+					<%
+						GestionTerrain chambre = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionTerrain();
+					%>
+					<%=chambre.listerTerrains((String)session.getAttribute("chambreEnCours"))%>
 					<BR>
 					<INPUT type="submit" name="bouton" value="Afficher">
 					<INPUT type="submit" name="bouton" value="Supprimer">
 					<INPUT type="submit" name="bouton" value="Commodites...">
 					<INPUT type="submit" name="bouton" value="Reserver..."><BR>
-					<% 
+					<%
 						String detailsString = "";
-						String chambreEnCours = (String)session.getAttribute("chambreEnCours");
-						
-						if(chambreEnCours != null && !chambreEnCours.equals("-1"))
-							detailsString = ((GestionAuberge) session.getAttribute("aubergeInterrogation")).getGestionChambreCommodite().afficherChambreCommodite(chambreEnCours);
-						else
-							detailsString = "<i>(Sélectionnez une chambre)</i>"; %>
+									String chambreEnCours = (String)session.getAttribute("chambreEnCours");
+									
+									if(chambreEnCours != null && !chambreEnCours.equals("-1"))
+										detailsString = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionChambreCommodite().afficherChambreCommodite(chambreEnCours);
+									else
+										detailsString = "<i>(Sélectionnez une chambre)</i>";
+					%>
 					<%= detailsString %>
 					<BR><H2>Ajouter une chambre :</H2>
 					<TABLE>

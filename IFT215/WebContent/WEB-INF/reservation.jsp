@@ -27,15 +27,15 @@
 					<tr>
 						<td>
 							<%
-								GestionClient client = ((GestionAuberge) session.getAttribute("aubergeInterrogation")).getGestionClient();
+								GestionJoueur client = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionJoueur();
 							%>
-							<%=client.listerClients((String) session.getAttribute("clientEnCours"))%>
+							<%=client.listerJoueurs((String) session.getAttribute("clientEnCours"))%>
 						<td style="text-align: center; vertical-align: middle;"><b>&lt;--&gt;</b>
 						<td>
 							<%
-								GestionChambre chambre = ((GestionAuberge) session.getAttribute("aubergeInterrogation")).getGestionChambre();
+								GestionTerrain chambre = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionTerrain();
 							%>
-							<%=chambre.listerChambres((String) session.getAttribute("chambreEnCours"))%>
+							<%=chambre.listerTerrains((String) session.getAttribute("chambreEnCours"))%>
 				</tbody>
 			</TABLE>
 			<BR>
@@ -52,9 +52,9 @@
 			</TABLE>
 			Liste des réservations :<BR> <BR>
 			<%
-				GestionReservation reservation = ((GestionAuberge) session.getAttribute("aubergeInterrogation")).getGestionReservation();
+				GestionRencontre reservation = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionReservation();
 			%>
-			<%=reservation.listerReservations((String) session.getAttribute("idReservation"))%>
+			<%=reservation.listerRencontres((String) session.getAttribute("idReservation"))%>
 			<BR> <INPUT type="submit" name="bouton" value="Canceller">
 			<BR>
 		</FORM>
