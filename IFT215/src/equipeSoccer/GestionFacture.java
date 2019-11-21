@@ -1,79 +1,53 @@
 package equipeSoccer;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
-
 import equipeSoccer_Servlet.ListeHtml;
 
 public class GestionFacture
 {
 	private TableFactures facture;
-	private Connexion cx;
 
-	public GestionFacture(TableFactures facture) throws IFT287Exception
+	public GestionFacture(TableFactures facture) throws IFT215Exception
 	{
-		this.cx = facture.getConnexion();
 		this.facture = facture;
 	}
 
-	public void ajouter(TupleFacture c)
-			throws SQLException, IFT287Exception, Exception
+	public void ajouter(TupleFacture c) throws IFT215Exception, Exception
 	{
-		try
-		{
-			// V�rifie si la commodite existe
-			if (facture.existe(c.getIdCommodite()))
-				throw new IFT287Exception("La Commodité existe deja : "
-						+ c.getIdCommodite());
 
-			// Ajout de la commodite
-			facture.creer(c);
+		// V�rifie si la facture existe
+		if (facture.existe(c.getIdFacture()))
+			throw new IFT215Exception("La Commodité existe deja : "
+					+ c.getIdFacture());
 
-			// Commit
-			cx.commit();
-		}
-		catch (Exception e)
-		{
-			cx.rollback();
-			throw e;
-		}
+		// Ajout de la facture
+		facture.creer(c);
+
 	}
 
-	public void supprimer(int idCommodite)
-			throws SQLException, IFT287Exception, Exception
+	public void supprimer(int idFacture) throws IFT215Exception, Exception
 	{
-		try
-		{
-			// V�rifie si la commodite existe
-			if (!facture.existe(idCommodite))
-				throw new IFT287Exception("La commodité n'existe pas : "
-						+ idCommodite);
-			
-			// suppression de la commodite
-			facture.supprimer(idCommodite);
+		// V�rifie si la facture existe
+		if (!facture.existe(idFacture))
+			throw new IFT215Exception("La commodité n'existe pas : "
+					+ idFacture);
 
-			// Commit
-			cx.commit();
-		}
-		catch (Exception e)
-		{
-			cx.rollback();
-			throw e;
-		}
+		// suppression de la commodite
+		facture.supprimer(facture.getFacture(idFacture));
 	}
 
-	public boolean existe(int idCommodite) throws SQLException
+	public boolean existe(int idCommodite)
 	{
 		return facture.existe(idCommodite);
 	}
-	
-	public String afficherFacture(int idFacture) throws SQLException
+
+	public String afficherFacture(String idFacture)
 	{
-		return facture.getFacture(idFacture).toHtml();
+		return facture.getFacture(Integer.parseInt(idFacture)).toHtml();
 	}
 
 	public String listerFactures(String selection)
-			throws SQLException, IFT287Exception, Exception
+			throws IFT215Exception, Exception
 	{
 
 		ArrayList<TupleFacture> commodites = facture.getFactures();
@@ -89,16 +63,15 @@ public class GestionFacture
 
 		for (TupleFacture c : commodites)
 		{
-			listeHtml.addItem(((Integer) c.getIdCommodite()).toString())	// le id
+			listeHtml.addItem(((Integer) c.getIdFacture()).toString())	// le id
 					.addItem(c.getDescription())							// La description
 					.addItem(((Integer) c.getPrix()).toString())			// Le type de lit
 					.newLigne();
 
-			System.out.print(c.getIdCommodite() + " " + c.getDescription() + " "
+			System.out.print(c.getIdFacture() + " " + c.getDescription() + " "
 					+ c.getPrix() + " \n");
 
 		}
-		cx.commit();
 
 		return listeHtml.toHtml();
 	}

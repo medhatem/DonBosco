@@ -2,10 +2,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 	<HEAD>
-		<TITLE>Système de gestion d'auberge</TITLE>
+		<TITLE>Système de gestion d'équipe de soccer</TITLE>
 		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
 		<META NAME="author" CONTENT="Marc Fortier">
-		<META NAME="description" CONTENT="page d'accueil système de gestion d'auberge">
+		<META NAME="description" CONTENT="page d'accueil système de gestion d'equipeSoccer">
 		<jsp:include page="/WEB-INF/menu.jsp" />
 	</HEAD>
 		<BODY>
@@ -24,13 +24,13 @@
 							<tr>
 								<td>
 									<%
-										GestionTerrain chambre = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionTerrain();
+										GestionTerrain chambre = ((GestionEquipeSoccer) session.getAttribute("equipeSoccerInterrogation")).getGestionTerrain();
 									%>
-									<%=chambre.listerChambresCommodites((String)session.getAttribute("chambreEnCours"))%>
+									
 								<td style="text-align: center; vertical-align: middle;"><b>&lt;--&gt;</b> 
 								<td>				
 									<%
-														GestionFacture commodite = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionFacture();
+														GestionFacture commodite = ((GestionEquipeSoccer) session.getAttribute("equipeSoccerInterrogation")).getGestionFacture();
 													%>
 									<%=commodite.listerFactures((String)session.getAttribute("commoditeEnCours"))%>
 						</tbody>
@@ -55,7 +55,7 @@
 
 <%--
 	<%  String resultat;
-		GestionChambre chambre = ((GestionAuberge) session.getAttribute("aubergeInterrogation")).getGestionChambre();
+		GestionChambre chambre = ((GestionAuberge) session.getAttribute("equipeSoccerInterrogation")).getGestionChambre();
 		if((String)session.getAttribute("idChambre") == null)
 		{
 			resultat = chambre.listerChambreLibres((String)session.getAttribute("idChambre"));

@@ -2,14 +2,14 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 	<HEAD>
-		<TITLE>IFT287 - Système de gestion d'auberge</TITLE>
+		<TITLE>IFT287 - Système de gestion d'équipe de soccer</TITLE>
 		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
 		<META NAME="author" CONTENT="Marc Fortier">
-		<META NAME="description" CONTENT="page d'accueil système de gestion d'auberge">
+		<META NAME="description" CONTENT="page d'accueil système de gestion d'équipe de soccer">
 	</HEAD>
 	<BODY>
 		<CENTER>
-		<H1>Système de gestion d'auberge</H1>
+		<H1>Système de gestion d'équipe de soccer</H1>
 			<FORM ACTION="Login" METHOD="POST"><BR><BR>
 			    User Id : <INPUT TYPE="TEXT" NAME="userIdBD" VALUE="ift287_38"><BR><BR>
 			    Mot de passe : <INPUT TYPE="PASSWORD" NAME="motDePasseBD" VALUE="eishuc"><BR><BR>

@@ -3,11 +3,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
-<TITLE>Système de gestion d'auberge</TITLE>
+<TITLE>Système de gestion d'equipeSoccer</TITLE>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
 <META NAME="author" CONTENT="Marc Fortier">
 <META NAME="description"
-	CONTENT="page d'accueil système de gestion d'auberge">
+	CONTENT="page d'accueil système de gestion d'equipeSoccer">
 <jsp:include page="/WEB-INF/menu.jsp" />
 </HEAD>
 <BODY>
@@ -27,13 +27,13 @@
 					<tr>
 						<td>
 							<%
-								GestionJoueur client = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionJoueur();
+								GestionJoueur client = ((GestionEquipeSoccer) session.getAttribute("equipeSoccerInterrogation")).getGestionJoueur();
 							%>
 							<%=client.listerJoueurs((String) session.getAttribute("clientEnCours"))%>
 						<td style="text-align: center; vertical-align: middle;"><b>&lt;--&gt;</b>
 						<td>
 							<%
-								GestionTerrain chambre = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionTerrain();
+								GestionTerrain chambre = ((GestionEquipeSoccer) session.getAttribute("equipeSoccerInterrogation")).getGestionTerrain();
 							%>
 							<%=chambre.listerTerrains((String) session.getAttribute("chambreEnCours"))%>
 				</tbody>
@@ -52,7 +52,7 @@
 			</TABLE>
 			Liste des réservations :<BR> <BR>
 			<%
-				GestionRencontre reservation = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionReservation();
+				GestionRencontre reservation = ((GestionEquipeSoccer) session.getAttribute("equipeSoccerInterrogation")).getGestionReservation();
 			%>
 			<%=reservation.listerRencontres((String) session.getAttribute("idReservation"))%>
 			<BR> <INPUT type="submit" name="bouton" value="Canceller">

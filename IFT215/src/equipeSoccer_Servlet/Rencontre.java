@@ -8,7 +8,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import equipeSoccer.GestionEquipeSoccer;
-import equipeSoccer.IFT287Exception;
+import equipeSoccer.IFT215Exception;
 import equipeSoccer.TupleRencontre;
 
 /**
@@ -61,7 +61,7 @@ public class Rencontre extends HttpServlet
 					}
 					catch (NumberFormatException e)
 					{
-						throw new IFT287Exception("Format de no chambre / client "
+						throw new IFT215Exception("Format de no chambre / client "
 								+ idChambreParam + " / " + idClientParam + " incorrect.");
 					}
 				}
@@ -74,7 +74,7 @@ public class Rencontre extends HttpServlet
 					}
 					catch (NumberFormatException e)
 					{
-						throw new IFT287Exception("Format de no reservation "
+						throw new IFT215Exception("Format de no reservation "
 								+ idReservationParam + " incorrect.");
 					}
 				}
@@ -97,16 +97,11 @@ public class Rencontre extends HttpServlet
 				}
 				else
 				{
-					throw new IFT287Exception("Commande inconnue : "
+					throw new IFT215Exception("Commande inconnue : "
 							+ commande);
 				}
 			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-				response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());
-			}
-			catch (IFT287Exception e)
+			catch (IFT215Exception e)
 			{
 				List<String> listeMessageErreur = new LinkedList<String>();
 				listeMessageErreur.add(e.toString());
@@ -122,18 +117,18 @@ public class Rencontre extends HttpServlet
 	}
 
 	private void Supprimer(HttpServletRequest request, HttpServletResponse response, int idReservation)
-			throws ServletException, IOException, SQLException, IFT287Exception,
+			throws ServletException, IOException, IFT215Exception,
 			Exception
 	{
 		HttpSession session = request.getSession();
-		GestionEquipeSoccer aubergeUpdate = (GestionEquipeSoccer) session.getAttribute("aubergeUpdate");
+		GestionEquipeSoccer equipeSoccerUpdate = (GestionEquipeSoccer) session.getAttribute("equipeSoccerUpdate");
 
 		if(idReservation == -1)
-			throw new IFT287Exception("SVP sélectionner une réservation.");
+			throw new IFT215Exception("SVP sélectionner une réservation.");
 		
-		synchronized (aubergeUpdate)
+		synchronized (equipeSoccerUpdate)
 		{
-			aubergeUpdate.getGestionReservation().supprimer(idReservation);
+			equipeSoccerUpdate.getGestionReservation().supprimer(idReservation);
 		}
 
 		// transfert de la requ�te � la page JSP pour affichage
@@ -142,7 +137,7 @@ public class Rencontre extends HttpServlet
 	}
 
 	private void Creer(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException, IFT287Exception,
+			throws ServletException, IOException, IFT215Exception,
 			Exception
 	{
 		HttpSession session = request.getSession();
@@ -154,35 +149,32 @@ public class Rencontre extends HttpServlet
 		String dateFinParam = request.getParameter("dateFin");
 
 		if (idChambreParam == null || idClientParam == null)
-			throw new IFT287Exception("Chambre ou client manquant : "
+			throw new IFT215Exception("Chambre ou client manquant : "
 					+ idChambreParam + " / " + idClientParam);
 
 		int idChambre;
 		int idClient;
-		Date dateDebut;
-		Date dateFin;
+		Timestamp date;
 
 		try
 		{
 			idChambre = Integer.parseInt(idChambreParam);
 			idClient = Integer.parseInt(idClientParam);
-			dateDebut = Date.valueOf(dateDebutParam);
-			dateFin = Date.valueOf(dateFinParam);
+			date = Timestamp.valueOf(dateFinParam);
 		}
 		catch (NumberFormatException e)
 		{
-			throw new IFT287Exception("Chambre ou client manquant : "
+			throw new IFT215Exception("Chambre ou client manquant : "
 					+ idChambreParam + " / " + idClientParam);
 		}
 
-		System.out.println(idChambre + " " + idClient + " " + dateDebut + " "
-				+ dateFin);
+		System.out.println(idChambre + " " + idClient + " " + date);
 
-		GestionEquipeSoccer aubergeUpdate = (GestionEquipeSoccer) session.getAttribute("aubergeUpdate");
+		GestionEquipeSoccer equipeSoccerUpdate = (GestionEquipeSoccer) session.getAttribute("equipeSoccerUpdate");
 
-		synchronized (aubergeUpdate)
+		synchronized (equipeSoccerUpdate)
 		{
-			aubergeUpdate.getGestionReservation().ajouter(new TupleRencontre(idClient, idChambre, dateDebut, dateFin));
+			equipeSoccerUpdate.getGestionReservation().ajouter(new TupleRencontre(idClient, date));
 		}
 
 		// On retourne a la page
@@ -191,7 +183,7 @@ public class Rencontre extends HttpServlet
 	}
 
 	private void Afficher(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException, IFT287Exception
+			throws ServletException, IOException, IFT215Exception
 	{
 		HttpSession session = request.getSession();
 

@@ -1,98 +1,63 @@
 package equipeSoccer;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class TableTerrains {
-    private PreparedStatement stmtExiste;
-    private PreparedStatement stmtInsert;
-    private PreparedStatement stmtDelete;
-    private Connexion cx;
-
-    /**
-     * Creation d'une instance. Des énoncés SQL pour chaque requête sont
-     * précompilés.
-     */
-    public TableTerrains(Connexion cx) throws SQLException
-    {
-        this.cx = cx;
-        
-        stmtExiste = cx.getConnection().prepareStatement("select idchambre, nom, typelit, prixbase from chambre where idchambre = ?");
-        
-        stmtInsert = cx.getConnection().prepareStatement("insert into chambre (idchambre, nom, typelit, prixbase) values (?,?,?,?)");
-        
-        stmtDelete = cx.getConnection().prepareStatement("delete from chambre where idchambre = ?");
     
+	ArrayList<TupleTerrain> terrains;
+
+    public TableTerrains()
+    {
+    	terrains = new ArrayList<TupleTerrain>();
     }
 
     /**
-     * Retourner la connexion associée.
+     * Vérifie si un terrain existe.
      */
-    public Connexion getConnexion()
-    {
-        return cx;
-    }
+	public boolean existe(int id)
+	{
 
-    /**
-     * Vérifie si une chambre existe.
-     */
-    public boolean existe(int idChambre) throws SQLException
-    {
-        stmtExiste.setInt(1, idChambre);
-        ResultSet rset = stmtExiste.executeQuery();
-        boolean clientExiste = rset.next();
-        rset.close();
-        return clientExiste;
-    }
-    
+		for(TupleTerrain t : terrains) {
+			if(t.getIdTerrain() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
 
     /**
      * Lecture d'une chambre
      */
-    public TupleTerrain getTerrain(int idChambre) throws SQLException
+    public TupleTerrain getTerrain(int id)
     {
-        stmtExiste.setInt(1, idChambre);
-        ResultSet rset = stmtExiste.executeQuery();
-        if (rset.next())
-        {
-            TupleTerrain tupleChambre = new TupleTerrain();
-            tupleChambre.setIdChambre(idChambre);
-            tupleChambre.setNom(rset.getString(2));
-            tupleChambre.setTypeLit(rset.getString(3));
-            tupleChambre.setPrix(rset.getInt(4));
-            
-            rset.close();
-            return tupleChambre;
-        }
-        else
-            return null;
+		for(TupleTerrain t : terrains) {
+			if(t.getIdTerrain() == id) {
+				return t;
+			}
+		}
+		return null;
     }
 
     /**
      * Ajout d'une nouvelle chambre dans la base de donnees
      */
-    public void creer(TupleTerrain chambre) throws SQLException
+    public void creer(TupleTerrain terrain)
     {
-        stmtInsert.setInt(1, chambre.getIdChambre());
-        stmtInsert.setString(2, chambre.getNom());
-        stmtInsert.setString(3, chambre.getTypeLit());
-        stmtInsert.setFloat(4, chambre.getPrix());
-        stmtInsert.executeUpdate();
+        terrains.add(terrain);
     }
     
     /**
      * Suppression d'une chambre
+     * @return 
      */
-    public int supprimer(int idChambre) throws SQLException
+    public void supprimer(TupleTerrain terrain)
     {
-        stmtDelete.setInt(1, idChambre);
-        return stmtDelete.executeUpdate();
+        terrains.remove(terrain);
     }
 
-	public String afficher(int idChambre) throws SQLException
+	public String afficher(TupleTerrain terrain)
 	{
-		return getTerrain(idChambre).toHtml();
+		return terrain.toHtml();
 	}
 
 }

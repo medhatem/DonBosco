@@ -7,10 +7,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import equipeSoccer.GestionEquipeSoccer;
-import equipeSoccer.IFT287Exception;
+import equipeSoccer.IFT215Exception;
 
 /**
- * Classe pour login syst�me de gestion de l'auberge
+ * Classe pour login système de gestion de l'équipe de soccer
  */
 
 public class Login extends HttpServlet
@@ -28,10 +28,10 @@ public class Login extends HttpServlet
             if (session.getAttribute("etat") != null)
             {
                 // pour d�boggage seulement : afficher no session et information
-                System.out.println("GestionAuberge: session d�ja cr�e; id=" + session.getId());
+                System.out.println("GestionEquipeSoccer: session déjà crée; id=" + session.getId());
                 session.invalidate();
                 session = request.getSession();
-                System.out.println("GestionAuberge: session invalid�e");
+                System.out.println("GestionEquipeSoccer: session invalid�e");
             }
 
             // lecture des param�tres du formulaire login.jsp
@@ -49,11 +49,10 @@ public class Login extends HttpServlet
                  * en mode serialisable, pour les transactions
                  */
                 System.out.println("Login: session id=" + session.getId());
-                GestionEquipeSoccer aubergeInterrogation = new GestionEquipeSoccer(serveur, bd, userId, motDePasse);
-                aubergeInterrogation.getConnexion().setIsolationReadCommited();
-                session.setAttribute("aubergeInterrogation", aubergeInterrogation);
-                GestionEquipeSoccer aubergeUpdate = new GestionEquipeSoccer(serveur, bd, userId, motDePasse);
-                session.setAttribute("aubergeUpdate", aubergeUpdate);
+                GestionEquipeSoccer equipeSoccerInterrogation = new GestionEquipeSoccer();
+                session.setAttribute("equipeSoccerInterrogation", equipeSoccerInterrogation);
+                GestionEquipeSoccer equipeSoccerUpdate = new GestionEquipeSoccer();
+                session.setAttribute("equipeSoccerUpdate", equipeSoccerUpdate);
 
                 // afficher le menu membre en appelant la page
                 // selectionMembre.jsp
@@ -65,25 +64,8 @@ public class Login extends HttpServlet
                 dispatcher.forward(request, response);
                 session.setAttribute("etat", new Integer(EquipeSoccerConstantes.CONNECTE));
             }
-            else
-            {
-                throw new SQLException("Vous devez vous connecter au serveur.");
-            }
         }
-        catch (SQLException e)
-        {
-            List<String> listeMessageErreur = new LinkedList<String>();
-            listeMessageErreur.add("Erreur de connexion au serveur");
-            listeMessageErreur.add(e.toString());
-            request.setAttribute("listeMessageErreur", listeMessageErreur);
-            request.getSession().setAttribute("debug", "Login");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-            dispatcher.forward(request, response);
-            // pour d�boggage seulement : afficher tout le contenu de
-            // l'exception
-            e.printStackTrace();
-        }
-        catch (IFT287Exception e)
+        catch (IFT215Exception e)
         {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());

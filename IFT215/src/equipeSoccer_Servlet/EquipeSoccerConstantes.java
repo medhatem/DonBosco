@@ -5,6 +5,11 @@ import java.util.ArrayList;
 public class EquipeSoccerConstantes {
 	public final static int CONNECTE = 0;
 	public final static int MEMBRE_SELECTIONNE = 1;
+	
+	// Type de joueur
+	public final static int JOUEUR = 1;
+	public final static int SPECTATEUR = 0;
+	
 
 	// Utilitaire pour formatter une liste
 	public static String listToHtml(ArrayList<ArrayList<String>> listeItems, String nom, ArrayList<String> titres) {

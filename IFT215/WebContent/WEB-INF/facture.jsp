@@ -2,10 +2,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 	<HEAD>
-		<TITLE>Système de gestion d'auberge</TITLE>
+		<TITLE>Système de gestion d'equipeSoccer</TITLE>
 		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
 		<META NAME="author" CONTENT="Marc Fortier">
-		<META NAME="description" CONTENT="page d'accueil système de gestion d'auberge">
+		<META NAME="description" CONTENT="page d'accueil système de gestion d'equipeSoccer">
 		<jsp:include page="/WEB-INF/menu.jsp" />
 	</HEAD>
 		<BODY>
@@ -14,9 +14,9 @@
 					<H1>Commodite</H1>
 					Liste des commodites :<BR><BR>
 					<%
-						GestionFacture commodite = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionFacture();
+						GestionFacture commodite = ((GestionEquipeSoccer) session.getAttribute("equipeSoccerInterrogation")).getGestionFacture();
 					%>
-					<%=commodite.listerFactures((String)session.getAttribute("commoditeEnCours"))%>
+					<%=commodite.listerFactures((String)session.getAttribute("FactureEnCours"))%>
 					<BR>
 					<INPUT type="submit" name="bouton" value="Afficher">
 					<INPUT type="submit" name="bouton" value="Supprimer">
@@ -24,10 +24,10 @@
 					<BR>Détails:
 					<% 
 					String detailsString = "";
-					String commoditeEnCours = (String) session.getAttribute("commoditeEnCours");
-					if (commoditeEnCours != null && !commoditeEnCours.equals("-1"))
+					String FactureEnCours = (String) session.getAttribute("FactureEnCours");
+					if (FactureEnCours != null && !FactureEnCours.equals("-1"))
 					{
-						detailsString = commodite.afficherCommodite(commoditeEnCours);
+						detailsString = commodite.afficherFacture(FactureEnCours);
 					}
 					else
 							detailsString = "<i>(Sélectionnez une commodite)</i>"; %>

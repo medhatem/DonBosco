@@ -1,73 +1,60 @@
 package equipeSoccer;
 
-import java.sql.Date; 
+import java.sql.Timestamp;
+import java.util.ArrayList; 
 
 public class TupleRencontre {
-	int idReservation;
-	int idChambre;
-	int idClient;
-	Date dateDebut;
-	Date dateFin;
+	int idRencontre;
+	ArrayList<TupleJoueur> equipeA;
+	ArrayList<TupleJoueur> equipeB;
+	Timestamp date;
 
-	public TupleRencontre(int idReservation, int idClient, int idChambre, Date dateDebut, Date dateFin) {
-		this.idReservation = idReservation;
-		this.idChambre = idChambre;
-		this.idClient = idClient;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
+	public TupleRencontre(int idRencontre, Timestamp date) {
+		this.idRencontre = idRencontre;
+		this.date = date;
+		equipeA = new ArrayList<TupleJoueur>();
+		equipeB = new ArrayList<TupleJoueur>();
 	}
 	
-	// Dans le cas ou le tuple sert a creer un élément dans la BD (on ne connait pas encore le id)
-	public TupleRencontre(int idClient, int idChambre, Date dateDebut, Date dateFin) {
-		this.idChambre = idChambre;
-		this.idClient = idClient;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-	}
-
-	public int getIdReservation()
-	{
-		return idReservation;
-	}
-
-	public void setIdReservation(int idReservation)
-	{
-		this.idReservation = idReservation;
-	}
-
 	public TupleRencontre() {
 	}
-
-	public int getIdChambre() {
-		return idChambre;
+	
+	public int getIdRencontre()
+	{
+		return idRencontre;
 	}
 
-	public void setIdChambre(int idChambre) {
-		this.idChambre = idChambre;
+	public void setIdRencontre(int idReservation)
+	{
+		this.idRencontre = idReservation;
 	}
 
-	public int getIdClient() {
-		return idClient;
+	public Timestamp getDate() {
+		return date;
 	}
 
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
+	public void setDate(Timestamp date) {
+		this.date = date;
 	}
 
-	public Date getDateDebut() {
-		return dateDebut;
+	public ArrayList<TupleJoueur> getEquipeA()
+	{
+		return equipeA;
 	}
 
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
+	public void setEquipeA(ArrayList<TupleJoueur> equipeA)
+	{
+		this.equipeA = equipeA;
 	}
 
-	public Date getDateFin() {
-		return dateFin;
+	public ArrayList<TupleJoueur> getEquipeB()
+	{
+		return equipeB;
 	}
 
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
+	public void setEquipeB(ArrayList<TupleJoueur> equipeB)
+	{
+		this.equipeB = equipeB;
 	}
 
 }

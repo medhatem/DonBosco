@@ -366,7 +366,7 @@ deployment descriptor.
     <load-on-startup>3</load-on-startup>
   </servlet>
   <listener>
-    <listener-class>equipeSoccer_Servlet.AubergeContextListener</listener-class>
+    <listener-class>equipeSoccer_Servlet.EquipeSoccerContextListener</listener-class>
   </listener>
   <servlet>
     <servlet-name>Login</servlet-name>

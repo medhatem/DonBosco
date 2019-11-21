@@ -1,6 +1,5 @@
 package equipeSoccer;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import equipeSoccer_Servlet.ListeHtml;
@@ -9,68 +8,47 @@ public class GestionJoueur
 {
 	private TableRencontres rencontre;
 	private TableJoueurs joueur;
-	private Connexion cx;
 
-	public GestionJoueur(TableJoueurs client, TableRencontres reservations) throws IFT287Exception
+	public GestionJoueur(TableJoueurs client, TableRencontres reservations)
+			throws IFT215Exception
 	{
-		this.cx = client.getConnexion();
 		this.joueur = client;
 		this.rencontre = reservations;
 	}
 
-	public void ajouter(TupleJoueur c)
-			throws SQLException, IFT287Exception, Exception
+	public void ajouter(TupleJoueur c) throws IFT215Exception, Exception
 	{
-		try
-		{
-			// V�rifie si le client existe d�j�
-			if (joueur.existe(c.getIdClient()))
-				throw new IFT287Exception("Client existe deja : "
-						+ c.getIdClient());
 
-			// Ajout du Client dans la table des clients
-			joueur.creer(c);
+		// V�rifie si le client existe d�j�
+		if (joueur.existe(c.getIdJoueur()))
+			throw new IFT215Exception("Client existe deja : "
+					+ c.getIdJoueur());
 
-			// Commit
-			cx.commit();
-		}
-		catch (Exception e)
-		{
-			cx.rollback();
-			throw e;
-		}
+		// Ajout du Client dans la table des clients
+		joueur.creer(c);
+
 	}
 
-	public void supprimer(int idClient)
-			throws SQLException, IFT287Exception, Exception
+	public void supprimer(int idJoueur) throws IFT215Exception, Exception
 	{
-		try
+
+		// V�rifie si le joueur existe d�j�
+		if (!joueur.existe(idJoueur))
+			throw new IFT215Exception("Le joueur n'existe pas : " + idJoueur);
+
+		// Vérifie si le joueur a des rencontres
+		for (TupleRencontre r : rencontre.listeRencontresJoueur(idJoueur))
 		{
-			// V�rifie si le client existe d�j�
-			if (!joueur.existe(idClient))
-				throw new IFT287Exception("Le client n'existe pas : "
-						+ idClient);
-			
-			// Vérifie si le client a des reservations
-			for(TupleRencontre r : rencontre.listeRencontresJoueur(idClient)){
 
-			}
-
-			// Suppression du Client dans la table des clients
-			joueur.supprimer(idClient);
-
-			// Commit
-			cx.commit();
 		}
-		catch (Exception e)
-		{
-			cx.rollback();
-			throw e;
-		}
+
+		// Suppression du Client dans la table des joueurs
+		joueur.supprimer(joueur.getJoueur(idJoueur));
+
 	}
 
 	public String listerJoueurs(String selection)
-			throws SQLException, IFT287Exception, Exception
+			throws IFT215Exception, Exception
 	{
 
 		ArrayList<TupleJoueur> clients = joueur.getJoueurs();
@@ -86,23 +64,23 @@ public class GestionJoueur
 
 		for (TupleJoueur c : clients)
 		{
-			listeHtml.addItem(((Integer) c.getIdClient()).toString())		// le id
+			listeHtml.addItem(((Integer) c.getIdJoueur()).toString())		// le id
 					.addItem(c.getPrenom())									// Le prenom
 					.addItem(c.getNom())									// Le nom
 					.newLigne();
 
-			System.out.print(c.getIdClient() + " " + c.getPrenom() + " "
-					+ c.getNom() + " " + c.getAge() + " \n");
+			System.out.print(c.getIdJoueur() + " " + c.getPrenom() + " "
+					+ c.getNom() + "\n");
 
 		}
-		cx.commit();
 
 		return listeHtml.toHtml();
 	}
-	
+
 	public String afficherClient(String idClientParam)
 	{
-		try {
+		try
+		{
 			return afficherJoueur(Integer.parseInt(idClientParam));
 		}
 		catch (Exception e)
@@ -111,12 +89,12 @@ public class GestionJoueur
 		}
 	}
 
-	public String afficherJoueur(int idClient) throws SQLException
+	public String afficherJoueur(int idClient)
 	{
 		return joueur.getJoueur(idClient).toHtml();
 	}
 
-	public boolean existe(int idClient) throws SQLException
+	public boolean existe(int idClient)
 	{
 		return joueur.existe(idClient);
 	}

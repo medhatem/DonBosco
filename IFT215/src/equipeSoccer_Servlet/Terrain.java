@@ -7,7 +7,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import equipeSoccer.GestionEquipeSoccer;
-import equipeSoccer.IFT287Exception;
+import equipeSoccer.IFT215Exception;
 import equipeSoccer.TupleTerrain;
 
 /**
@@ -53,7 +53,7 @@ public class Terrain extends HttpServlet
 					}
 					catch (NumberFormatException e)
 					{
-						throw new IFT287Exception("Format de no Chambre "
+						throw new IFT215Exception("Format de no Chambre "
 								+ idChambreParam + " incorrect.");
 					}
 				}
@@ -80,17 +80,12 @@ public class Terrain extends HttpServlet
 				}
 				else
 				{
-					throw new IFT287Exception("Commande inconnue : "
+					throw new IFT215Exception("Commande inconnue : "
 							+ commande);
 				}
 
 			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-				response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());
-			}
-			catch (IFT287Exception e)
+			catch (IFT215Exception e)
 			{
 				List<String> listeMessageErreur = new LinkedList<String>();
 				listeMessageErreur.add(e.toString());
@@ -116,18 +111,18 @@ public class Terrain extends HttpServlet
 	}
 
 	private void Supprimer(HttpServletRequest request, HttpServletResponse response, int idChambre)
-			throws ServletException, IOException, SQLException, IFT287Exception,
+			throws ServletException, IOException, IFT215Exception,
 			Exception
 	{
 		HttpSession session = request.getSession();
-		GestionEquipeSoccer aubergeUpdate = (GestionEquipeSoccer) session.getAttribute("aubergeUpdate");
+		GestionEquipeSoccer equipeSoccerUpdate = (GestionEquipeSoccer) session.getAttribute("equipeSoccerUpdate");
 		
 		if(idChambre == -1)
-			throw new IFT287Exception("SVP sélectionner une chambre.");
+			throw new IFT215Exception("SVP sélectionner une chambre.");
 		
-		synchronized (aubergeUpdate)
+		synchronized (equipeSoccerUpdate)
 		{
-			aubergeUpdate.getGestionTerrain().supprimer(idChambre);
+			equipeSoccerUpdate.getGestionTerrain().supprimer(idChambre);
 		}
 
 		// transfert de la requ�te � la page JSP pour affichage
@@ -137,7 +132,7 @@ public class Terrain extends HttpServlet
 	}
 
 	private void Reserver(HttpServletRequest request, HttpServletResponse response, int idChambre)
-			throws ServletException, IOException, SQLException, IFT287Exception
+			throws ServletException, IOException, IFT215Exception
 	{
 		HttpSession session = request.getSession();
 
@@ -148,7 +143,7 @@ public class Terrain extends HttpServlet
 	}
 
 	private void Creer(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException, IFT287Exception,
+			throws ServletException, IOException, IFT215Exception,
 			Exception
 	{
 		HttpSession session = request.getSession();
@@ -159,10 +154,10 @@ public class Terrain extends HttpServlet
 		String prixParam = request.getParameter("prix");
 
 		if (nomParam == null || nomParam.equals(""))
-			throw new IFT287Exception("Le nom de la chambre ne peut être vide.");
+			throw new IFT215Exception("Le nom de la chambre ne peut être vide.");
 
 		if (typeLitParam == null || typeLitParam.equals(""))
-			throw new IFT287Exception("Le type de lit ne peut être vide.");
+			throw new IFT215Exception("Le type de lit ne peut être vide.");
 
 		int id;
 		int prix;
@@ -174,14 +169,14 @@ public class Terrain extends HttpServlet
 		}
 		catch (NumberFormatException e)
 		{
-			throw new IFT287Exception("Id / prix au format incorrect : "
+			throw new IFT215Exception("Id / prix au format incorrect : "
 					+ idParam + " / " + prixParam);
 		}
 
-		GestionEquipeSoccer aubergeUpdate = (GestionEquipeSoccer) session.getAttribute("aubergeUpdate");
-		synchronized (aubergeUpdate)
+		GestionEquipeSoccer equipeSoccerUpdate = (GestionEquipeSoccer) session.getAttribute("equipeSoccerUpdate");
+		synchronized (equipeSoccerUpdate)
 		{
-			aubergeUpdate.getGestionTerrain().ajouter(new TupleTerrain(id, nomParam, typeLitParam, prix));;
+			equipeSoccerUpdate.getGestionTerrain().ajouter(new TupleTerrain(id, nomParam));
 		}
 
 		// On retourne a la page
@@ -191,16 +186,16 @@ public class Terrain extends HttpServlet
 	}
 
 	private void Afficher(HttpServletRequest request, HttpServletResponse response, int idChambre)
-			throws ServletException, IOException, SQLException, IFT287Exception
+			throws ServletException, IOException, IFT215Exception
 	{
 		HttpSession session = request.getSession();
 
 		if (idChambre != -1)
 		{
 			// v�rifier existence du membre
-			GestionEquipeSoccer aubergeInterrogation = (GestionEquipeSoccer) session.getAttribute("aubergeInterrogation");
-			if (!aubergeInterrogation.getGestionTerrain().existe(idChambre))
-				throw new IFT287Exception("La chambre n'existe pas : "
+			GestionEquipeSoccer equipeSoccerInterrogation = (GestionEquipeSoccer) session.getAttribute("equipeSoccerInterrogation");
+			if (!equipeSoccerInterrogation.getGestionTerrain().existe(idChambre))
+				throw new IFT215Exception("La chambre n'existe pas : "
 						+ idChambre);
 
 			// transfert de la requ�te � la page JSP pour affichage

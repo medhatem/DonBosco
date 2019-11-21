@@ -2,10 +2,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 	<HEAD>
-		<TITLE>Système de gestion d'auberge</TITLE>
+		<TITLE>Système de gestion d'equipeSoccer</TITLE>
 		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
 		<META NAME="author" CONTENT="Marc Fortier">
-		<META NAME="description" CONTENT="page d'accueil système de gestion d'auberge">
+		<META NAME="description" CONTENT="page d'accueil système de gestion d'equipeSoccer">
 		<jsp:include page="/WEB-INF/menu.jsp" />
 	</HEAD>
 		<BODY>
@@ -14,7 +14,7 @@
 					<H1>Chambre</H1>
 					Liste des chambres :<BR><BR>
 					<%
-						GestionTerrain chambre = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionTerrain();
+						GestionTerrain chambre = ((GestionEquipeSoccer) session.getAttribute("equipeSoccerInterrogation")).getGestionTerrain();
 					%>
 					<%=chambre.listerTerrains((String)session.getAttribute("chambreEnCours"))%>
 					<BR>
@@ -26,10 +26,7 @@
 						String detailsString = "";
 									String chambreEnCours = (String)session.getAttribute("chambreEnCours");
 									
-									if(chambreEnCours != null && !chambreEnCours.equals("-1"))
-										detailsString = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionChambreCommodite().afficherChambreCommodite(chambreEnCours);
-									else
-										detailsString = "<i>(Sélectionnez une chambre)</i>";
+									detailsString = "<i>(Sélectionnez une chambre)</i>";
 					%>
 					<%= detailsString %>
 					<BR><H2>Ajouter une chambre :</H2>

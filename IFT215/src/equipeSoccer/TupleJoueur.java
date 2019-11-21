@@ -1,64 +1,119 @@
 package equipeSoccer;
 
+import java.sql.Timestamp;
+
 public class TupleJoueur {
-	int idClient;
+	int idJoueur;
 	String prenom;
 	String nom;
-	int age;
+	Timestamp DateNaissance;
+	String courriel;
+	String motDePasse;
+	String adresse;
+	boolean type; // 0 = spectateur, 1 = joueur
 	
-	public TupleJoueur(int idClient, String prenom, String nom, int age) {
-		this.idClient = idClient;
+	public TupleJoueur(int idJoueur, String prenom, String nom,
+			Timestamp dateNaissance, String courriel, String motDePasse,
+			String adresse, boolean type)
+	{
+		super();
+		this.idJoueur = idJoueur;
 		this.prenom = prenom;
 		this.nom = nom;
-		this.age = age;
+		DateNaissance = dateNaissance;
+		this.courriel = courriel;
+		this.motDePasse = motDePasse;
+		this.adresse = adresse;
+		this.type = type;
+	}
+	
+	public TupleJoueur()
+	{}
+
+	public int getIdJoueur()
+	{
+		return idJoueur;
 	}
 
-	public TupleJoueur() {
+	public void setIdJoueur(int idJoueur)
+	{
+		this.idJoueur = idJoueur;
 	}
 
-	public int getIdClient() {
-		return idClient;
-	}
-
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
-	}
-
-	public String getPrenom() {
+	public String getPrenom()
+	{
 		return prenom;
 	}
 
-	public void setPrenom(String prenom) {
+	public void setPrenom(String prenom)
+	{
 		this.prenom = prenom;
 	}
 
-	public String getNom() {
+	public String getNom()
+	{
 		return nom;
 	}
 
-	public void setNom(String nom) {
+	public void setNom(String nom)
+	{
 		this.nom = nom;
 	}
 
-	public int getAge() {
-		return age;
+	public Timestamp getDateNaissance()
+	{
+		return DateNaissance;
 	}
 
-	public void setAge(int date) {
-		this.age = date;
+	public void setDateNaissance(Timestamp dateNaissance)
+	{
+		DateNaissance = dateNaissance;
 	}
-	
+
+	public String getCourriel()
+	{
+		return courriel;
+	}
+
+	public void setCourriel(String courriel)
+	{
+		this.courriel = courriel;
+	}
+
+	public String getMotDePasse()
+	{
+		return motDePasse;
+	}
+
+	public void setMotDePasse(String motDePasse)
+	{
+		this.motDePasse = motDePasse;
+	}
+
+	public String getAdresse()
+	{
+		return adresse;
+	}
+
+	public void setAdresse(String adresse)
+	{
+		this.adresse = adresse;
+	}
+
 	public String toHtml() {
 		String html = "<H2>Détails du client :</H2>";
-		html += "<b>Id : </b>" + getIdClient() + "<br>";
+		html += "<b>Id : </b>" + getIdJoueur() + "<br>";
 		html += "<b>Nom : </b>" + getNom() + "<br>";
 		html += "<b>Prenom : </b>" + getPrenom() + "<br>";
-		html += "<b>Âge : </b>" + getAge() + "<br>";
+		html += "<b>Courriel : </b>" + getCourriel() + "<br>";
+		html += "<b>Adresse : </b>" + getAdresse() + "<br>";
+		html += "<b>Mot de passe : </b>" + getMotDePasse() + "<br>";
+		
 		return html;
 	}
 
 	public String toString()
 	{
-		return "(" + getIdClient() + ") " + getNom() + " " + getPrenom();
+		return "(" + getIdJoueur() + ") " + getNom() + " " + getPrenom();
 	}
 }

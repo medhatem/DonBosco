@@ -1,27 +1,23 @@
 package equipeSoccer;
 
 public class TupleTerrain {
-	int idChambre;
+	int idTerrain;
 	String nom;
-	String typeLit;
-	int prix;
 	
-	public TupleTerrain(int idChambre, String nom, String typeLit, int prix) {
-		this.idChambre = idChambre;
+	public TupleTerrain(int idTerrain, String nom) {
+		this.idTerrain = idTerrain;
 		this.nom = nom;
-		this.typeLit = typeLit;
-		this.prix = prix;
 	}
 
 	public TupleTerrain() {
 	}
 
-	public int getIdChambre() {
-		return idChambre;
+	public int getIdTerrain() {
+		return idTerrain;
 	}
 
-	public void setIdChambre(int idChambre) {
-		this.idChambre = idChambre;
+	public void setIdTerrain(int idChambre) {
+		this.idTerrain = idChambre;
 	}
 
 	public String getNom() {
@@ -32,32 +28,14 @@ public class TupleTerrain {
 		this.nom = nom;
 	}
 
-	public String getTypeLit() {
-		return typeLit;
-	}
-
-	public void setTypeLit(String typeLit) {
-		this.typeLit = typeLit;
-	}
-
-	public float getPrix() {
-		return prix;
-	}
-
-	public void setPrix(int prix) {
-		this.prix = prix;
-	}
-
 	public String toHtml() {
 		String html = "<H2>Détails de la chambre :</H2>";
 		html += "<b>Nom : </b>" + getNom() + "<br>";
-		html += "<b>Type de lit : </b>" + getTypeLit() + "<br>";
-		html += "<b>Prix de base : </b>" + getPrix() + " $<br>";
 		return html;
 	}
 	
 	public String toString()
 	{
-		return "(" + getIdChambre() + ") " + getNom();
+		return "(" + getIdTerrain() + ") " + getNom();
 	}
 }

@@ -3,11 +3,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
-<TITLE>Système de gestion d'auberge</TITLE>
+<TITLE>Système de gestion d'equipeSoccer</TITLE>
 <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
 <META NAME="author" CONTENT="Marc Fortier">
 <META NAME="description"
-	CONTENT="page d'accueil système de gestion d'auberge">
+	CONTENT="page d'accueil système de gestion d'equipeSoccer">
 <jsp:include page="/WEB-INF/menu.jsp" />
 </HEAD>
 <BODY>
@@ -17,7 +17,7 @@
 			Liste des clients :<BR>
 			<BR>
 			<%
-				GestionJoueur client = ((GestionEquipeSoccer) session.getAttribute("aubergeInterrogation")).getGestionJoueur();
+				GestionJoueur client = ((GestionEquipeSoccer) session.getAttribute("equipeSoccerInterrogation")).getGestionJoueur();
 			%>
 			<%=client.listerJoueurs((String) session.getAttribute("clientEnCours"))%>
 			<BR> <INPUT type="submit" name="bouton" value="Afficher">

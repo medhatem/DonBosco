@@ -5,7 +5,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 /**
- * Classe pour logout syst�me de gestion de l'auberge
+ * Classe pour logout syst�me de gestion de l'équipe de soccer
  */
 
 public class Logout extends HttpServlet

@@ -1,13 +1,12 @@
 package equipeSoccer_Servlet;
 
 import java.util.*;
-import java.sql.*;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
 import equipeSoccer.GestionEquipeSoccer;
-import equipeSoccer.IFT287Exception;
+import equipeSoccer.IFT215Exception;
 import equipeSoccer.TupleJoueur;
 
 /**
@@ -54,7 +53,7 @@ public class Joueur extends HttpServlet
 					}
 					catch (NumberFormatException e)
 					{
-						throw new IFT287Exception("Format de no Client "
+						throw new IFT215Exception("Format de no Client "
 								+ idClientParam + " incorrect.");
 					}
 				}
@@ -77,16 +76,11 @@ public class Joueur extends HttpServlet
 				}
 				else
 				{
-					throw new IFT287Exception("Commande inconnue : "
+					throw new IFT215Exception("Commande inconnue : "
 							+ commande);
 				}
 			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-				response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.toString());
-			}
-			catch (IFT287Exception e)
+			catch (IFT215Exception e)
 			{
 				List<String> listeMessageErreur = new LinkedList<String>();
 				listeMessageErreur.add(e.toString());
@@ -102,19 +96,19 @@ public class Joueur extends HttpServlet
 		}
 	}
 
-	private void Supprimer(HttpServletRequest request, HttpServletResponse response, int idClient)
-			throws ServletException, IOException, SQLException, IFT287Exception,
+	private void Supprimer(HttpServletRequest request, HttpServletResponse response, int idJoueur)
+			throws ServletException, IOException, IFT215Exception,
 			Exception
 	{
 		HttpSession session = request.getSession();
-		GestionEquipeSoccer aubergeUpdate = (GestionEquipeSoccer) session.getAttribute("aubergeUpdate");
+		GestionEquipeSoccer equipeSoccerUpdate = (GestionEquipeSoccer) session.getAttribute("equipeSoccerUpdate");
 		
-		if(idClient == -1)
-			throw new IFT287Exception("SVP sélectionner un client.");
+		if(idJoueur == -1)
+			throw new IFT215Exception("SVP sélectionner un joueur.");
 		
-		synchronized (aubergeUpdate)
+		synchronized (equipeSoccerUpdate)
 		{
-			aubergeUpdate.getGestionJoueur().supprimer(idClient);
+			equipeSoccerUpdate.getGestionJoueur().supprimer(idJoueur);
 		}
 
 		// transfert de la requ�te � la page JSP pour affichage
@@ -124,17 +118,17 @@ public class Joueur extends HttpServlet
 
 	}
 
-	private void Reserver(HttpServletRequest request, HttpServletResponse response, int idClient)
-			throws ServletException, IOException, SQLException, IFT287Exception
+	private void Reserver(HttpServletRequest request, HttpServletResponse response, int idJoueur)
+			throws ServletException, IOException, IFT215Exception
 	{
 		HttpSession session = request.getSession();
-		session.setAttribute("clientEnCours", String.valueOf(idClient));
+		session.setAttribute("joueurEnCours", String.valueOf(idJoueur));
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/reservation.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	private void Creer(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, SQLException, IFT287Exception,
+			throws ServletException, IOException, IFT215Exception,
 			Exception
 	{
 		HttpSession session = request.getSession();
@@ -148,10 +142,10 @@ public class Joueur extends HttpServlet
 		String prixParam = request.getParameter("age");
 
 		if (nomParam == null || nomParam.equals(""))
-			throw new IFT287Exception("Le nom ne peut être vide.");
+			throw new IFT215Exception("Le nom ne peut être vide.");
 
 		if (prenomParam == null || prenomParam.equals(""))
-			throw new IFT287Exception("Le prenom ne peut être vide.");
+			throw new IFT215Exception("Le prenom ne peut être vide.");
 
 		int id;
 		int age;
@@ -163,15 +157,15 @@ public class Joueur extends HttpServlet
 		}
 		catch (NumberFormatException e)
 		{
-			throw new IFT287Exception("Id / age au format incorrect : "
+			throw new IFT215Exception("Id / age au format incorrect : "
 					+ idParam + " / " + prixParam);
 		}
 
-		GestionEquipeSoccer aubergeUpdate = (GestionEquipeSoccer) session.getAttribute("aubergeUpdate");
+		GestionEquipeSoccer equipeSoccerUpdate = (GestionEquipeSoccer) session.getAttribute("equipeSoccerUpdate");
 
-		synchronized (aubergeUpdate)
+		synchronized (equipeSoccerUpdate)
 		{
-			aubergeUpdate.getGestionJoueur().ajouter(new TupleJoueur(id, prenomParam, nomParam, age));
+			equipeSoccerUpdate.getGestionJoueur().ajouter(new TupleJoueur(id, prenomParam, nomParam, null, null, null, null, false));
 		}
 
 		// On retourne a la page
@@ -180,7 +174,7 @@ public class Joueur extends HttpServlet
 	}
 
 	private void Afficher(HttpServletRequest request, HttpServletResponse response, int idClient)
-			throws ServletException, IOException, SQLException, IFT287Exception
+			throws ServletException, IOException, IFT215Exception
 	{
 		HttpSession session = request.getSession();
 
