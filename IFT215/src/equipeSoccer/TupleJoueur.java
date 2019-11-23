@@ -10,11 +10,11 @@ public class TupleJoueur {
 	String courriel;
 	String motDePasse;
 	String adresse;
-	boolean type; // 0 = spectateur, 1 = joueur
+	int type; // 0 = spectateur, 1 = joueur
 	
 	public TupleJoueur(int idJoueur, String prenom, String nom,
 			Timestamp dateNaissance, String courriel, String motDePasse,
-			String adresse, boolean type)
+			String adresse, int type)
 	{
 		super();
 		this.idJoueur = idJoueur;
@@ -29,6 +29,16 @@ public class TupleJoueur {
 	
 	public TupleJoueur()
 	{}
+
+	public int getType()
+	{
+		return type;
+	}
+
+	public void setType(int type)
+	{
+		this.type = type;
+	}
 
 	public int getIdJoueur()
 	{

@@ -165,7 +165,7 @@ public class Joueur extends HttpServlet
 
 		synchronized (equipeSoccerUpdate)
 		{
-			equipeSoccerUpdate.getGestionJoueur().ajouter(new TupleJoueur(id, prenomParam, nomParam, null, null, null, null, false));
+			equipeSoccerUpdate.getGestionJoueur().ajouter(new TupleJoueur(id, prenomParam, nomParam, null, null, null, null, 0));
 		}
 
 		// On retourne a la page

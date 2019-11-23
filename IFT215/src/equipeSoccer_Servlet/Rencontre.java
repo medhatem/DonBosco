@@ -174,7 +174,7 @@ public class Rencontre extends HttpServlet
 
 		synchronized (equipeSoccerUpdate)
 		{
-			equipeSoccerUpdate.getGestionReservation().ajouter(new TupleRencontre(idClient, date));
+			equipeSoccerUpdate.getGestionReservation().ajouter(new TupleRencontre(idClient, date, null));
 		}
 
 		// On retourne a la page

@@ -8,12 +8,14 @@ public class TupleRencontre {
 	ArrayList<TupleJoueur> equipeA;
 	ArrayList<TupleJoueur> equipeB;
 	Timestamp date;
+	TupleTerrain terrain;
 
-	public TupleRencontre(int idRencontre, Timestamp date) {
+	public TupleRencontre(int idRencontre, Timestamp date, TupleTerrain t) {
 		this.idRencontre = idRencontre;
 		this.date = date;
 		equipeA = new ArrayList<TupleJoueur>();
 		equipeB = new ArrayList<TupleJoueur>();
+		terrain = t;
 	}
 	
 	public TupleRencontre() {

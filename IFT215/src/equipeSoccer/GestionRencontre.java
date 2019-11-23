@@ -24,6 +24,17 @@ public class GestionRencontre
 
 	public void ajouter(TupleRencontre r) throws IFT215Exception, Exception
 	{
+		ArrayList<TupleJoueur> equipeA = r.getEquipeA();
+		ArrayList<TupleJoueur> equipeB = r.getEquipeB();
+		
+		for(TupleJoueur j : joueur.getJoueurs()) {
+			if(j.getIdJoueur() < joueur.getJoueurs().size()/2) {
+				equipeA.add(j);
+			} else {
+				equipeB.add(j);
+			}
+		}
+		
 		rencontre.creer(r);
 	}
 
