@@ -10,13 +10,13 @@
 	</HEAD>
 		<BODY>
 			<CENTER>
-				<FORM ACTION="Chambre" METHOD="POST">
-					<H1>Chambre</H1>
-					Liste des chambres :<BR><BR>
+				<FORM ACTION="Terrain" METHOD="POST">
+					<H1>terrain</H1>
+					Liste des terrains :<BR><BR>
 					<%
-						GestionTerrain chambre = ((GestionEquipeSoccer) session.getAttribute("equipeSoccerInterrogation")).getGestionTerrain();
+						GestionTerrain terrain = ((GestionEquipeSoccer) session.getAttribute("equipeSoccerInterrogation")).getGestionTerrain();
 					%>
-					<%=chambre.listerTerrains((String)session.getAttribute("chambreEnCours"))%>
+					<%=terrain.listerTerrains((String)session.getAttribute("TerrainEnCours"))%>
 					<BR>
 					<INPUT type="submit" name="bouton" value="Afficher">
 					<INPUT type="submit" name="bouton" value="Supprimer">
@@ -24,12 +24,12 @@
 					<INPUT type="submit" name="bouton" value="Reserver..."><BR>
 					<%
 						String detailsString = "";
-									String chambreEnCours = (String)session.getAttribute("chambreEnCours");
+									String TerrainEnCours = (String)session.getAttribute("TerrainEnCours");
 									
-									detailsString = "<i>(Sélectionnez une chambre)</i>";
+									detailsString = "<i>(Sélectionnez une terrain)</i>";
 					%>
 					<%= detailsString %>
-					<BR><H2>Ajouter une chambre :</H2>
+					<BR><H2>Ajouter une terrain :</H2>
 					<TABLE>
 						<tbody>
 						<tr><td><p align="right">Id :</p><td><INPUT TYPE="TEXT" NAME="id" VALUE=""><BR>

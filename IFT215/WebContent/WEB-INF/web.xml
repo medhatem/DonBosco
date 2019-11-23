@@ -378,19 +378,19 @@ deployment descriptor.
   </servlet>
   <servlet>
     <servlet-name>Chambre</servlet-name>
-    <servlet-class>equipeSoccer_Servlet.Chambre</servlet-class>
+    <servlet-class>equipeSoccer_Servlet.Terrain</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>Reservation</servlet-name>
-    <servlet-class>equipeSoccer_Servlet.Reservation</servlet-class>
+    <servlet-class>equipeSoccer_Servlet.Rencontre</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>Client</servlet-name>
-    <servlet-class>equipeSoccer_Servlet.Client</servlet-class>
+    <servlet-class>equipeSoccer_Servlet.Joueur</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>Commodite</servlet-name>
-    <servlet-class>equipeSoccer_Servlet.Commodite</servlet-class>
+    <servlet-class>equipeSoccer_Servlet.Facture</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>ChambreCommodite</servlet-name>
