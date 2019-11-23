@@ -11,5 +11,13 @@
 	    <th><a href="Logout">Déconnexion</a></th>
 	  </tr>
 	</table>
+	<table style="width:50%">
+	  <tr>
+	    <th><a href="ConnecteJoueur">ConnecteJoueur</a></th>
+	    <th><a href="ConnecteJoueurFactures">ConnecteJoueurFactures</a></th> 
+	    <th><a href="ConnecteOrganisateur">ConnecteOrganisateur</a></th>
+	  </tr>
+	</table>
+	
 	<HR>
 </center>

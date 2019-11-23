@@ -396,6 +396,10 @@ deployment descriptor.
     <servlet-name>ChambreCommodite</servlet-name>
     <servlet-class>equipeSoccer_Servlet.ChambreCommodite</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ConnecteJoueur</servlet-name>
+    <servlet-class>equipeSoccer_Servlet.ConnecteJoueur</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
@@ -419,8 +423,20 @@ deployment descriptor.
   <servlet-mapping>
     <servlet-name>Commodite</servlet-name>
     <url-pattern>/Commodite</url-pattern>
+  </servlet-mapping> 
+  <servlet-mapping>
+    <servlet-name>ConnecteJoueur</servlet-name>
+    <url-pattern>/ConnecteJoueur</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping><!--
+    <servlet-name>ConnecteJoueurFactures</servlet-name>
+    <url-pattern>/ConnecteJoueurFactures</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
+    <servlet-name>ConnecteOrganisateur</servlet-name>
+    <url-pattern>/ConnecteOrganisateur</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping> -->
     <servlet-name>ChambreCommodite</servlet-name>
     <url-pattern>/ChambreCommodite</url-pattern>
   </servlet-mapping>
