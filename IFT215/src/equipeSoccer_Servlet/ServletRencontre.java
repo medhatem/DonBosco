@@ -167,7 +167,9 @@ public class ServletRencontre extends HttpServlet
 
 		synchronized (equipeSoccerUpdate)
 		{
+
 			equipeSoccerUpdate.getGestionJoueur().ajouter(new TupleJoueur(id, prenomParam, nomParam, null, null, null, null, 1));
+
 		}
 
 		// On retourne a la page

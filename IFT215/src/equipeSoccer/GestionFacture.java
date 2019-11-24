@@ -65,7 +65,7 @@ public class GestionFacture
 		{
 			listeHtml.addItem(((Integer) c.getIdFacture()).toString())	// le id
 					.addItem(c.getDescription())							// La description
-					.addItem(((Integer) c.getPrix()).toString())			// Le type de lit
+					.addItem(((Double) c.getPrix()).toString())			// Le type de lit
 					.newLigne();
 
 			System.out.print(c.getIdFacture() + " " + c.getDescription() + " "

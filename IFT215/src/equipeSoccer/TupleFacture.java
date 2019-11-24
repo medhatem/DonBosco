@@ -8,16 +8,16 @@ public class TupleFacture {
 	String description;
 	ArrayList<TupleJoueur> joueursAyantPaye;
 	ArrayList<TupleJoueur> JoueursNAyantPasPaye;
-	int prix;
+	double prix;
 	Timestamp Date;
 	
-	public TupleFacture(int idFacture, String description, int prix,
+	public TupleFacture(int idFacture, String description, double p,
 			Timestamp date)
 	{
 		super();
 		this.idFacture = idFacture;
 		this.description = description;
-		this.prix = prix;
+		this.prix = p;
 		Date = date;
 		
 		joueursAyantPaye = new ArrayList<TupleJoueur>();
@@ -67,7 +67,7 @@ public class TupleFacture {
 		JoueursNAyantPasPaye = joueursNAyantPasPaye;
 	}
 
-	public int getPrix()
+	public double getPrix()
 	{
 		return prix;
 	}
