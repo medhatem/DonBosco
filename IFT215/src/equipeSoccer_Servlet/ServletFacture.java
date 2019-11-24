@@ -1,6 +1,9 @@
 package equipeSoccer_Servlet;
 
+
 import java.util.*;
+import java.sql.*;
+import java.sql.Date;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -8,12 +11,13 @@ import javax.servlet.http.*;
 import equipeSoccer.GestionEquipeSoccer;
 import equipeSoccer.IFT215Exception;
 import equipeSoccer.TupleJoueur;
+import equipeSoccer.TupleRencontre;
 
 /**
- * Classe traitant la requ�te provenant de la page client.jsp
+ * Classe traitant la requ�te provenant de la page reservation.jsp
  */
 
-public class Joueur extends HttpServlet
+public class ServletFacture extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
@@ -86,7 +90,7 @@ public class Joueur extends HttpServlet
 				listeMessageErreur.add(e.toString());
 				request.setAttribute("listeMessageErreur", listeMessageErreur);
 				request.setAttribute("clientEnCours", null);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/client.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
 				dispatcher.forward(request, response);
 			}
 			catch (Exception e)
@@ -112,7 +116,7 @@ public class Joueur extends HttpServlet
 		}
 
 		// transfert de la requ�te � la page JSP pour affichage
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/client.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueur.jsp");
 		session.setAttribute("clientEnCours", null);
 		dispatcher.forward(request, response);
 
@@ -165,11 +169,11 @@ public class Joueur extends HttpServlet
 
 		synchronized (equipeSoccerUpdate)
 		{
-			equipeSoccerUpdate.getGestionJoueur().ajouter(new TupleJoueur(id, prenomParam, nomParam, null, null, null, null, false));
+			equipeSoccerUpdate.getGestionJoueur().ajouter(new TupleJoueur(id, prenomParam, nomParam, null, null, null, null, 1));
 		}
 
 		// On retourne a la page
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/client.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueur.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -183,14 +187,14 @@ public class Joueur extends HttpServlet
 		if (idClient != -1)
 		{
 			// transfert de la requ�te � la page JSP pour affichage
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/client.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueurFactures.jsp");
 			session.setAttribute("clientEnCours", String.valueOf(idClient));
 			dispatcher.forward(request, response);
 		}
 		else
 		{
 			session.setAttribute("clientEnCours", null);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/client.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueurFactures.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

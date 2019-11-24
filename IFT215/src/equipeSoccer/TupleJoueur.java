@@ -10,11 +10,11 @@ public class TupleJoueur {
 	String courriel;
 	String motDePasse;
 	String adresse;
-	boolean type; // 0 = spectateur, 1 = joueur
+	int type; // 0 = spectateur, 1 = joueur, 2 = organisateur, 3=tresorier
 	
 	public TupleJoueur(int idJoueur, String prenom, String nom,
 			Timestamp dateNaissance, String courriel, String motDePasse,
-			String adresse, boolean type)
+			String adresse, int type)
 	{
 		super();
 		this.idJoueur = idJoueur;
@@ -99,6 +99,17 @@ public class TupleJoueur {
 	{
 		this.adresse = adresse;
 	}
+	
+	public String getType()
+	{
+		return adresse;
+	}
+
+	public void setType(int type)
+	{
+		this.type = type;
+	}
+
 
 	public String toHtml() {
 		String html = "<H2>Détails du client :</H2>";
@@ -108,7 +119,7 @@ public class TupleJoueur {
 		html += "<b>Courriel : </b>" + getCourriel() + "<br>";
 		html += "<b>Adresse : </b>" + getAdresse() + "<br>";
 		html += "<b>Mot de passe : </b>" + getMotDePasse() + "<br>";
-		
+		html += "<b>type : </b>" + getType() + "<br>";
 		return html;
 	}
 

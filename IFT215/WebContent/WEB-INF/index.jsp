@@ -11,7 +11,7 @@
 
   	<script> 
     $(function(){
-      $("#includedContent").load('header.html'); 
+      $("#includedContent").load('header.jsp'); 
     });
     </script>
 </head>

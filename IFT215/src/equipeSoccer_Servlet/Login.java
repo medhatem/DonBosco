@@ -60,7 +60,7 @@ public class Login extends HttpServlet
                 // ils ne peuvent pas �tre appel�s directement par l'utilisateur
                 // seulement par un autre JSP ou un servlet
 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/chambre.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueur.jsp");
                 dispatcher.forward(request, response);
                 session.setAttribute("etat", new Integer(EquipeSoccerConstantes.CONNECTE));
             }

@@ -1,3 +1,4 @@
+<%@ page import="java.util.*,java.text.*,equipeSoccer.*" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,22 +11,17 @@
 	<link rel="stylesheet" href="css/ConnecteJoueur.css">
 	<!--<script src="js/jquery-3.3.1.min.js"></script>-->
 
-  	<script> 
-    $(function(){
-      $("#includedContent").load('header.html'); 
-    });
-    </script>
+		<jsp:include page="/WEB-INF/header.jsp" />
 </head>
-
-<header id="includedContent"></header>
 
 <body>
 	<div class="container-fluid" style="margin: 50px">
 		<div class="row">
 			<div class="divborder Big3Div col-sm-2" id="divLeft">
-				<ul >
-					<li>groupe1</li>
-				</ul>
+						<ul>
+							<li>groupe1</li>
+						</ul>
+			
 			</div>
 
 			<div class="container-fluid divborder Big3Div col-sm-5 col-sm-offset-1" id="divcenter">

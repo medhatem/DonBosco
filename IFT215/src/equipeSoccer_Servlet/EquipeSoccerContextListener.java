@@ -13,8 +13,8 @@ public class EquipeSoccerContextListener implements ServletContextListener
 {
     public void contextInitialized(ServletContextEvent sce)
     {
-        System.out.println("Contexte de l'Ã©quipe de soccer WEB dÃ©marrÃ© : " + sce.getServletContext().getServletContextName());
-        System.out.println("Voici les paramÃ¨tres du contexte tels que dÃ©finis dans web.xml");
+        System.out.println("Contexte de l'équipe de soccer WEB démarré : " + sce.getServletContext().getServletContextName());
+        System.out.println("Voici les parametres du contexte tels que définis dans web.xml");
         Enumeration<String> initParams = sce.getServletContext().getInitParameterNames();
         while (initParams.hasMoreElements())
         {
@@ -25,6 +25,6 @@ public class EquipeSoccerContextListener implements ServletContextListener
 
     public void contextDestroyed(ServletContextEvent sce)
     {
-        System.out.println("Le contexte de l'application Equipe de soccer vient d'Ãªtre dÃ©truit.");
+        System.out.println("Le contexte de l'application Equipe de soccer vient d'être détruit.");
     }
 }

@@ -1,20 +1,21 @@
 package equipeSoccer_Servlet;
 
+
+
 import java.util.*;
-import java.sql.*;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
 import equipeSoccer.GestionEquipeSoccer;
 import equipeSoccer.IFT215Exception;
-import equipeSoccer.TupleFacture;
+import equipeSoccer.TupleJoueur;
 
 /**
- * Classe traitant la requ�te provenant de la page facture.jsp
+ * Classe traitant la requ�te provenant de la page client.jsp
  */
 
-public class Facture extends HttpServlet
+public class ServletRencontre extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
@@ -33,43 +34,43 @@ public class Facture extends HttpServlet
 		{
 			try
 			{
+
 				// Lecture de la commande reçue
 				// Commandes possibles :
-				// "Afficher" : Affiche la facture sélectionnée
-				// "Supprimer" : Supprime la facture sélectionnée
-				// "Reserver..." : Ouvre la page chambrecommodite.jsp
+				// "Afficher" : Affiche le client sélectionnée
+				// "Supprimer" : Supprime le client sélectionnée
+				// "Reserver..." : Ouvre la page reservation.jsp
 				String commande = request.getParameter("bouton");
-
-				String idFactureParam = request.getParameter("Liste des factures");
+				String idClientParam = request.getParameter("Liste des clients");
 
 				System.out.println("Commande recue : " + commande + "("
-						+ idFactureParam + ")");
+						+ idClientParam + ")");
 
-				int idFacture = -1;
-				if (idFactureParam != null)
+				int idClient = -1;
+				if (idClientParam != null)
 				{
 					try
 					{
-						idFacture = Integer.parseInt(idFactureParam);
+						idClient = Integer.parseInt(idClientParam);
 					}
 					catch (NumberFormatException e)
 					{
-						throw new IFT215Exception("Format de no Facture "
-								+ idFactureParam + " incorrect.");
+						throw new IFT215Exception("Format de no Client "
+								+ idClientParam + " incorrect.");
 					}
 				}
 
 				if (commande == null || commande.equals("Afficher"))
 				{
-					Afficher(request, response, idFacture);
+					Afficher(request, response, idClient);
 				}
 				else if (commande.equals("Supprimer"))
 				{
-					Supprimer(request, response, idFacture);
+					Supprimer(request, response, idClient);
 				}
-				else if (commande.equals("Inclure..."))
+				else if (commande.equals("Reserver..."))
 				{
-					Inclure(request, response, idFacture);
+					Reserver(request, response, idClient);
 				}
 				else if (commande.equals("Creer"))
 				{
@@ -80,14 +81,14 @@ public class Facture extends HttpServlet
 					throw new IFT215Exception("Commande inconnue : "
 							+ commande);
 				}
-
 			}
 			catch (IFT215Exception e)
 			{
 				List<String> listeMessageErreur = new LinkedList<String>();
 				listeMessageErreur.add(e.toString());
 				request.setAttribute("listeMessageErreur", listeMessageErreur);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/facture.jsp");
+				request.setAttribute("clientEnCours", null);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
 				dispatcher.forward(request, response);
 			}
 			catch (Exception e)
@@ -97,33 +98,34 @@ public class Facture extends HttpServlet
 		}
 	}
 
-	private void Supprimer(HttpServletRequest request, HttpServletResponse response, int idFacture)
+	private void Supprimer(HttpServletRequest request, HttpServletResponse response, int idJoueur)
 			throws ServletException, IOException, IFT215Exception,
 			Exception
 	{
 		HttpSession session = request.getSession();
 		GestionEquipeSoccer equipeSoccerUpdate = (GestionEquipeSoccer) session.getAttribute("equipeSoccerUpdate");
 		
-		if(idFacture == -1)
-			throw new IFT215Exception("SVP sélectionner une facture.");
+		if(idJoueur == -1)
+			throw new IFT215Exception("SVP sélectionner un joueur.");
 		
 		synchronized (equipeSoccerUpdate)
 		{
-			equipeSoccerUpdate.getGestionFacture().supprimer(idFacture);
+			equipeSoccerUpdate.getGestionJoueur().supprimer(idJoueur);
 		}
 
 		// transfert de la requ�te � la page JSP pour affichage
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/facture.jsp");
-		session.setAttribute("factureEnCours", null);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueur.jsp");
+		session.setAttribute("clientEnCours", null);
 		dispatcher.forward(request, response);
+
 	}
 
-	private void Inclure(HttpServletRequest request, HttpServletResponse response, int idFacture)
-			throws ServletException, IOException,IFT215Exception
+	private void Reserver(HttpServletRequest request, HttpServletResponse response, int idJoueur)
+			throws ServletException, IOException, IFT215Exception
 	{
 		HttpSession session = request.getSession();
-		session.setAttribute("factureEnCours", String.valueOf(idFacture));
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/chambrecommodite.jsp");
+		session.setAttribute("joueurEnCours", String.valueOf(idJoueur));
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/reservation.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -133,55 +135,64 @@ public class Facture extends HttpServlet
 	{
 		HttpSession session = request.getSession();
 
-		// lecture des param�tres du formulaire facture.jsp
+		session.setAttribute("clientEnCours", null);
+
+		// lecture des param�tres du formulaire Client.jsp
 		String idParam = request.getParameter("id");
-		String nomParam = request.getParameter("description");
-		String prixParam = request.getParameter("prix");
+		String nomParam = request.getParameter("nom");
+		String prenomParam = request.getParameter("prenom");
+		String prixParam = request.getParameter("age");
 
 		if (nomParam == null || nomParam.equals(""))
-			throw new IFT215Exception("La description de la facture ne peut être vide.");
+			throw new IFT215Exception("Le nom ne peut être vide.");
+
+		if (prenomParam == null || prenomParam.equals(""))
+			throw new IFT215Exception("Le prenom ne peut être vide.");
 
 		int id;
-		int prix;
+		int age;
 
 		try
 		{
 			id = Integer.parseInt(idParam);
-			prix = Integer.parseInt(prixParam);
+			age = Integer.parseInt(prixParam);
 		}
 		catch (NumberFormatException e)
 		{
-			throw new IFT215Exception("Id / prix au format incorrect : "
+			throw new IFT215Exception("Id / age au format incorrect : "
 					+ idParam + " / " + prixParam);
 		}
 
 		GestionEquipeSoccer equipeSoccerUpdate = (GestionEquipeSoccer) session.getAttribute("equipeSoccerUpdate");
+
 		synchronized (equipeSoccerUpdate)
 		{
-			equipeSoccerUpdate.getGestionFacture().ajouter(new TupleFacture(id, nomParam, prix, null));;
+			equipeSoccerUpdate.getGestionJoueur().ajouter(new TupleJoueur(id, prenomParam, nomParam, null, null, null, null, 1));
 		}
 
 		// On retourne a la page
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/facture.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueur.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	private void Afficher(HttpServletRequest request, HttpServletResponse response, int idFacture)
+	private void Afficher(HttpServletRequest request, HttpServletResponse response, int idClient)
 			throws ServletException, IOException, IFT215Exception
 	{
 		HttpSession session = request.getSession();
 
-		if (idFacture != -1)
+		session.setAttribute("clientEnCours", String.valueOf(idClient));
+
+		if (idClient != -1)
 		{
-			// transfert de la requete a la page JSP pour affichage
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/facture.jsp");
-			session.setAttribute("factureEnCours", String.valueOf(idFacture));
+			// transfert de la requ�te � la page JSP pour affichage
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueur.jsp");
+			session.setAttribute("clientEnCours", String.valueOf(idClient));
 			dispatcher.forward(request, response);
 		}
 		else
 		{
-			session.setAttribute("factureEnCours", null);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/facture.jsp");
+			session.setAttribute("clientEnCours", null);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueur.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

@@ -27,7 +27,7 @@ public class EquipeSoccerSessionListener implements HttpSessionListener
 		}
 		else
 		{
-			System.out.println("Ã‰quipe de soccer inaccessible.");
+			System.out.println("Équipe de soccer inaccessible.");
 		}
 
 		GestionEquipeSoccer equipeSoccerUpdate = (GestionEquipeSoccer) se.getSession().getAttribute("equipeSoccerUpdate");
@@ -39,7 +39,7 @@ public class EquipeSoccerSessionListener implements HttpSessionListener
 		}
 		else
 		{
-			System.out.println("Ã‰quipe soccer inaccessible.");
+			System.out.println("Équipe soccer inaccessible.");
 		}
 	}
 }
