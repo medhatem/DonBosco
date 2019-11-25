@@ -8,7 +8,6 @@
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<link rel="stylesheet" href="css/sheet.css">
 	<link rel="stylesheet" href="css/ConnecteTresorierFactures.css">
-	<!--<script src="js/jquery-3.3.1.min.js"></script>-->
 	<link rel="stylesheet" href="css/header.css">
 	<jsp:include page="/WEB-INF/header.jsp" />
 

@@ -4,19 +4,14 @@
 	<title></title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/jQuery.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<link rel="stylesheet" href="css/sheet.css">
 	<!--<script src="js/jquery-3.3.1.min.js"></script>-->
 
-  	<script> 
-    $(function(){
-      $("#includedContent").load('header.jsp'); 
-    });
-    </script>
+	<jsp:include page="/WEB-INF/header.jsp" />
+	<link rel="stylesheet" href="css/header.css">
 </head>
-
-<header id="includedContent"></header>
 
 <body>
 	<div class="container-fluid" style="margin: 50px">

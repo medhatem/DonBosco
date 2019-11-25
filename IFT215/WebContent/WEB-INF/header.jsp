@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default" style="background-color: white;">
 	<div class="container-fluid" id="divHeader">
 		<div class="navbar-header">
-			<img src="img/HET_Liga_Logo.png" class="myimg">
+			<img src="images/donBoscoLogo.jpg" class="myimg">
 		</div>
 		<div class="nav navbar-nav" id="divTitle">
 			<br>
@@ -29,7 +29,7 @@
 		          <button id="BtnConx">connexion</button>
 		        </div>
 		        <div class="form-group HFP">      
-		          <a href="Inscription.jsp" id="Ins"><small>Inscription</small> </a><br>
+		          <a href="Inscription" id="Ins"><small>Inscription</small> </a><br>
 		          <a href="#" id="MPO"><small>Mot de passe oublié?</small> </a>
 		        </div>
 		      </form>

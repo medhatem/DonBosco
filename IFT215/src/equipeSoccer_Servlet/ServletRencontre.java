@@ -114,7 +114,7 @@ public class ServletRencontre extends HttpServlet
 		}
 
 		// transfert de la requ�te � la page JSP pour affichage
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueur.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteOrganisateur.jsp");
 		session.setAttribute("clientEnCours", null);
 		dispatcher.forward(request, response);
 
@@ -173,7 +173,7 @@ public class ServletRencontre extends HttpServlet
 		}
 
 		// On retourne a la page
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueur.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteOrganisateur.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -187,14 +187,14 @@ public class ServletRencontre extends HttpServlet
 		if (idClient != -1)
 		{
 			// transfert de la requ�te � la page JSP pour affichage
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueur.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteOrganisateur.jsp");
 			session.setAttribute("clientEnCours", String.valueOf(idClient));
 			dispatcher.forward(request, response);
 		}
 		else
 		{
 			session.setAttribute("clientEnCours", null);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueur.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteOrganisateur.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

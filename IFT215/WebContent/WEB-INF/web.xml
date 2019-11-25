@@ -392,6 +392,10 @@ deployment descriptor.
     <servlet-name>Apropos</servlet-name>
     <servlet-class>equipeSoccer_Servlet.ServletAPropos</servlet-class>
   </servlet>
+   <servlet>
+    <servlet-name>Inscription</servlet-name>
+    <servlet-class>equipeSoccer_Servlet.ServletInscription</servlet-class>
+  </servlet>
   <servlet-mapping>
   <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
@@ -415,5 +419,9 @@ deployment descriptor.
     <servlet-mapping>
     <servlet-name>Apropos</servlet-name>
     <url-pattern>/Apropos</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Inscription</servlet-name>
+    <url-pattern>/Inscription</url-pattern>
   </servlet-mapping>
 </web-app>

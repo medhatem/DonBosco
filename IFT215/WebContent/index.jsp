@@ -6,14 +6,16 @@
 		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
 		<META NAME="author" CONTENT="Marc Fortier">
 		<META NAME="description" CONTENT="page d'accueil équipe sportive">
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<script type="text/javascript" src="js/bootstrap.js"></script>
-		<script type="text/javascript" src="js/jQuery.js"></script>
-		<link rel="stylesheet" href="css/sheet.css">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<script type="text/javascript" src="js/jQuery.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<link rel="stylesheet" href="css/sheet.css">
 	<!--<script src="js/jquery-3.3.1.min.js"></script>-->
 		
 
 		<jsp:include page="/WEB-INF/header.jsp" />
+		    <link rel="stylesheet" href="css/header.css">
 	</HEAD>
 	<BODY>
 	

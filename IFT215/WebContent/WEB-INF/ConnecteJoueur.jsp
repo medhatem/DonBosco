@@ -5,8 +5,8 @@
 	<title></title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/jQuery.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<link rel="stylesheet" href="css/sheet.css">
 	<link rel="stylesheet" href="css/ConnecteJoueur.css">
 	<!--<script src="js/jquery-3.3.1.min.js"></script>-->
