@@ -1,0 +1,53 @@
+.InputW{
+	width: 200px;
+	height: 25px;
+}
+
+.radio{
+	padding-left: 50px;
+}
+
+.AnlEng{
+	width: 110px;
+	margin-left: -15px;
+}
+
+#idAdrs{
+	width: 300px;
+	height: 35px;
+}
+
+#colImg{
+	position: relative;
+	height: 285px;
+	border-style: none none none groove; 
+}
+
+#btnRemove{
+	width: 40px;
+	border-radius: 50%;
+	background-color: white;
+	color: black;
+  	border: 2px solid black;
+  	position: absolute;
+    top: -8px;
+    right: 20px;
+}
+
+#divLeft{
+	height: 420px; 
+}
+
+#divrightbottem{
+	height: 270px;
+}
+
+img.divborder{
+	border-style: solid;
+	border-color: #b4b4b4;
+  	border-width: 1px;
+}
+
+h6{
+	margin-bottom: -2px;
+}
