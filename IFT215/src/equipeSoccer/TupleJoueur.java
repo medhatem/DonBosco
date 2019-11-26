@@ -10,7 +10,6 @@ public class TupleJoueur {
 	String courriel;
 	String motDePasse;
 	String adresse;
-
 	int type; // 0 = spectateur, 1 = joueur, 2 = organisateur, 3=tresorier
 
 	public TupleJoueur(int idJoueur, String prenom, String nom,

@@ -13,7 +13,7 @@
 		    <div class="dropdown" id="HeaderForm" align="center">
 		      <button type="button" data-toggle="dropdown" id="BtnSeCont"><span class="glyphicon glyphicon-user" style="font-size: 20px;"></span></button> <br> <small>Se connecter</small> 
 
-		      <form class="dropdown-menu" id="HeaderForm">
+		      <form class="dropdown-menu" id="HeaderForm" ACTION="Login" METHOD="POST">
 		        <div class="form-group">
 		          <h4 align="center"><b>Se connecter<b></h4>
 		        </div>
@@ -26,7 +26,7 @@
 		          <input type="password" name="MotP" class="form-control" id="motP">
 		        </div>
 		        <div class="form-group HFP">
-		          <button id="BtnConx">connexion</button>
+		          <INPUT TYPE="SUBMIT" VALUE="Soumettre" id="BtnConx">
 		        </div>
 		        <div class="form-group HFP">      
 		          <a href="Inscription" id="Ins"><small>Inscription</small> </a><br>

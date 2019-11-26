@@ -25,6 +25,8 @@ public class ServletRencontre extends HttpServlet
 		HttpSession session = request.getSession();
 		Integer etat = (Integer) session.getAttribute("etat");
 
+		System.out.println("etat: " + etat);
+				
 		if (etat == null)
 		{
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");

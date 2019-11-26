@@ -29,7 +29,7 @@ public class ServletFacture extends HttpServlet
 
 		if (etat == null)
 		{
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 			dispatcher.forward(request, response);
 		}
 		else
@@ -90,7 +90,7 @@ public class ServletFacture extends HttpServlet
 				listeMessageErreur.add(e.toString());
 				request.setAttribute("listeMessageErreur", listeMessageErreur);
 				request.setAttribute("clientEnCours", null);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/login.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/index.jsp");
 				dispatcher.forward(request, response);
 			}
 			catch (Exception e)

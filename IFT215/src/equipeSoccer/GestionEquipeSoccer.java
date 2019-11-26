@@ -21,9 +21,10 @@ public class GestionEquipeSoccer
 		terrain = new TableTerrains();
 		facture = new TableFactures();
 		rencontre = new TableRencontres();
-		setGestionClient(new GestionJoueur(joueur, rencontre));
+		setGestionJoueur(new GestionJoueur(joueur, rencontre));
 		setGestionChambre(new GestionTerrain(terrain, rencontre, facture));
 		setGestionRencontre(new GestionRencontre(rencontre, joueur, terrain, facture));
+		setGestionFacture(new GestionFacture(facture));
 		
 		try
 		{
@@ -102,7 +103,7 @@ public class GestionEquipeSoccer
 		return gestionJoueur;
 	}
 
-	public void setGestionClient(GestionJoueur gestionJoueur)
+	public void setGestionJoueur(GestionJoueur gestionJoueur)
 	{
 		this.gestionJoueur = gestionJoueur;
 	}
