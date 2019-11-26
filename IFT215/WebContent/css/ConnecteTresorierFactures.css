@@ -1,0 +1,25 @@
+#divCont{
+	position: relative;
+	height: 215px;
+	padding-left: 10px;
+	padding-top: 5px;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+	border-color: #b4b4b4;
+	border-width: 1px;
+}
+
+#RowTabs{
+	padding-bottom: 10px;
+}
+
+#RowMont{
+	position: absolute;
+    bottom: 5px;
+}
+
+#montant{
+	width: 50px;
+	border: none;
+}

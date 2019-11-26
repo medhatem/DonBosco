@@ -1,0 +1,33 @@
+#divDesc{
+	position: relative;
+	padding-top: 10px;
+	padding-left: 10px;
+	height: 225px;
+}
+
+#RowDesc{
+	padding-top: 40px;
+	padding-bottom: 15px;
+}
+
+#montant{
+	width: 50px;
+	border: none;
+}
+
+#RowMont{
+	position: absolute;
+    bottom: 5px;
+}
+
+#PayPalRow{
+	padding-top: 30px;
+}
+
+#PayPalBtn{
+	background-color: #b4b4b4; 
+	border-radius: 12px;
+	padding-top: 0px;
+	width: 100px;
+	height: 20px;
+}

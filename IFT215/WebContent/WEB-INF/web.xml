@@ -377,67 +377,51 @@ deployment descriptor.
     <servlet-class>equipeSoccer_Servlet.Logout</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>Chambre</servlet-name>
-    <servlet-class>equipeSoccer_Servlet.Terrain</servlet-class>
+    <servlet-name>Rencontres</servlet-name>
+    <servlet-class>equipeSoccer_Servlet.ServletRencontre</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>Reservation</servlet-name>
-    <servlet-class>equipeSoccer_Servlet.Rencontre</servlet-class>
+    <servlet-name>Factures</servlet-name>
+    <servlet-class>equipeSoccer_Servlet.ServletFacture</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>Client</servlet-name>
-    <servlet-class>equipeSoccer_Servlet.Joueur</servlet-class>
+    <servlet-name>Galerie</servlet-name>
+    <servlet-class>equipeSoccer_Servlet.ServletGalerie</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>Commodite</servlet-name>
-    <servlet-class>equipeSoccer_Servlet.Facture</servlet-class>
+    <servlet-name>Apropos</servlet-name>
+    <servlet-class>equipeSoccer_Servlet.ServletAPropos</servlet-class>
   </servlet>
-  <servlet>
-    <servlet-name>ChambreCommodite</servlet-name>
-    <servlet-class>equipeSoccer_Servlet.ChambreCommodite</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>ConnecteJoueur</servlet-name>
-    <servlet-class>equipeSoccer_Servlet.ConnecteJoueur</servlet-class>
+   <servlet>
+    <servlet-name>Inscription</servlet-name>
+    <servlet-class>equipeSoccer_Servlet.ServletInscription</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Login</servlet-name>
+  <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>Reservation</servlet-name>
-    <url-pattern>/Reservation</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Logout</servlet-name>
     <url-pattern>/Logout</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>Chambre</servlet-name>
-    <url-pattern>/Chambre</url-pattern>
+    <servlet-name>Rencontres</servlet-name>
+    <url-pattern>/Rencontres</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>Client</servlet-name>
-    <url-pattern>/Client</url-pattern>
+    <servlet-name>Factures</servlet-name>
+    <url-pattern>/Factures</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>Commodite</servlet-name>
-    <url-pattern>/Commodite</url-pattern>
-  </servlet-mapping> 
-  <servlet-mapping>
-    <servlet-name>ConnecteJoueur</servlet-name>
-    <url-pattern>/ConnecteJoueur</url-pattern>
+    <servlet-name>Galerie</servlet-name>
+    <url-pattern>/Galerie</url-pattern>
   </servlet-mapping>
-  <servlet-mapping><!--
-    <servlet-name>ConnecteJoueurFactures</servlet-name>
-    <url-pattern>/ConnecteJoueurFactures</url-pattern>
+    <servlet-mapping>
+    <servlet-name>Apropos</servlet-name>
+    <url-pattern>/Apropos</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>ConnecteOrganisateur</servlet-name>
-    <url-pattern>/ConnecteOrganisateur</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping> -->
-    <servlet-name>ChambreCommodite</servlet-name>
-    <url-pattern>/ChambreCommodite</url-pattern>
+    <servlet-name>Inscription</servlet-name>
+    <url-pattern>/Inscription</url-pattern>
   </servlet-mapping>
 </web-app>
