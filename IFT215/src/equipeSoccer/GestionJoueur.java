@@ -18,10 +18,12 @@ public class GestionJoueur
 
 	public void ajouter(TupleJoueur c) throws IFT215Exception, Exception
 	{
-
+		// Met le bon id
+		c.setIdJoueur(joueur.getJoueurs().size()+1);
+		
 		// V�rifie si le client existe d�j�
 		if (joueur.existe(c.getIdJoueur()))
-			throw new IFT215Exception("Client existe deja : "
+			throw new IFT215Exception("Joueur existe deja : "
 					+ c.getIdJoueur());
 
 		// Ajout du Client dans la table des clients
@@ -97,5 +99,10 @@ public class GestionJoueur
 	public boolean existe(int idClient)
 	{
 		return joueur.existe(idClient);
+	}
+
+	public TupleJoueur login(String courriel, String motP)
+	{
+		return joueur.login(courriel, motP);
 	}
 }

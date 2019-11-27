@@ -6,21 +6,21 @@ public class TupleJoueur {
 	int idJoueur;
 	String prenom;
 	String nom;
-	Timestamp DateNaissance;
+	String DateNaissance;
 	String courriel;
 	String motDePasse;
 	String adresse;
 	int type; // 0 = spectateur, 1 = joueur, 2 = organisateur, 3=tresorier
 
 	public TupleJoueur(int idJoueur, String prenom, String nom,
-			Timestamp dateNaissance, String courriel, String motDePasse,
+			String dateNaissance, String courriel, String motDePasse,
 			String adresse, int type)
 	{
 		super();
 		this.idJoueur = idJoueur;
 		this.prenom = prenom;
 		this.nom = nom;
-		DateNaissance = dateNaissance;
+		this.DateNaissance = dateNaissance;
 		this.courriel = courriel;
 		this.motDePasse = motDePasse;
 		this.adresse = adresse;
@@ -70,12 +70,12 @@ public class TupleJoueur {
 		this.nom = nom;
 	}
 
-	public Timestamp getDateNaissance()
+	public String getDateNaissance()
 	{
 		return DateNaissance;
 	}
 
-	public void setDateNaissance(Timestamp dateNaissance)
+	public void setDateNaissance(String dateNaissance)
 	{
 		DateNaissance = dateNaissance;
 	}

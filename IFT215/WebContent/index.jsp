@@ -16,6 +16,20 @@
 
 		<jsp:include page="/WEB-INF/header.jsp" />
 		    <link rel="stylesheet" href="css/header.css">
+		    
+	<%
+
+	if(session.getAttribute("equipeSoccerInterrogation") == null){
+		session.setAttribute("equipeSoccerInterrogation", new GestionEquipeSoccer());
+	}	
+	if(session.getAttribute("equipeSoccerUpdate") == null){
+		GestionEquipeSoccer equipeSoccer = new GestionEquipeSoccer();
+		session.setAttribute("equipeSoccerUpdate", equipeSoccer);
+		session.setAttribute("equipeSoccerInterrogation", equipeSoccer);
+	}
+	
+	%>  
+		    
 	</HEAD>
 	<BODY>
 	

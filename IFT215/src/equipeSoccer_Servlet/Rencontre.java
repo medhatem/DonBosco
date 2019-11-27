@@ -177,6 +177,7 @@ public class Rencontre extends HttpServlet
 			equipeSoccerUpdate.getGestionReservation().ajouter(new TupleRencontre(idClient, date, null));
 		}
 
+		
 		// On retourne a la page
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/reservation.jsp");
 		dispatcher.forward(request, response);

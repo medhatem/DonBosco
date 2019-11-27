@@ -1,6 +1,10 @@
 package equipeSoccer_Servlet;
 
 import javax.servlet.*;
+
+import equipeSoccer.GestionEquipeSoccer;
+import equipeSoccer.IFT215Exception;
+
 import java.util.*;
 
 /**
@@ -11,20 +15,22 @@ import java.util.*;
 
 public class EquipeSoccerContextListener implements ServletContextListener
 {
+	
     public void contextInitialized(ServletContextEvent sce)
     {
-        System.out.println("Contexte de l'équipe de soccer WEB démarré : " + sce.getServletContext().getServletContextName());
-        System.out.println("Voici les parametres du contexte tels que définis dans web.xml");
+        System.out.println("Contexte de l'equipe de soccer WEB demarre : " + sce.getServletContext().getServletContextName());
+        System.out.println("Voici les parametres du contexte tels que definis dans web.xml");
         Enumeration<String> initParams = sce.getServletContext().getInitParameterNames();
         while (initParams.hasMoreElements())
         {
             String name = (String) initParams.nextElement();
             System.out.println(name + ":" + sce.getServletContext().getInitParameter(name));
         }
+      
     }
 
     public void contextDestroyed(ServletContextEvent sce)
     {
-        System.out.println("Le contexte de l'application Equipe de soccer vient d'être détruit.");
+        System.out.println("Le contexte de l'application Equipe de soccer vient d'etre detruit.");
     }
 }

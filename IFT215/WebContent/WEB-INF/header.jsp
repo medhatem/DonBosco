@@ -1,3 +1,4 @@
+<%@ page import="java.util.*,java.text.*,equipeSoccer.*" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <nav class="navbar navbar-default" style="background-color: white;">
 	<div class="container-fluid" id="divHeader">
 		<div class="navbar-header">
@@ -11,11 +12,21 @@
 		<ul class="nav navbar-nav navbar-right">
 		  <li>
 		    <div class="dropdown" id="HeaderForm" align="center">
-		      <button type="button" data-toggle="dropdown" id="BtnSeCont"><span class="glyphicon glyphicon-user" style="font-size: 20px;"></span></button> <br> <small>Se connecter</small> 
+		      <button type="button" data-toggle="dropdown" id="BtnSeCont"><span class="glyphicon glyphicon-user" style="font-size: 20px;"></span></button> <br> <small>
+					<%
+						TupleJoueur joueur = ((TupleJoueur) session.getAttribute("Joueur"));
+			          	String res = "Se connecter";
+			          	
+			          	if(joueur != null) {
+							res = joueur.getCourriel();
+			          	}
+					%>
+					<%= res %>
+				</small> 
 
 		      <form class="dropdown-menu" id="HeaderForm" ACTION="Login" METHOD="POST">
 		        <div class="form-group">
-		          <h4 align="center"><b>Se connecter<b></h4>
+		          <h4 align="center"><b>Se Connecter<b></h4>
 		        </div>
 		        <div class="form-group HFP" >
 		          <h5>Nom d'utilisateur</h5>
@@ -32,7 +43,7 @@
 		          <a href="Inscription" id="Ins"><small>Inscription</small> </a><br>
 		          <a href="#" id="MPO"><small>Mot de passe oublié?</small> </a>
 		        </div>
-		      </form>
+		        </form>
 		    </div>
 		  </li>
 		</ul>

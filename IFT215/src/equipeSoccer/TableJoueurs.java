@@ -52,4 +52,20 @@ public class TableJoueurs {
         return joueurs;
 	}
 
+	public TupleJoueur login(String courriel, String motP)
+	{
+		System.out.println(courriel + " " + motP + " avec " + joueurs.size() + " joueur(s)");
+		for(TupleJoueur j : joueurs) {
+			if(j.getCourriel().equals(courriel)) {
+				if(j.getMotDePasse().equals(motP)) {
+					return j;
+				}
+			} else {
+				System.out.println(j.getCourriel() + " " + j.getMotDePasse());
+			}
+		}
+		
+		return null;
+	}
+
 }

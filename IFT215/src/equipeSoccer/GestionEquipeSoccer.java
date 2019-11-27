@@ -41,23 +41,23 @@ public class GestionEquipeSoccer
 	private void AjoutValeursBidon() throws IFT215Exception, Exception
 	{
 		// Organisateur
-		joueur.creer(new TupleJoueur(0, "Marc", "Fortier", 		new Timestamp(1985, 7, 28, 0, 0, 0, 0), "mf@dba.com", "abcde", "123 potatoe street", 0));
+		joueur.creer(new TupleJoueur(0, "Marc", "Fortier", "1985-10-12", "mf@dba.com", "abcde", "123 potatoe street", 0));
 		
 		// Joueurs
-		gestionJoueur.ajouter(new TupleJoueur(1, "John", "Doe", 			new Timestamp(1990, 6, 28, 0, 0, 0, 0), "jd@dba.com", "abcde", "123 potatoe street", 1));
-		gestionJoueur.ajouter(new TupleJoueur(2, "Steve", "Jobs", 		new Timestamp(1954, 2, 12, 0, 0, 0, 0), "sj@dba.com", "abcde", "123 potatoe street", 1));
-		gestionJoueur.ajouter(new TupleJoueur(3, "Benjamin", "Franklin", new Timestamp(1782, 12, 5, 0, 0, 0, 0), "bf@dba.com", "abcde", "123 potatoe street", 1));
-		gestionJoueur.ajouter(new TupleJoueur(4, "Mr", "T", 				new Timestamp(1985, 8,  2, 0, 0, 0, 0), "mt@dba.com", "abcde", "123 potatoe street", 1));
-		gestionJoueur.ajouter(new TupleJoueur(5, "Joseph", "Fortier", 	new Timestamp(1985, 6, 12, 0, 0, 0, 0), "jf@dba.com", "abcde", "123 potatoe street", 1));
-		gestionJoueur.ajouter(new TupleJoueur(6, "Antoine", "Fortier", 	new Timestamp(1985, 4, 25, 0, 0, 0, 0), "af@dba.com", "abcde", "123 potatoe street", 1));
-		gestionJoueur.ajouter(new TupleJoueur(7, "François", "Archambault", 		new Timestamp(1985, 7, 28, 0, 0, 0, 0), "fa@dba.com", "abcde", "123 potatoe street", 1));
-		gestionJoueur.ajouter(new TupleJoueur(8, "Jean-Olivier", "Archambault", 	new Timestamp(1985, 7, 28, 0, 0, 0, 0), "joa@dba.com", "abcde", "123 potatoe street", 1));
+		gestionJoueur.ajouter(new TupleJoueur(1, "John", "Doe", "1985-10-12", "jd@dba.com", "abcde", "123 potatoe street", 1));
+		gestionJoueur.ajouter(new TupleJoueur(2, "Steve", "Jobs", "1985-10-12", "sj@dba.com", "abcde", "123 potatoe street", 1));
+		gestionJoueur.ajouter(new TupleJoueur(3, "Benjamin", "Franklin", "1782-12-5", "bf@dba.com", "abcde", "123 potatoe street", 1));
+		gestionJoueur.ajouter(new TupleJoueur(4, "Mr", "T", "1985-8-2", "mt@dba.com", "abcde", "123 potatoe street", 1));
+		gestionJoueur.ajouter(new TupleJoueur(5, "Joseph", "Fortier", "2010-07-01", "jf@dba.com", "abcde", "123 potatoe street", 1));
+		gestionJoueur.ajouter(new TupleJoueur(6, "Antoine", "Fortier", "2013-04-02", "af@dba.com", "abcde", "123 potatoe street", 1));
+		gestionJoueur.ajouter(new TupleJoueur(7, "François", "Archambault", "2001-05-05", "fa@dba.com", "abcde", "123 potatoe street", 1));
+		gestionJoueur.ajouter(new TupleJoueur(8, "Jean-Olivier", "Archambault", "2003-12-5", "joa@dba.com", "abcde", "123 potatoe street", 1));
 		
 		// Spectateurs
-		gestionJoueur.ajouter(new TupleJoueur(9, "Amadeus", "Mozart", 	new Timestamp(1791, 2, 15, 0, 0, 0, 0), "am@dba.com", "abcde", "123 potatoe street", 2));
+		gestionJoueur.ajouter(new TupleJoueur(9, "Amadeus", "Mozart", "1791-2-15", "am@dba.com", "abcde", "123 potatoe street", 2));
 
 		// Trésorier
-		gestionJoueur.ajouter(new TupleJoueur(1, "Baltazar", "Picsou", 	new Timestamp(1990, 6, 28, 0, 0, 0, 0), "bp@dba.com", "abcde", "123 potatoe street", 3));
+		gestionJoueur.ajouter(new TupleJoueur(1, "Baltazar", "Picsou", 	"1990-6-28", "bp@dba.com", "abcde", "123 potatoe street", 3));
 
 		// Terrains
 		gestionTerrain.ajouter(new TupleTerrain(0, "Parc St-Alphonse"));
