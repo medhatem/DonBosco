@@ -32,7 +32,7 @@
 				<div class="dropdown" id="HeaderForm" align="center">
 				   <!-- <button type="button" data-toggle="dropdown" id="BtnSeCont"><i class='fas fa-user-circle' style='font-size:24px'></i></span></button> <br> <small>Se connecter</small>  -->
 				   <button type="button" data-toggle="dropdown" id="BtnSeCont"class="btn btn-success btn-circle btn-lg"><i class="fas fa-user-circle"style='font-size:30px'></i></button> <br>
-				    <small>
+				    <small id="headerText">
 					<%
 						TupleJoueur joueur = ((TupleJoueur) session.getAttribute("Joueur"));
 			          	String res = "Se connecter";
@@ -43,7 +43,16 @@
 					%>
 					<%= res %>
 					</small>
-				   
+					<br>
+					<%
+					String dec = "";
+					if(((TupleJoueur) session.getAttribute("Joueur"))!= null){
+						dec = "Se deconnecter";
+					}
+					%>
+					
+					<a href="Logout" ><small id="headerText"><%= dec%></small> </a>
+
 				   <form class="dropdown-menu" id="HeaderForm" ACTION="Login" METHOD="POST">
 					  <div class="form-group">
 						 <h4 align="center"><b>Se connecter</b></h4>

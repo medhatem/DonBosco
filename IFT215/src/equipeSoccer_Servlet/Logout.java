@@ -17,7 +17,7 @@ public class Logout extends HttpServlet
         // invalider la session pour lib�rer les ressources associ�es � la
         // session
         request.getSession().invalidate();
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
         dispatcher.forward(request, response);
     }
 
