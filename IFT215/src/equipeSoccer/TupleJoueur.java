@@ -2,6 +2,8 @@ package equipeSoccer;
 
 import java.sql.Timestamp;
 
+import equipeSoccer_Servlet.EquipeSoccerConstantes;
+
 public class TupleJoueur {
 	int idJoueur;
 	String prenom;
@@ -128,5 +130,22 @@ public class TupleJoueur {
 	public String toString()
 	{
 		return "(" + getIdJoueur() + ") " + getNom() + " " + getPrenom();
+	}
+	
+	
+	
+	public int JoueurEstDeType() {
+		if(this.type == 0) {
+			return EquipeSoccerConstantes.SPECTATEUR;
+		}else if(this.type == 1) {
+			return EquipeSoccerConstantes.JOUEUR;
+		}else if(this.type == 2) {
+			return EquipeSoccerConstantes.ORGANISATEUR;
+		}else if(this.type == 3) {
+			return EquipeSoccerConstantes.TRESORIER;
+		}
+		
+		//code d'erreur= -1
+		return -1;
 	}
 }

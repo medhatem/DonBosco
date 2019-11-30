@@ -50,6 +50,7 @@
 						</ul>
 					</div>
 				</div>
+
 				<div class="row" id="RowAnlEng">
 					<div class="col-sm-3 col-sm-offset-6">
 						<button type="button" class="btn btn-default">Annuler</button>
@@ -58,6 +59,7 @@
 						<button type="button" class="btn btn-default">Enregistrer</button>
 					</div>
 				</div>
+
 			</div>
 
 			<div id="divright" class="Big3Div col-sm-3 col-sm-offset-1">

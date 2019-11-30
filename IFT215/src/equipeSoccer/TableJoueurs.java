@@ -2,6 +2,8 @@ package equipeSoccer;
 
 import java.util.ArrayList;
 
+import equipeSoccer_Servlet.EquipeSoccerConstantes;
+
 public class TableJoueurs {
 
 	ArrayList<TupleJoueur> joueurs;
@@ -67,5 +69,7 @@ public class TableJoueurs {
 		
 		return null;
 	}
+	
+
 
 }

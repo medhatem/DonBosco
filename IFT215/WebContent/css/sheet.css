@@ -1,84 +1,88 @@
-.myimg{
-	width: 150px;
-	height: 120px;
+.myimg {
+  width: 150px;
+  height: 120px;
 }
-#title{
-	border-style: groove none groove none;
-}
-
-#divLeft{
-	position: relative;
+#title {
+  border-style: groove none groove none;
 }
 
-#RowAjt{
-	position: absolute;
-    bottom: 20px;
+#divLeft {
+  position: relative;
 }
 
-#divcenter{
-	padding: 5px 30px 10px 30px;
+#RowAjt {
+  position: absolute;
+  bottom: 20px;
 }
 
-#LabelsEquipes{
-	padding-top: 10px;
+#divcenter {
+  padding: 5px 30px 10px 30px;
 }
 
-#Equipes{
-	padding-bottom: 10px;
+#LabelsEquipes {
+  padding-top: 10px;
 }
 
-#divcenter1{
-	padding-right: 5px;
-	height: 250px;
+#Equipes {
+  padding-bottom: 10px;
 }
 
-#divcenter2{
-	padding-left: 5px;
-	height: 250px;
+#divcenter1 {
+  padding-right: 5px;
+  height: 250px;
 }
 
-#RowAnlEng{
-	padding-top: 20px;
-	padding-right: 30px;
+#divcenter2 {
+  padding-left: 5px;
+  height: 250px;
 }
 
-#divrighttop{
-	padding-top: 15px;
-	height: 125px;
+#RowAnlEng {
+  padding-top: 20px;
+  padding-right: 30px;
 }
 
-#divrightbottem{
-	padding-top: 15px;
-	height: 255px;
+#divrighttop {
+  padding-top: 15px;
+  height: 125px;
 }
 
-#parg{
-	padding-top: 20px;
+#divrightbottem {
+  padding-top: 15px;
+  height: 255px;
 }
 
-#RowRadio{
-	padding-top: 10px;
+#parg {
+  padding-top: 20px;
 }
 
-.divborderbottom{
-	border-style: none none groove none;
+#RowRadio {
+  padding-top: 10px;
 }
 
-.Big3Div{
-	height: 400px; 
+.divborderbottom {
+  border-style: none none groove none;
 }
 
-ul{
-	list-style-type: none;
-	padding-top: 15px;
+.Big3Div {
+  height: 400px;
 }
 
-button{
-	width: 100px;
+ul {
+  list-style-type: none;
+  padding-top: 15px;
 }
 
-div.divborder{
-	border-style: solid;
-	border-color: #b4b4b4;
-  	border-width: 1px;
+button {
+  width: 100px;
+}
+
+div.divborder {
+  border-style: solid;
+  border-color: #b4b4b4;
+  border-width: 1px;
+}
+label {
+  width: 10000px;
+  display: inline-block;
 }

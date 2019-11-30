@@ -5,7 +5,7 @@
 		<TITLE>DON BOSCO ATLETICO</TITLE>
 		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
 		<META NAME="author" CONTENT="Marc Fortier">
-		<META NAME="description" CONTENT="page d'accueil équipe sportive">
+		<META NAME="description" CONTENT="page d'accueil quipe sportive">
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<script type="text/javascript" src="js/jQuery.js"></script>
@@ -49,7 +49,7 @@
 						<div class="col-sm-6"><label>Lieu:</label></div> <div class="col-6"><label>Date:</label> <%= new java.util.Date() %> </div>
 					</div>
 					<div class="row" id="LabelsEquipes">
-						<div class="col-sm-5" align="center" ><label >Équipe A</label></div> <div class="col-sm-5 col-sm-offset-2" align="center"><label >Équipe B</label></div>
+						<div class="col-sm-5" align="center" ><label >Equipe A</label></div> <div class="col-sm-5 col-sm-offset-2" align="center"><label >Equipe B</label></div>
 					</div>
 					<div class="row divborderbottom" id="Equipes">
 						<div class="divborder col-sm-5" id="divcenter1">
@@ -65,15 +65,15 @@
 					</div>
 					<div class="row" id="parg" align="center">
 						<div class="col-sm-12">
-							<p>Connectez-vous pour accéder à plus de fonctionnalités</p>
+							<p>Connectez-vous pour accder  plus de fonctionnalits</p>
 						</div>
 					</div>
 				</div>
 	
 				<div id="divright" class="Big3Div col-sm-3 col-sm-offset-1">
-					<div class="divborder" id="divrighttop" align="center">Dernier résultat</div>
+					<div class="divborder" id="divrighttop" align="center">Dernier rsultat</div>
 					<br>
-					<div class="divborder" id="divrightbottem" align="center">Flux d'actualités</div>
+					<div class="divborder" id="divrightbottem" align="center">Flux d'actualits</div>
 				</div>
 			</div>
 		</div>

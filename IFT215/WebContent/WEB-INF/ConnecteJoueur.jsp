@@ -67,8 +67,10 @@
 						  </label>
 						</div>
 					</div>
-					<div class="col-sm-3 col-sm-offset-2">
-						<button type="button" class="btn btn-default" id="Eng">Enregistrer</button>
+					<div class="row divborderbottom" id="bot">
+						<div class="col-sm-3 col-sm-offset-2">
+							<button type="button" class="btn btn-default" id="Eng">Enregistrer</button>
+						</div>
 					</div>
 				</div>
 			</div>

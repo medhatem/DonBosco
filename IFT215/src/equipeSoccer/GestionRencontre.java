@@ -77,4 +77,13 @@ public class GestionRencontre
 
 		return listeHtml.toHtml();
 	}
+	
+	public TableRencontres getRencontre() {
+		return rencontre;
+	}
+
+	public void setRencontre(TableRencontres rencontre) {
+		this.rencontre = rencontre;
+	}
+	
 }

@@ -1,32 +1,32 @@
-.HFP{
-	padding-left: 10px;
-	padding-right: 10px;
+.HFP {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-#BtnSeCont{
-	width: 40px;
+#BtnSeCont {
+  width: 30px;
 }
 
-#BtnConx{
-	width: 100%;
-	background-color: #b4b4b4;
+#BtnConx {
+  width: 100%;
+  background-color: #b4b4b4;
 }
 
-#MPO{
-	text-decoration: underline;
-	color: black;
+#MPO {
+  text-decoration: underline;
+  color: black;
 }
 
-#Ins{
-	text-decoration: none;
-	color: black;
+#Ins {
+  text-decoration: none;
+  color: black;
 }
 
-#divTitle{
-	padding-left: 70px;
-	margin-top: -30px;
+#divTitle {
+  padding-left: 70px;
+  margin-top: -30px;
 }
 
-#divHeader{
-	padding-right: 40px;
+#divHeader {
+  padding-right: 40px;
 }

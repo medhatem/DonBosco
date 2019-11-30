@@ -1,6 +1,7 @@
 package equipeSoccer;
 
 import java.sql.Timestamp;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList; 
 
 public class TupleRencontre {
@@ -58,5 +59,15 @@ public class TupleRencontre {
 	{
 		this.equipeB = equipeB;
 	}
-
+	 public String getMonthForInt() {
+		 
+		 int num= this.getDate().getMonth();
+	        String month = "wrong";
+	        DateFormatSymbols dfs = new DateFormatSymbols();
+	        String[] months = dfs.getMonths();
+	        if (num >= 0 && num <= 11 ) {
+	            month = months[num];
+	        }
+	        return month;
+	    }
 }

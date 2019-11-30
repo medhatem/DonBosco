@@ -41,7 +41,7 @@ public class GestionEquipeSoccer
 	private void AjoutValeursBidon() throws IFT215Exception, Exception
 	{
 		// Organisateur
-		joueur.creer(new TupleJoueur(0, "Marc", "Fortier", "1985-10-12", "mf@dba.com", "abcde", "123 potatoe street", 0));
+		joueur.creer(new TupleJoueur(0, "Marc", "Fortier", "1985-10-12", "mf@dba.com", "abcde", "123 potatoe street", 2));
 		
 		// Joueurs
 		gestionJoueur.ajouter(new TupleJoueur(1, "John", "Doe", "1985-10-12", "jd@dba.com", "abcde", "123 potatoe street", 1));
@@ -54,7 +54,7 @@ public class GestionEquipeSoccer
 		gestionJoueur.ajouter(new TupleJoueur(8, "Jean-Olivier", "Archambault", "2003-12-5", "joa@dba.com", "abcde", "123 potatoe street", 1));
 		
 		// Spectateurs
-		gestionJoueur.ajouter(new TupleJoueur(9, "Amadeus", "Mozart", "1791-2-15", "am@dba.com", "abcde", "123 potatoe street", 2));
+		gestionJoueur.ajouter(new TupleJoueur(9, "Amadeus", "Mozart", "1791-2-15", "am@dba.com", "abcde", "123 potatoe street", 0));
 
 		// Trésorier
 		gestionJoueur.ajouter(new TupleJoueur(1, "Baltazar", "Picsou", 	"1990-6-28", "bp@dba.com", "abcde", "123 potatoe street", 3));
