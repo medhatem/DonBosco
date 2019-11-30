@@ -71,11 +71,11 @@ public class GestionEquipeSoccer
 		gestionFacture.ajouter(new TupleFacture(3, "Location du terrain", 		210.95, new Timestamp(2019, 7, 4, 0, 0, 0, 0)));
 		
 		// Rencontres
-		gestionRencontre.ajouter(new TupleRencontre(0, new Timestamp(2019, 6, 10, 0, 0, 0, 0), terrain.getTerrain(0)));
-		gestionRencontre.ajouter(new TupleRencontre(1, new Timestamp(2019, 6, 17, 0, 0, 0, 0), terrain.getTerrain(0)));
-		gestionRencontre.ajouter(new TupleRencontre(2, new Timestamp(2019, 6, 21, 0, 0, 0, 0), terrain.getTerrain(0)));
-		gestionRencontre.ajouter(new TupleRencontre(3, new Timestamp(2019, 6, 28, 0, 0, 0, 0), terrain.getTerrain(0)));
-		gestionRencontre.ajouter(new TupleRencontre(4, new Timestamp(2019, 7, 4, 0, 0, 0, 0),  terrain.getTerrain(0)));
+		gestionRencontre.ajouter(new TupleRencontre(0, new Timestamp(2019, 6, 10, 0, 0, 0, 0), terrain.getTerrain(0),0,5));
+		gestionRencontre.ajouter(new TupleRencontre(1, new Timestamp(2019, 6, 17, 0, 0, 0, 0), terrain.getTerrain(0),2,3));
+		gestionRencontre.ajouter(new TupleRencontre(2, new Timestamp(2019, 6, 21, 0, 0, 0, 0), terrain.getTerrain(0),8,9));
+		gestionRencontre.ajouter(new TupleRencontre(3, new Timestamp(2019, 6, 28, 0, 0, 0, 0), terrain.getTerrain(0),12,0));
+		gestionRencontre.ajouter(new TupleRencontre(4, new Timestamp(2019, 7, 4, 0, 0, 0, 0),  terrain.getTerrain(0),1,1));
 	}
 
 	public GestionTerrain getGestionTerrain()

@@ -1,6 +1,5 @@
 package equipeSoccer;
 
-import equipeSoccer_Servlet.ListeHtml;
 
 public class GestionTerrain
 {
@@ -39,18 +38,7 @@ public class GestionTerrain
 		terrain.supprimer(terrain.getTerrain(idTerrain));
 	}
 
-	public String listerTerrains(String selection)
-			throws IFT215Exception, Exception
-	{
-		// Les titres
-		System.out.println("Selection : " + selection);
 
-		System.out.println("idChambre Nom TypeLit prixBase prixCommodites");
-
-		ListeHtml listeHtml = new ListeHtml("Liste des terrains").addTitre("Nom").addTitre("Type de lit").addTitre("Prix de base").addTitre("Prix des commodités");
-
-		return listeHtml.toHtml();
-	}
 
 	public boolean existe(int id)
 	{

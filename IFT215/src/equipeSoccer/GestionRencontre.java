@@ -3,7 +3,6 @@ package equipeSoccer;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import equipeSoccer_Servlet.ListeHtml;
 
 public class GestionRencontre
 {
@@ -56,27 +55,7 @@ public class GestionRencontre
 
 	}
 
-	public String listerRencontres(String selection)
-			throws IFT215Exception, Exception
-	{
-
-		ArrayList<TupleRencontre> res = rencontre.listeRencontres();
-
-		// Les titres
-		ListeHtml listeHtml = new ListeHtml("Liste des reservations").addTitre("Client").addTitre("Chambre").addTitre("Date début").addTitre("Date fin").addTitre("Coût de la réservation");
-		
-		listeHtml.setBordure(true);
-		if (selection != null)
-			listeHtml.selectionner(selection);
-
-		for (TupleRencontre c : res)
-		{
-			listeHtml.addItem(((Integer) c.getIdRencontre()).toString())	// le id
-					.addItem(c.getDate().toString());	 // Date
-		}
-
-		return listeHtml.toHtml();
-	}
+	
 	
 	public TableRencontres getRencontre() {
 		return rencontre;

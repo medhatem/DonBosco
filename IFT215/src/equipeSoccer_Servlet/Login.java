@@ -64,7 +64,7 @@ public class Login extends HttpServlet
 				session.setAttribute("typeUtilisateur", j.JoueurEstDeType());
 				
 				if(j.JoueurEstDeType()==EquipeSoccerConstantes.SPECTATEUR) {
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/index.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 					dispatcher.forward(request, response);
 				}else if(j.JoueurEstDeType()==EquipeSoccerConstantes.JOUEUR) {
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueur.jsp");
@@ -74,14 +74,15 @@ public class Login extends HttpServlet
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteOrganisateur.jsp");
 					dispatcher.forward(request, response);
 				}else if(j.JoueurEstDeType()==EquipeSoccerConstantes.TRESORIER) {
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/index.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 					dispatcher.forward(request, response);
 				}else {
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/index.jsp");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 					dispatcher.forward(request, response);
 				}
 
 				System.out.println("Connecte en tant que : " + ((TupleJoueur)session.getAttribute("Joueur")).getCourriel());
+				System.out.println("Connecte en tant que : " + ((TupleJoueur)session.getAttribute("Joueur")).JoueurEstDeType());
 			}
 		}
 	}

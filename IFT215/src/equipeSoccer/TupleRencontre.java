@@ -10,13 +10,40 @@ public class TupleRencontre {
 	ArrayList<TupleJoueur> equipeB;
 	Timestamp date;
 	TupleTerrain terrain;
+	int scoreA;
+	public TupleTerrain getTerrain() {
+		return terrain;
+	}
 
-	public TupleRencontre(int idRencontre, Timestamp date, TupleTerrain t) {
+	public void setTerrain(TupleTerrain terrain) {
+		this.terrain = terrain;
+	}
+
+	public int getScoreA() {
+		return scoreA;
+	}
+
+	public void setScoreA(int scoreA) {
+		this.scoreA = scoreA;
+	}
+
+	public int getScoreB() {
+		return scoreB;
+	}
+
+	public void setScoreB(int scoreB) {
+		this.scoreB = scoreB;
+	}
+	int scoreB;
+
+	public TupleRencontre(int idRencontre, Timestamp date, TupleTerrain t,int scoreA,int scoreB) {
 		this.idRencontre = idRencontre;
 		this.date = date;
 		equipeA = new ArrayList<TupleJoueur>();
 		equipeB = new ArrayList<TupleJoueur>();
 		terrain = t;
+		this.scoreA=scoreA;
+		this.scoreB=scoreB;
 	}
 	
 	public TupleRencontre() {

@@ -1,7 +1,6 @@
 package equipeSoccer;
 
 import java.util.ArrayList;
-import equipeSoccer_Servlet.ListeHtml;
 
 public class GestionFacture
 {
@@ -46,33 +45,12 @@ public class GestionFacture
 		return facture.getFacture(Integer.parseInt(idFacture)).toHtml();
 	}
 
-	public String listerFactures(String selection)
+	public ArrayList<TupleFacture>  listerFactures()
 			throws IFT215Exception, Exception
 	{
 
-		ArrayList<TupleFacture> commodites = facture.getFactures();
+		return facture.getFactures();
 
-		// Les titres
 
-		System.out.println("idCommodite Description prix");
-
-		ListeHtml listeHtml = new ListeHtml("Liste des commodites").addTitre("Description").addTitre("prix");
-
-		if (selection != null)
-			listeHtml.selectionner(selection);
-
-		for (TupleFacture c : commodites)
-		{
-			listeHtml.addItem(((Integer) c.getIdFacture()).toString())	// le id
-					.addItem(c.getDescription())							// La description
-					.addItem(((Double) c.getPrix()).toString())			// Le type de lit
-					.newLigne();
-
-			System.out.print(c.getIdFacture() + " " + c.getDescription() + " "
-					+ c.getPrix() + " \n");
-
-		}
-
-		return listeHtml.toHtml();
 	}
 }

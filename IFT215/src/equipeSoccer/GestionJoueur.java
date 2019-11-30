@@ -2,7 +2,6 @@ package equipeSoccer;
 
 import java.util.ArrayList;
 
-import equipeSoccer_Servlet.ListeHtml;
 
 public class GestionJoueur
 {
@@ -49,35 +48,7 @@ public class GestionJoueur
 
 	}
 
-	public String listerJoueurs(String selection)
-			throws IFT215Exception, Exception
-	{
 
-		ArrayList<TupleJoueur> clients = joueur.getJoueurs();
-
-		// Les titres
-
-		System.out.println("idClient nom prenom prix " + selection);
-
-		ListeHtml listeHtml = new ListeHtml("Liste des clients").addTitre("Nom").addTitre("Prenom");
-
-		if (selection != null)
-			listeHtml.selectionner(selection);
-
-		for (TupleJoueur c : clients)
-		{
-			listeHtml.addItem(((Integer) c.getIdJoueur()).toString())		// le id
-					.addItem(c.getPrenom())									// Le prenom
-					.addItem(c.getNom())									// Le nom
-					.newLigne();
-
-			System.out.print(c.getIdJoueur() + " " + c.getPrenom() + " "
-					+ c.getNom() + "\n");
-
-		}
-
-		return listeHtml.toHtml();
-	}
 
 	public String afficherClient(String idClientParam)
 	{

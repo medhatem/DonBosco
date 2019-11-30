@@ -48,7 +48,9 @@ public class ServletFacture extends HttpServlet
 				System.out.println("Commande recue : " + commande + "("
 						+ idClientParam + ")");
 
-				int idClient = -1;
+				
+				Afficher(request, response);
+				/*int idClient = -1;
 				if (idClientParam != null)
 				{
 					try
@@ -62,9 +64,9 @@ public class ServletFacture extends HttpServlet
 					}
 				}
 
-				if (commande == null || commande.equals("Afficher"))
+				if (true)
 				{
-					Afficher(request, response, idClient);
+					Afficher(request, response);
 				}
 				else if (commande.equals("Supprimer"))
 				{
@@ -82,7 +84,7 @@ public class ServletFacture extends HttpServlet
 				{
 					throw new IFT215Exception("Commande inconnue : "
 							+ commande);
-				}
+				}*/
 			}
 			catch (IFT215Exception e)
 			{
@@ -90,7 +92,7 @@ public class ServletFacture extends HttpServlet
 				listeMessageErreur.add(e.toString());
 				request.setAttribute("listeMessageErreur", listeMessageErreur);
 				request.setAttribute("clientEnCours", null);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/index.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 				dispatcher.forward(request, response);
 			}
 			catch (Exception e)
@@ -179,25 +181,49 @@ public class ServletFacture extends HttpServlet
 		dispatcher.forward(request, response);
 	}
 
-	private void Afficher(HttpServletRequest request, HttpServletResponse response, int idClient)
+	private void Afficher(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, IFT215Exception
 	{
 		HttpSession session = request.getSession();
 
-		session.setAttribute("clientEnCours", String.valueOf(idClient));
 
-		if (idClient != -1)
+		Integer type= (Integer)session.getAttribute("typeUtilisateur");
+		
+		System.out.println("Commande recue : " +  type+ " ))))))))))");
+		if (type == -1)
 		{
+			System.out.println("Commande recue : " +  "-1"+ " ))))))))))");
 			// transfert de la requ�te � la page JSP pour affichage
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueurFactures.jsp");
-			session.setAttribute("clientEnCours", String.valueOf(idClient));
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+
 			dispatcher.forward(request, response);
 		}
-		else
+		else if(type== 0)
 		{
-			session.setAttribute("clientEnCours", null);
+			System.out.println("Commande recue : " +  "0"+ " ))))))))))");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueurFactures.jsp");
 			dispatcher.forward(request, response);
+		}
+		else if(type== 1)
+		{
+			System.out.println("Commande recue : " +  "1"+ " ))))))))))");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueurFactures.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if(type== 2)
+		{
+			System.out.println("Commande recue : " +  "2"+ " ))))))))))");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteJoueurFactures.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if(type== 3)
+		{
+			System.out.println("Commande recue : " +  "3"+ " ))))))))))");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/ConnecteTresorierFactures.jsp");
+			dispatcher.forward(request, response);
+		}
+		else {
+			System.out.println("Commande recue : " + " rien"+ ")");
 		}
 	}
 
