@@ -36,7 +36,7 @@
 					<div class="col-sm-6"><label>Lieu:</label></div> <div class="col-6"><label>Date:</label> <%= new java.util.Date() %> </div>
 				</div>
 				<div class="row" id="LabelsEquipes">
-					<div class="col-sm-5" align="center" ><label >Équipe A</label></div> <div class="col-sm-5 col-sm-offset-2" align="center"><label >Équipe B</label></div>
+					<div class="col-sm-5" align="center" ><label >Ã‰quipe A</label></div> <div class="col-sm-5 col-sm-offset-2" align="center"><label >Ã‰quipe B</label></div>
 				</div>
 				<div class="row divborderbottom" id="Equipes">
 					<div class="divborder col-sm-5" id="divcenter1">
@@ -63,9 +63,9 @@
 			</div>
 
 			<div id="divright" class="Big3Div col-sm-3 col-sm-offset-1">
-				<div class="divborder" id="divrighttop" align="center">Dernier résultat</div>
+				<div class="divborder" id="divrighttop" align="center">Dernier rÃ©sultat</div>
 				<br>
-				<div class="divborder" id="divrightbottem" align="center">Flux d'actualités</div>
+				<div class="divborder" id="divrightbottem" align="center">Flux d'actualitÃ©s</div>
 			</div>
 		</div>
 	</div>
