@@ -16,7 +16,7 @@ public class GestionJoueur
 		this.rencontre = reservations;
 	}
 
-	public void ajouter(TupleJoueur c) throws IFT215Exception, Exception
+	public boolean ajouter(TupleJoueur c) throws IFT215Exception, Exception
 	{
 		// Met le bon id
 		c.setIdJoueur(joueur.getJoueurs().size()+1);
@@ -27,7 +27,7 @@ public class GestionJoueur
 					+ c.getIdJoueur());
 
 		// Ajout du Client dans la table des clients
-		joueur.creer(c);
+		return joueur.creer(c);
 
 	}
 

@@ -73,13 +73,14 @@ public class ServletInscription extends HttpServlet
 		if (type == "Joueur")
 			typeInt = 1;
 		else
-			typeInt = 0;
+			typeInt = 0; 
 
 		GestionEquipeSoccer equipeSoccerUpdate = (GestionEquipeSoccer) session.getAttribute("equipeSoccerUpdate");
 
 		synchronized (equipeSoccerUpdate)
 		{
-			equipeSoccerUpdate.getGestionJoueur().ajouter(new TupleJoueur(-1, prenom, nom, dateN, nom, motP, adresse, typeInt));
+			if(equipeSoccerUpdate.getGestionJoueur().ajouter(new TupleJoueur(-1, prenom, nom, dateN, nom, motP, adresse, typeInt)))
+				session.setAttribute("notification", 1);
 		}
 
 		// On retourne a la page

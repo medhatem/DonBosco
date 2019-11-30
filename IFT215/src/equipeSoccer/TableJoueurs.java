@@ -26,9 +26,9 @@ public class TableJoueurs {
 		return null;
     }
 
-    public void creer(TupleJoueur joueur)
+    public boolean creer(TupleJoueur joueur)
     {
-        joueurs.add(joueur);
+        return joueurs.add(joueur);
     }
     
     /**

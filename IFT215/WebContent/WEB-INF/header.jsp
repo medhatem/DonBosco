@@ -23,7 +23,6 @@
 					%>
 					<%= res %>
 				</small> 
-
 		      <form class="dropdown-menu" id="HeaderForm" ACTION="Login" METHOD="POST">
 		        <div class="form-group">
 		          <h4 align="center"><b>Se Connecter<b></h4>
@@ -59,4 +58,16 @@
 
 
 	</div>
+	<%
+	int notif = 0;
+	String res2 = "";
+	
+	if(session.getAttribute("notification") != null)
+		notif = ((int) session.getAttribute("notification"));
+
+	if(notif == 1)
+		res2 = "<script>alert('Inscription complétée avec succès!');</script>";
+		
+	session.setAttribute("notification", 0);%>
+	<%=res2%>
 </nav>
