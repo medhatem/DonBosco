@@ -1,78 +1,206 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+pageEncoding="ISO-8859-1"%>
+
 <html>
 <head>
-        <meta charset="utf-8" />
-        <title>A Touch Optimized Gallery | Tutorialzine Freebie</title>
-        
-        <!-- Make the page take the full width of the device-->
-        <meta name="viewport"  content="width=device-width, initial-scale=1.0, user-scalable=0, maximum-scale=1.0" />
-         
-        <!-- The stylesheet -->
-        <link rel="stylesheet" href="assets/css/styles.css" />
-        <link rel="stylesheet" href="assets/touchTouch/touchTouch.css" />
-        
-        <!-- Google Fonts -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Dancing+Script" />
-        
+<meta charset="ISO-8859-1" />
+<title>Galerie</title>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/slideshow.css" />
+<script type="text/javascript" src="js/jQuery.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<link rel="stylesheet" href="css/sheet.css" />
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<script type="text/javascript" src="js/jQuery.js"></script>
-	<link rel="stylesheet" href="css/sheet.css">
-	<link rel="stylesheet" href="css/ConnecteJoueur.css">
-	<!--<script src="js/jquery-3.3.1.min.js"></script>-->
 
-        
-        <jsp:include page="/WEB-INF/header.jsp" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat&display=swap"
+	rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
+	rel="stylesheet" type="text/css" />
+
+<!-- Theme CSS -->
+<link href="css/freelancer.min.css" rel="stylesheet" />
+<!--<script src="js/jquery-3.3.1.min.js"></script>-->
+<link rel="stylesheet" href="css/header.css" />
+<style>
+body {
+	background-color: #e3ecef;
+}
+</style>
+<jsp:include page="/WEB-INF/header.jsp" />
+<link rel="stylesheet" href="css/header.css" />
 </head>
- <body>
 
-		<header>
-			<h1>TouchTouch</h1>
-			<h2>A gallery optimized for touch devices</h2>
-		</header>
-		
-        <div class="thumbs" data-gallery="one">
-	        <a href="http://farm8.staticflickr.com/7013/6754656011_3de2cc73a2_z.jpg" style="background-image:url(http://farm8.staticflickr.com/7013/6754656011_3de2cc73a2_m.jpg)" title="Lion Rock"></a>
-	        <a href="http://farm8.staticflickr.com/7042/6895252645_45f5dfffaa_z.jpg" style="background-image:url(http://farm8.staticflickr.com/7042/6895252645_45f5dfffaa_m.jpg)" title="Holsten Gate"></a>
-	        <a href="http://farm8.staticflickr.com/7183/6943277737_21b521659c_z.jpg" style="background-image:url(http://farm8.staticflickr.com/7183/6943277737_21b521659c_m.jpg)" title="Blue Hour"></a>
-	        <a href="http://farm8.staticflickr.com/7047/7000951429_5eae078a62_z.jpg" style="background-image:url(http://farm8.staticflickr.com/7047/7000951429_5eae078a62_m.jpg)" title="Waikato Landscape"></a>
-        </div>
+<header id="includedContent"></header>
 
-        <div class="thumbs">
-	        <a href="http://farm6.staticflickr.com/5346/7051537899_efc7a44830_z.jpg" data-gallery="two" style="background-image:url(http://farm6.staticflickr.com/5346/7051537899_efc7a44830_m.jpg)" title="Tauranga Bridge"></a>
-	        <a href="http://farm8.staticflickr.com/7268/6951148260_440661b4d1_z.jpg" data-gallery="two" style="background-image:url(http://farm8.staticflickr.com/7268/6951148260_440661b4d1_m.jpg)" title="East Coast"></a>
-	        <a href="http://farm8.staticflickr.com/7259/6930112984_5fcc076288_z.jpg" data-gallery="two" style="background-image:url(http://farm8.staticflickr.com/7259/6930112984_5fcc076288_m.jpg)" title="Cathedral Cove"></a>
-	        <a href="http://farm8.staticflickr.com/7276/6886626710_047cd03acb_z.jpg" data-gallery="two" style="background-image:url(http://farm8.staticflickr.com/7276/6886626710_047cd03acb_m.jpg)" title="The Pond"></a>
-	        <a href="http://farm8.staticflickr.com/7020/6683299491_f2b5f6aa8b_z.jpg" data-gallery="two" style="background-image:url(http://farm8.staticflickr.com/7020/6683299491_f2b5f6aa8b_m.jpg)" title="Good Night"></a>
-        </div>
+<body>
+	<section class="page-section portfolio" id="portfolio">
+		<div class="container">
+			<div class="row">
 
-		<p id="credit">
-			Photos: 
-			<a href="http://www.flickr.com/photos/zanthia/6754656011/">Lion Rock</a>
-			<a href="http://www.flickr.com/photos/zanthia/6895252645/">Holsten Gate</a>
-			<a href="http://www.flickr.com/photos/zanthia/6943277737/">Blue Hour</a>
-			<a href="http://www.flickr.com/photos/zanthia/7000951429/">Waikato Landscape</a>
-			<a href="http://www.flickr.com/photos/zanthia/7051537899/">Tauranga Bridge</a>
-			<a href="http://www.flickr.com/photos/zanthia/6951148260/">East Coast</a>
-			<a href="http://www.flickr.com/photos/zanthia/6930112984/">Cathedral Cove</a>
-			<a href="http://www.flickr.com/photos/zanthia/6886626710/">The Pond</a>
-			<a href="http://www.flickr.com/photos/zanthia/6683299491/">Good Night</a>
-		</p>
-        <footer>
-	        <h2><i>Freebie:</i> Touch Optimized Gallery</h2>
-            <a class="tzine" href="http://tutorialzine.com/2012/04/mobile-touch-gallery/">Head on to <i>Tutorial<b>zine</b></i> to download this freebie</a>
-        </footer>
-        
-        <!-- JavaScript includes - jQuery, turn.js and our own script.js -->
-		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-		<script src="assets/touchTouch/touchTouch.jquery.js"></script>
-		<script src="assets/js/script.js"></script>
-		
-		<!-- BSA AdPacks code. Please ignore and remove.--> 
-        <script src="http://cdn.tutorialzine.com/misc/adPacks/v1.js" async></script>
-        
-    </body>
+
+				<div class="col-sm  shadow-lg p-3 mb-5 rounded"
+					style="margin-right: 4cm;">
+					<h5
+						class="page-section-heading text-center text-uppercase text-black">Bienvenue
+						dans la galerie</h5>
+					<div id="slideshow" class="carousel slide carousel-fade"
+						data-ride="carousel">
+
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img src="img/portfolio/equieAfille.jpg" class="d-block w-100"
+									alt="...">
+								<div class="carousel-caption d-none d-md-block">
+									<h5>Joueus en plein echauffement</h5>
+									<p>Description</p>
+								</div>
+							</div>
+							<div class="carousel-item">
+								<img src="img/portfolio/equipeA.jpg" class="d-block w-100"
+									alt="...">
+								<div class="carousel-caption d-none d-md-block">
+									<h5>Nom Label</h5>
+									<p>Description</p>
+								</div>
+							</div>
+							<div class="carousel-item">
+								<img src="img/portfolio/equipeB.jpg" class="d-block w-100"
+									alt="...">
+								<div class="carousel-caption d-none d-md-block">
+									<h5>Nom Label</h5>
+									<p>Description</p>
+								</div>
+							</div>
+							<div class="carousel-item">
+								<img src="img/portfolio/equipeC.jpg" class="d-block w-100"
+									alt="...">
+								<div class="carousel-caption d-none d-md-block">
+									<h5>Nom Label</h5>
+									<p>Description</p>
+								</div>
+							</div>
+
+						</div>
+
+						<a class="carousel-control-prev" href="#slideshow" role="button"
+							data-slide="prev"> <span class="carousel-control-prev-icon"
+							aria-hidden="true"></span> <span class="sr-only">Previous</span>
+						</a> <a class="carousel-control-next" href="#slideshow" role="button"
+							data-slide="next"> <span class="carousel-control-next-icon"
+							aria-hidden="true"></span> <span class="sr-only">Next</span>
+						</a>
+
+
+
+					</div>
+
+
+				</div>
+
+				<div class="col-sm-3">
+					<section
+						class="page-section bg-primary text-white mb-0 divborder  shadow-lg p-3 mb-5 rounded"
+						id="about">
+						<div class="container"
+							style="background-color: #1abc9C; margin-right: 4cm;">
+							<!-- About Section Heading -->
+							<h2
+								class="page-section-heading text-center text-uppercase text-white">
+								Dernier Resultat</h2>
+
+							<!-- Icon Divider -->
+							<div class="divider-custom divider-light ">
+								<div class="divider-custom-line"></div>
+								<div class="divider-custom-icon">
+									<i class="fas fa-star"></i>
+								</div>
+								<div class="divider-custom-line"></div>
+							</div>
+
+							<!-- About Section Content -->
+							<div class="row">
+								<div class="col-lg-4 ml-auto">
+									<p class="lead">Equipe1 : score 1</p>
+								</div>
+								<div class="col-lg-4 mr-auto">
+									<p class="lead">Equipe2 : score 2</p>
+								</div>
+							</div>
+						</div>
+					</section>
+					<br />
+					<section
+						class="page-section bg-primary text-white mb-0 divborder  shadow-lg p-3 mb-5 rounded"
+						id="about">
+						<div class="container"
+							style="background-color: #1abc9C; margin-right: 4cm;">
+							<!-- About Section Heading -->
+							<h2
+								class="page-section-heading text-center text-uppercase text-white">
+								Flux d'actualité</h2>
+
+							<!-- Icon Divider -->
+							<div class="divider-custom divider-light">
+								<div class="divider-custom-line"></div>
+								<div class="divider-custom-icon">
+									<i class="fas fa-star"></i>
+								</div>
+								<div class="divider-custom-line"></div>
+							</div>
+
+							<!-- About Section Content -->
+							<div class="row">
+								<div class="col-lg-4 ml-auto">
+									<p class="lead">Flux 1</p>
+									<p class="lead">Flux 1</p>
+								</div>
+								<div class="col-lg-4 mr-auto">
+									<p class="lead">Flux 2</p>
+									<p class="lead">Flux 1</p>
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Contact Form JavaScript -->
+	<script src="js/jqBootstrapValidation.js"></script>
+	<script src="js/contact_me.js"></script>
+
+	<!-- Custom scripts for this template -->
+	<script src="js/freelancer.min.js"></script>
+
+	<script src="js/bootstrap.bundle.js"></script>
+	<script src="js/utils.js"></script>
+	<script src="js/slideshow.js"></script>
+</body>
+
+
 </html>
