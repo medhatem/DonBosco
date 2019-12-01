@@ -130,7 +130,7 @@
               </li>
               <li>
                 <a href="#" style="background-color: white;"
-                  ><h4 class=" text-uppercase mb-4 text-black ">
+                  ><h4 class=" text-uppercase mb-4 text-white ">
                     Bilan
                   </h4></a
                 >
@@ -142,12 +142,12 @@
               style="background-color: #f0ffff00;"
             >
               <div class="col-sm-5" align="center">
-                <h2 class=" text-center  text-black">
+                <h2 class=" text-center  text-white">
                   Equipe A
                 </h2>
               </div>
               <div class="col-sm-5 col-sm-offset-2" align="center">
-                <h2 class=" text-center  text-black">
+                <h2 class=" text-center  text-white">
                   Equipe B
                 </h2>
               </div>
@@ -168,7 +168,7 @@
                   %>                  
                   <% String res= rencontres.get(1).getEquipeA().get(i).getNom() + " " +rencontres.get(1).getEquipeA().get(i).getPrenom(); %>
                     <li>
-                      <p class=" text-uppercase mb-4 text-black"><%=res %></p>
+                      <p class=" text-uppercase mb-4 text-white"><%=res %></p>
                     </li>
                   <%
                   }
@@ -185,7 +185,7 @@
                   %>                  
                   <% String res= rencontres.get(1).getEquipeB().get(i).getNom() + " " +rencontres.get(1).getEquipeB().get(i).getPrenom(); %>
                     <li>
-                      <p class=" text-uppercase mb-4 text-black"><%=res %></p>
+                      <p class=" text-uppercase mb-4 text-white"><%=res %></p>
                     </li>
                   <%
                   }
