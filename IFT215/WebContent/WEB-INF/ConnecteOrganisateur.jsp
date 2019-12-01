@@ -129,77 +129,88 @@
               </div>
             </div>
 
-            <ul class="nav nav-tabs">
-              <li>
-                <a href="#"
-                  ><h4 class=" text-uppercase mb-4 text-white">Equipes</h4></a
+			<ul class="nav nav-tabs">
+              <li class="active">
+                <a href="#equipes" data-toggle="tab" style="background-color: white;"
+                  ><h4 class=" text-uppercase mb-4 text-cyan">Equipes</h4></a
                 >
               </li>
               <li>
-                <a href="#" style="background-color: white;"
+                <a href="#bilan" data-toggle="tab" style="background-color: white;"
                   ><h4 class=" text-uppercase mb-4 text-black ">
                     Bilan
                   </h4></a
                 >
               </li>
             </ul>
-            <div
-              class="row ml-2"
-              id="LabelsEquipes"
-              style="background-color: #f0ffff00;"
-            >
-              <div class="col-sm-5" align="center">
-                <h2 class=" text-center  text-black">
-                  Equipe A
-                </h2>
-              </div>
-              <div class="col-sm-5 col-sm-offset-2" align="center">
-                <h2 class=" text-center  text-black">
-                  Equipe B
-                </h2>
-              </div>
-            </div>
-            <div
-              class="row  d-flex justify-content-around"
-              style="background-color: #f0ffff00"
-              id="Equipes"
-            >
-              <div style="background-color: transparent;" col-sm-5" id="divcenter1">
-                <div
-                  class="col-lg-4 mb-5 mb-lg-0 "
-                  style="background-color: f0ffff00";
-                >
-                  <ul style="list-style-type:square;">
-                  <%
-                  for(int i=0;i<rencontres.get(1).getEquipeA().size();i++){
-                  %>                  
-                  <% String res= rencontres.get(1).getEquipeB().get(i).getNom() + " " +rencontres.get(1).getEquipeB().get(i).getPrenom(); %>
-                    <li>
-                      <p class=" text-uppercase mb-4 text-black"><%=res %></p>
-                    </li>
-                  <%
-                  }
-                  %>
-                  </ul>
-                </div>
-              </div>
-              <div class=" col-sm-5 col-sm-offset-2" id="divcenter2">
-                <div class="col-lg-4 mb-5 mb-lg-0">
-                  <ul style="list-style-type:square;">
-                  <%
-                  for(int i=0;i<rencontres.get(1).getEquipeA().size();i++){
-                  %>                  
-                  <% String res= rencontres.get(1).getEquipeB().get(i).getNom() + " " +rencontres.get(1).getEquipeB().get(i).getPrenom(); %>
-                    <li>
-                      <p class=" text-uppercase mb-4 text-black"><%=res %></p>
-                    </li>
-                  <%
-                  }
-                  %>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            <div class="tab-content" id="divCont">
+             	<div class="tab-pane fade in active" id="equipes">
+			            <div
+			              class="row ml-2"
+			              id="LabelsEquipes"
+			              style="background-color: #f0ffff00;"
+			            >
+			              <div class="col-sm-5" align="center">
+			                <h2 class=" text-center  text-black">
+			                  Equipe A
+			                </h2>
+			              </div>
+			              <div class="col-sm-5 col-sm-offset-2" align="center">
+			                <h2 class=" text-center  text-black">
+			                  Equipe B
+			                </h2>
+			              </div>
+			            </div>             	
+			            <div
+			              class="row  d-flex justify-content-around"
+			              style="background-color: #f0ffff00"
+			              id="Equipes"
+			            >
+			              <div style="background-color: transparent;" col-sm-5" id="divcenter1">
+			                <div
+			                  class="col-lg-4 mb-5 mb-lg-0 "
+			                  style="background-color: f0ffff00";
+			                >
+			                  <ul style="list-style-type:square;">
+			                  <%
+			                  for(int i=0;i<rencontres.get(1).getEquipeA().size();i++){
+			                  %>                  
+			                  <% String res= rencontres.get(1).getEquipeB().get(i).getNom() + " " +rencontres.get(1).getEquipeB().get(i).getPrenom(); %>
+			                    <li>
+			                      <p class=" text-uppercase mb-4 text-black"><%=res %></p>
+			                    </li>
+			                  <%
+			                  }
+			                  %>
+			                  </ul>
+			                </div>
+			              </div>
+			              <div class=" col-sm-5 col-sm-offset-2" id="divcenter2">
+			                <div class="col-lg-4 mb-5 mb-lg-0">
+			                  <ul style="list-style-type:square;">
+			                  <%
+			                  for(int i=0;i<rencontres.get(1).getEquipeA().size();i++){
+			                  %>                  
+			                  <% String res= rencontres.get(1).getEquipeB().get(i).getNom() + " " +rencontres.get(1).getEquipeB().get(i).getPrenom(); %>
+			                    <li>
+			                      <p class=" text-uppercase mb-4 text-black"><%=res %></p>
+			                    </li>
+			                  <%
+			                  }
+			                  %>
+			                  </ul>
+			                </div>
+			              </div>
+			            </div>             	
+             	</div>           
+             	<div class="tab-pane fade" id="bilan">
+             	
+             	
+             	</div>                  
+            </div>            
+            
+
+
             <section class=" text-center text-black">
            	  <div class="row" id="RowAnlEng" style="position: absolute;bottom: 0;right: 0;">
                 <div class="wrap">

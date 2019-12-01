@@ -29,7 +29,7 @@ public class ServletRencontre extends HttpServlet
 				
 		if (etat == null)
 		{
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 			dispatcher.forward(request, response);
 		}
 		else
@@ -94,7 +94,7 @@ public class ServletRencontre extends HttpServlet
 				listeMessageErreur.add(e.toString());
 				request.setAttribute("listeMessageErreur", listeMessageErreur);
 				request.setAttribute("clientEnCours", null);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 				dispatcher.forward(request, response);
 			}
 			catch (Exception e)
@@ -126,14 +126,6 @@ public class ServletRencontre extends HttpServlet
 
 	}
 
-	private void Reserver(HttpServletRequest request, HttpServletResponse response, int idJoueur)
-			throws ServletException, IOException, IFT215Exception
-	{
-		HttpSession session = request.getSession();
-		session.setAttribute("joueurEnCours", String.valueOf(idJoueur));
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/reservation.jsp");
-		dispatcher.forward(request, response);
-	}
 
 	private void Creer(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, IFT215Exception,

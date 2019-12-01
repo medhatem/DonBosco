@@ -40,10 +40,7 @@ public class GestionFacture
 		return facture.existe(idCommodite);
 	}
 
-	public String afficherFacture(String idFacture)
-	{
-		return facture.getFacture(Integer.parseInt(idFacture)).toHtml();
-	}
+
 
 	public ArrayList<TupleFacture>  listerFactures()
 			throws IFT215Exception, Exception
