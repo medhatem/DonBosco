@@ -124,14 +124,6 @@ public class ServletFacture extends HttpServlet
 
 	}
 
-	private void Reserver(HttpServletRequest request, HttpServletResponse response, int idJoueur)
-			throws ServletException, IOException, IFT215Exception
-	{
-		HttpSession session = request.getSession();
-		session.setAttribute("joueurEnCours", String.valueOf(idJoueur));
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/reservation.jsp");
-		dispatcher.forward(request, response);
-	}
 
 	private void Creer(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, IFT215Exception,

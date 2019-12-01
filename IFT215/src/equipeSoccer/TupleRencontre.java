@@ -11,6 +11,9 @@ public class TupleRencontre {
 	Timestamp date;
 	TupleTerrain terrain;
 	int scoreA;
+	int scoreB;
+	
+	
 	public TupleTerrain getTerrain() {
 		return terrain;
 	}
@@ -34,7 +37,7 @@ public class TupleRencontre {
 	public void setScoreB(int scoreB) {
 		this.scoreB = scoreB;
 	}
-	int scoreB;
+
 
 	public TupleRencontre(int idRencontre, Timestamp date, TupleTerrain t,int scoreA,int scoreB) {
 		this.idRencontre = idRencontre;

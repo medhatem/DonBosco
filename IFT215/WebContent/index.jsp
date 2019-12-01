@@ -112,11 +112,7 @@
                 ArrayList<TupleRencontre> rencontres = gestionnaireRencontre.getRencontre().listeRencontres();
                 
                TupleRencontre rencontreActuel=gestionnaireRencontre.getRencontre().listeRencontres().get(1);
-                %>
-                  <button type="button " class="btn btn-primary">
-                    <h4 class=" text-uppercase mb-4 text-white">J1</h4>
-                  </button>
-                  <%
+
                   for(int i=0;i<rencontres.size();i++){
                   %>
                   <button type="button " class="btn btn-primary" onclick=>
@@ -152,20 +148,9 @@
               </div>
             </div>
 
-            <ul class="nav nav-tabs">
-              <li>
-                <a href="#"
-                  ><h4 class=" text-uppercase mb-4 text-white">Equipes</h4></a
-                >
-              </li>
-              <li>
-                <a href="#" style="background-color: white;"
-                  ><h4 class=" text-uppercase mb-4 text-black ">
-                    Bilan
-                  </h4></a
-                >
-              </li>
-            </ul>
+<hr>
+
+
             <div
               class="row ml-2"
               id="LabelsEquipes"
