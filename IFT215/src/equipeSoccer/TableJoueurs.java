@@ -54,7 +54,7 @@ public class TableJoueurs {
         return joueurs;
 	}
 
-	public TupleJoueur login(String courriel, String motP)
+	public TupleJoueur login(String courriel, String motP) throws IFT215Exception
 	{
 		System.out.println(courriel + " " + motP + " avec " + joueurs.size() + " joueur(s)");
 		for(TupleJoueur j : joueurs) {
@@ -67,7 +67,7 @@ public class TableJoueurs {
 			}
 		}
 		
-		return null;
+		throw new IFT215Exception("Les informations de connexion saisies sont incorrectes. Veuillez réessayer.");
 	}
 	
 

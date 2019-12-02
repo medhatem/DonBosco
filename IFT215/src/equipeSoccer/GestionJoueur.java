@@ -72,7 +72,7 @@ public class GestionJoueur
 		return joueur.existe(idClient);
 	}
 
-	public TupleJoueur login(String courriel, String motP)
+	public TupleJoueur login(String courriel, String motP) throws IFT215Exception
 	{
 		return joueur.login(courriel, motP);
 	}
